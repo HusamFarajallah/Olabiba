@@ -790,7 +790,7 @@ function sendMessage() {
   const sendButton = document.getElementById("sendButton");
   const messageText = chatInput.value.trim();
 
-  if (!messageText || isTyping) return;
+  if ((!messageText && attachedFiles.length === 0) || isTyping) return;
 
   // Show loading state on send button
   const originalButtonContent = sendButton.innerHTML;
@@ -808,8 +808,15 @@ function sendMessage() {
     chatInput.value = "";
     chatInput.style.height = "auto";
 
-    // Add user message
-    addMessage(messageText, "user");
+    // Add user message with files if any
+    if (attachedFiles.length > 0) {
+      addMessageWithFiles(messageText, attachedFiles);
+      // Clear attached files after sending
+      attachedFiles = [];
+      updateAttachedFilesPreview();
+    } else {
+      addMessage(messageText, "user");
+    }
 
     // Show typing indicator
     showTypingIndicator();
@@ -1000,7 +1007,6 @@ function scrollToBottom() {
 
 // Quick action functions
 function quickAction(action) {
-  // ...
   const chatInput = document.getElementById("chatInput");
   if (!chatInput) return;
 
@@ -1017,7 +1023,132 @@ function quickAction(action) {
   }
 }
 
+// Floating quick actions functions
+function toggleQuickActions() {
+  const floatingMenu = document.getElementById("floatingQuickActions");
+  if (floatingMenu) {
+    if (floatingMenu.classList.contains("hidden")) {
+      // Show menu with animation
+      floatingMenu.classList.remove("hidden");
+      floatingMenu.style.opacity = "0";
+      floatingMenu.style.transform = "translateY(20px) scale(0.95)";
+      
+      setTimeout(() => {
+        floatingMenu.style.opacity = "1";
+        floatingMenu.style.transform = "translateY(0) scale(1)";
+        floatingMenu.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+      }, 10);
+    } else {
+      // Hide menu with animation
+      floatingMenu.style.opacity = "0";
+      floatingMenu.style.transform = "translateY(20px) scale(0.95)";
+      floatingMenu.style.transition = "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)";
+      
+      setTimeout(() => {
+        floatingMenu.classList.add("hidden");
+        floatingMenu.style.transform = "";
+        floatingMenu.style.transition = "";
+      }, 200);
+    }
+  }
+}
+
+function selectQuickAction(action) {
+  const chatInput = document.getElementById("chatInput");
+  const floatingMenu = document.getElementById("floatingQuickActions");
+  
+  if (!chatInput) return;
+
+  const actions = {
+    "تقصير النص": "يرجى تقصير النص التالي: ",
+    "إطالة النص": "يرجى إطالة وتوسيع النص التالي: ",
+    تحسين: "يرجى تحسين وتطوير النص التالي: ",
+    ترجمة: "يرجى ترجمة النص التالي: ",
+  };
+
+  if (actions[action]) {
+    // Add selected action feedback
+    const selectedButton = event.target.closest('button');
+    if (selectedButton) {
+      selectedButton.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        selectedButton.style.transform = '';
+      }, 150);
+    }
+    
+    // Hide the floating menu with animation
+    if (floatingMenu && !floatingMenu.classList.contains("hidden")) {
+      floatingMenu.style.opacity = "0";
+      floatingMenu.style.transform = "translateY(20px) scale(0.95)";
+      floatingMenu.style.transition = "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)";
+      
+      setTimeout(() => {
+        floatingMenu.classList.add("hidden");
+        floatingMenu.style.transform = "";
+        floatingMenu.style.transition = "";
+        
+        // Set input value and focus after menu is hidden
+        chatInput.value = actions[action];
+        chatInput.focus();
+      }, 200);
+    } else {
+      chatInput.value = actions[action];
+      chatInput.focus();
+    }
+  }
+}
+
+// File attachment preview functions
+function updateAttachedFilesPreview() {
+  const previewContainer = document.getElementById("attachedFilesPreview");
+  const filesList = document.getElementById("attachedFilesList");
+  
+  if (!previewContainer || !filesList) return;
+  
+  if (attachedFiles.length === 0) {
+    previewContainer.classList.add("hidden");
+    return;
+  }
+  
+  previewContainer.classList.remove("hidden");
+  filesList.innerHTML = "";
+  
+  attachedFiles.forEach(fileData => {
+    const fileItem = document.createElement("div");
+    fileItem.className = "flex items-center justify-between bg-white rounded-lg p-2 border border-gray-200";
+    
+    fileItem.innerHTML = `
+      <div class="flex items-center space-x-2 space-x-reverse">
+        <div class="text-lg">${getFileIcon(fileData.type)}</div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-700 truncate max-w-32">${fileData.name}</p>
+          <p class="text-xs text-gray-500">${fileData.size}</p>
+        </div>
+      </div>
+      <button onclick="removeAttachedFile('${fileData.id}')" class="text-red-500 hover:text-red-700 p-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    `;
+    
+    filesList.appendChild(fileItem);
+  });
+}
+
+function removeAttachedFile(fileId) {
+  attachedFiles = attachedFiles.filter(file => file.id != fileId);
+  updateAttachedFilesPreview();
+}
+
+function clearAttachedFiles() {
+  attachedFiles = [];
+  updateAttachedFilesPreview();
+}
+
 // File attachment functionality
+let attachedFiles = [];
+
 function initializeFileAttachment() {
   // Create hidden file input
   const fileInput = document.createElement("input");
@@ -1031,6 +1162,25 @@ function initializeFileAttachment() {
 
   // Handle file selection
   fileInput.addEventListener("change", handleFileSelection);
+
+  // Close floating menu when clicking outside
+  document.addEventListener("click", function(event) {
+    const floatingMenu = document.getElementById("floatingQuickActions");
+    const quickActionBtn = event.target.closest('[onclick="toggleQuickActions()"]');
+    
+    if (floatingMenu && !floatingMenu.contains(event.target) && !quickActionBtn && !floatingMenu.classList.contains("hidden")) {
+      // Hide with smooth animation
+      floatingMenu.style.opacity = "0";
+      floatingMenu.style.transform = "translateY(20px) scale(0.95)";
+      floatingMenu.style.transition = "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)";
+      
+      setTimeout(() => {
+        floatingMenu.classList.add("hidden");
+        floatingMenu.style.transform = "";
+        floatingMenu.style.transition = "";
+      }, 200);
+    }
+  });
 }
 
 function openFileDialog() {
@@ -1046,14 +1196,14 @@ function handleFileSelection(event) {
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
-    processFile(file);
+    addFileToAttachments(file);
   }
 
   // Clear the input
   event.target.value = "";
 }
 
-function processFile(file) {
+function addFileToAttachments(file) {
   const maxSize = 10 * 1024 * 1024; // 10MB
 
   if (file.size > maxSize) {
@@ -1061,12 +1211,18 @@ function processFile(file) {
     return;
   }
 
-  // Show file upload message
-  const fileName = file.name;
-  const fileSize = formatFileSize(file.size);
-  const fileType = getFileType(file.type);
-
-  addFileMessage(fileName, fileSize, fileType, file);
+  // Add file to attachments array
+  const fileId = Date.now() + Math.random();
+  const fileData = {
+    id: fileId,
+    file: file,
+    name: file.name,
+    size: formatFileSize(file.size),
+    type: getFileType(file.type)
+  };
+  
+  attachedFiles.push(fileData);
+  updateAttachedFilesPreview();
 }
 
 function addFileMessage(fileName, fileSize, fileType, file) {
@@ -1343,6 +1499,76 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// New function to add message with files
+function addMessageWithFiles(text, files) {
+  const chatMessagesContainer = document.getElementById("chatMessages");
+  if (!chatMessagesContainer) return;
+
+  const messageDiv = document.createElement("div");
+  const timestamp = new Date().toLocaleTimeString("ar-EG", {
+    hour: "2-digit",
+    minute: "2-digit",
+    day: "2-digit",
+    month: "short",
+  });
+
+  messageDiv.className = "flex justify-end";
+  
+  let filesHTML = "";
+  if (files.length > 0) {
+    filesHTML = `
+      <div class="mb-3">
+        ${files.map(fileData => `
+          <div class="flex items-center space-x-2 space-x-reverse mb-2 bg-red-700 rounded-lg p-2">
+            <div class="text-lg">${getFileIcon(fileData.type)}</div>
+            <div class="flex-1">
+              <p class="text-xs font-medium text-red-100">${fileData.name}</p>
+              <p class="text-xs text-red-200">${fileData.size}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+  
+  messageDiv.innerHTML = `
+    <div class="bg-red-600 text-white rounded-2xl rounded-br-md px-4 py-3 max-w-xs shadow-sm">
+      ${filesHTML}
+      ${text ? `<p class="text-sm">${text}</p>` : ''}
+      <div class="flex items-center justify-end mt-2 space-x-1 space-x-reverse">
+        <span class="text-xs text-red-200">${timestamp}</span>
+        <div class="w-4 h-4 rounded-full overflow-hidden">
+          <img src="assets/img/user-avatar.png" alt="User" class="w-full h-full object-cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Add message with animation
+  messageDiv.style.opacity = "0";
+  messageDiv.style.transform = "translateY(20px)";
+  chatMessagesContainer.appendChild(messageDiv);
+
+  // Animate in
+  setTimeout(() => {
+    messageDiv.style.opacity = "1";
+    messageDiv.style.transform = "translateY(0)";
+    messageDiv.style.transition = "all 0.3s ease";
+  }, 10);
+
+  // Scroll to bottom
+  setTimeout(() => {
+    scrollToBottom();
+  }, 100);
+
+  setTimeout(() => {
+    scrollToBottom();
+  }, 300);
+
+  // Store message
+  chatMessages.push({ text, files, sender: "user", timestamp });
+}
+
 // Export chat functions
 window.sendMessage = sendMessage;
 window.quickAction = quickAction;
@@ -1351,3 +1577,7 @@ window.toggleMobileMenu = toggleMobileMenu;
 window.closeMobileMenu = closeMobileMenu;
 window.toggleLanguageDropdown = toggleLanguageDropdown;
 window.selectLanguage = selectLanguage;
+window.toggleQuickActions = toggleQuickActions;
+window.selectQuickAction = selectQuickAction;
+window.removeAttachedFile = removeAttachedFile;
+window.clearAttachedFiles = clearAttachedFiles;
