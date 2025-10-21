@@ -273,7 +273,6 @@ function showCharacterMessage() {
   }, 4000);
 }
 
-
 // Utility functions
 function debounce(func, wait) {
   let timeout;
@@ -313,7 +312,6 @@ function loadFromStorage(key) {
     return null;
   }
 }
-
 
 // Character Cards Carousel System
 let currentCardIndex = 0;
@@ -591,7 +589,9 @@ function initializeModeSelection() {
   });
 
   // Get all mode option containers for mobile sidebar
-  const mobileModeOptions = document.querySelectorAll(".mobile-mode-options > div");
+  const mobileModeOptions = document.querySelectorAll(
+    ".mobile-mode-options > div"
+  );
 
   mobileModeOptions.forEach((option) => {
     option.addEventListener("click", () => {
@@ -661,13 +661,15 @@ function updateSidebarModeSelection(selectedMode) {
 }
 
 function updateMobileSidebarModeSelection(selectedMode) {
-  const mobileModeOptions = document.querySelectorAll(".mobile-mode-options > div");
-  
+  const mobileModeOptions = document.querySelectorAll(
+    ".mobile-mode-options > div"
+  );
+
   mobileModeOptions.forEach((option) => {
     const mode = option.getAttribute("data-mode");
     const radio = option.querySelector(".mobile-mode-radio");
     const span = option.querySelector("span");
-    
+
     if (mode === selectedMode) {
       // Activate selected mode
       option.classList.remove("border-gray-200", "hover:bg-gray-50");
@@ -675,12 +677,12 @@ function updateMobileSidebarModeSelection(selectedMode) {
         `bg-${modeData[mode].color}-50`,
         `border-${modeData[mode].color}-200`
       );
-      
+
       // Update radio button
       if (radio) {
         radio.className = `w-3 h-3 bg-${modeData[mode].color}-500 rounded-full ml-3 mobile-mode-radio`;
       }
-      
+
       // Update text color
       if (span) {
         span.className = `text-${modeData[mode].color}-800 font-medium`;
@@ -698,12 +700,13 @@ function updateMobileSidebarModeSelection(selectedMode) {
         `border-${modeData.flirty.color}-200`
       );
       option.classList.add("border-gray-200", "hover:bg-gray-50");
-      
+
       // Update radio button
       if (radio) {
-        radio.className = "w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio";
+        radio.className =
+          "w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio";
       }
-      
+
       // Update text color
       if (span) {
         span.className = "text-gray-700";
@@ -784,30 +787,48 @@ function initializeChat() {
 
 function sendMessage() {
   const chatInput = document.getElementById("chatInput");
+  const sendButton = document.getElementById("sendButton");
   const messageText = chatInput.value.trim();
 
   if (!messageText || isTyping) return;
 
-  // Clear input
-  chatInput.value = "";
-  chatInput.style.height = "auto";
+  // Show loading state on send button
+  const originalButtonContent = sendButton.innerHTML;
+  sendButton.disabled = true;
+  sendButton.innerHTML = `
+    <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  `;
 
-  // Add user message
-  addMessage(messageText, "user");
-
-  // Show typing indicator
-  showTypingIndicator();
-
-  // Simulate AI response after delay
+  // Add 1-second delay for loading visibility
   setTimeout(() => {
-    hideTypingIndicator();
-    generateAIResponse(messageText);
-  }, 1500 + Math.random() * 1000);
+    // Clear input
+    chatInput.value = "";
+    chatInput.style.height = "auto";
+
+    // Add user message
+    addMessage(messageText, "user");
+
+    // Show typing indicator
+    showTypingIndicator();
+
+    // Restore send button
+    sendButton.disabled = false;
+    sendButton.innerHTML = originalButtonContent;
+
+    // Simulate AI response after delay
+    setTimeout(() => {
+      hideTypingIndicator();
+      generateAIResponse(messageText);
+    }, 1500 + Math.random() * 1000);
+  }, 1000); // 1-second delay for loading
 }
 
 function addMessage(text, sender) {
-  const chatMessages = document.getElementById("chatMessages");
-  if (!chatMessages) return;
+  const chatMessagesContainer = document.getElementById("chatMessages");
+  if (!chatMessagesContainer) return;
 
   const messageDiv = document.createElement("div");
   const timestamp = new Date().toLocaleTimeString("ar-EG", {
@@ -848,7 +869,7 @@ function addMessage(text, sender) {
   // Add message with animation
   messageDiv.style.opacity = "0";
   messageDiv.style.transform = "translateY(20px)";
-  chatMessages.appendChild(messageDiv);
+  chatMessagesContainer.appendChild(messageDiv);
 
   // Animate in
   setTimeout(() => {
@@ -861,7 +882,7 @@ function addMessage(text, sender) {
   setTimeout(() => {
     scrollToBottom();
   }, 100);
-  
+
   // Additional scroll attempt after a longer delay
   setTimeout(() => {
     scrollToBottom();
@@ -875,8 +896,8 @@ function showTypingIndicator() {
   if (isTyping) return;
   isTyping = true;
 
-  const chatMessages = document.getElementById("chatMessages");
-  if (!chatMessages) return;
+  const chatMessagesContainer = document.getElementById("chatMessages");
+  if (!chatMessagesContainer) return;
 
   const typingDiv = document.createElement("div");
   typingDiv.id = "typingIndicator";
@@ -896,7 +917,7 @@ function showTypingIndicator() {
         </div>
     `;
 
-  chatMessages.appendChild(typingDiv);
+  chatMessagesContainer.appendChild(typingDiv);
   scrollToBottom();
 }
 
@@ -965,13 +986,13 @@ function generateAIResponse(userMessage) {
 }
 
 function scrollToBottom() {
-  const chatMessages = document.getElementById('chatMessages');
+  const chatMessages = document.getElementById("chatMessages");
   if (chatMessages) {
     // Force scroll to the very bottom with a small delay to ensure content is rendered
     setTimeout(() => {
       chatMessages.scrollTo({
         top: chatMessages.scrollHeight + 100, // Add extra pixels to ensure we reach the bottom
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }, 50);
   }
@@ -999,21 +1020,21 @@ function quickAction(action) {
 // File attachment functionality
 function initializeFileAttachment() {
   // Create hidden file input
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.id = 'fileInput';
-  fileInput.style.display = 'none';
-  fileInput.accept = 'image/*,video/*,audio/*,.pdf,.doc,.docx,.txt';
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.id = "fileInput";
+  fileInput.style.display = "none";
+  fileInput.accept = "image/*,video/*,audio/*,.pdf,.doc,.docx,.txt";
   fileInput.multiple = true;
-  
+
   document.body.appendChild(fileInput);
-  
+
   // Handle file selection
-  fileInput.addEventListener('change', handleFileSelection);
+  fileInput.addEventListener("change", handleFileSelection);
 }
 
 function openFileDialog() {
-  const fileInput = document.getElementById('fileInput');
+  const fileInput = document.getElementById("fileInput");
   if (fileInput) {
     fileInput.click();
   }
@@ -1022,35 +1043,35 @@ function openFileDialog() {
 function handleFileSelection(event) {
   const files = event.target.files;
   if (files.length === 0) return;
-  
+
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     processFile(file);
   }
-  
+
   // Clear the input
-  event.target.value = '';
+  event.target.value = "";
 }
 
 function processFile(file) {
   const maxSize = 10 * 1024 * 1024; // 10MB
-  
+
   if (file.size > maxSize) {
-    showFileError('حجم الملف كبير جداً. الحد الأقصى 10 ميجابايت');
+    showFileError("حجم الملف كبير جداً. الحد الأقصى 10 ميجابايت");
     return;
   }
-  
+
   // Show file upload message
   const fileName = file.name;
   const fileSize = formatFileSize(file.size);
   const fileType = getFileType(file.type);
-  
+
   addFileMessage(fileName, fileSize, fileType, file);
 }
 
 function addFileMessage(fileName, fileSize, fileType, file) {
-  const chatMessages = document.getElementById("chatMessages");
-  if (!chatMessages) return;
+  const chatMessagesContainer = document.getElementById("chatMessages");
+  if (!chatMessagesContainer) return;
 
   const messageDiv = document.createElement("div");
   const timestamp = new Date().toLocaleTimeString("ar-EG", {
@@ -1070,7 +1091,13 @@ function addFileMessage(fileName, fileSize, fileType, file) {
           <p class="text-xs text-red-200">${fileSize}</p>
         </div>
       </div>
-      ${file.type.startsWith('image/') ? `<img src="${URL.createObjectURL(file)}" alt="${fileName}" class="max-w-full h-32 object-cover rounded-lg mb-2">` : ''}
+      ${
+        file.type.startsWith("image/")
+          ? `<img src="${URL.createObjectURL(
+              file
+            )}" alt="${fileName}" class="max-w-full h-32 object-cover rounded-lg mb-2">`
+          : ""
+      }
       <div class="flex items-center justify-end mt-2 space-x-1 space-x-reverse">
         <span class="text-xs text-red-200">${timestamp}</span>
         <div class="w-4 h-4 rounded-full overflow-hidden">
@@ -1083,7 +1110,7 @@ function addFileMessage(fileName, fileSize, fileType, file) {
   // Add message with animation
   messageDiv.style.opacity = "0";
   messageDiv.style.transform = "translateY(20px)";
-  chatMessages.appendChild(messageDiv);
+  chatMessagesContainer.appendChild(messageDiv);
 
   // Animate in
   setTimeout(() => {
@@ -1102,49 +1129,52 @@ function addFileMessage(fileName, fileSize, fileType, file) {
     const responses = [
       `تم استلام الملف "${fileName}" بنجاح! كيف يمكنني مساعدتك به؟`,
       `شكراً لك على إرسال "${fileName}". هل تريد مني تحليله أو معالجته؟`,
-      `تم رفع الملف بنجاح. ما الذي تريد فعله مع "${fileName}"؟`
+      `تم رفع الملف بنجاح. ما الذي تريد فعله مع "${fileName}"؟`,
     ];
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    const randomResponse =
+      responses[Math.floor(Math.random() * responses.length)];
     addMessage(randomResponse, "ai");
   }, 1000);
 }
 
 function getFileIcon(fileType) {
   const icons = {
-    'image': '🖼️',
-    'video': '🎥',
-    'audio': '🎵',
-    'pdf': '📄',
-    'document': '📝',
-    'default': '📎'
+    image: "🖼️",
+    video: "🎥",
+    audio: "🎵",
+    pdf: "📄",
+    document: "📝",
+    default: "📎",
   };
   return icons[fileType] || icons.default;
 }
 
 function getFileType(mimeType) {
-  if (mimeType.startsWith('image/')) return 'image';
-  if (mimeType.startsWith('video/')) return 'video';
-  if (mimeType.startsWith('audio/')) return 'audio';
-  if (mimeType.includes('pdf')) return 'pdf';
-  if (mimeType.includes('document') || mimeType.includes('text')) return 'document';
-  return 'default';
+  if (mimeType.startsWith("image/")) return "image";
+  if (mimeType.startsWith("video/")) return "video";
+  if (mimeType.startsWith("audio/")) return "audio";
+  if (mimeType.includes("pdf")) return "pdf";
+  if (mimeType.includes("document") || mimeType.includes("text"))
+    return "document";
+  return "default";
 }
 
 function formatFileSize(bytes) {
-  if (bytes === 0) return '0 بايت';
+  if (bytes === 0) return "0 بايت";
   const k = 1024;
-  const sizes = ['بايت', 'كيلوبايت', 'ميجابايت', 'جيجابايت'];
+  const sizes = ["بايت", "كيلوبايت", "ميجابايت", "جيجابايت"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
 function showFileError(message) {
-  const errorDiv = document.createElement('div');
-  errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+  const errorDiv = document.createElement("div");
+  errorDiv.className =
+    "fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50";
   errorDiv.textContent = message;
-  
+
   document.body.appendChild(errorDiv);
-  
+
   setTimeout(() => {
     errorDiv.remove();
   }, 3000);
@@ -1152,12 +1182,12 @@ function showFileError(message) {
 
 // Mobile Menu Functions
 function toggleMobileMenu() {
-  const mobileSidebar = document.getElementById('mobileSidebar');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-  
+  const mobileSidebar = document.getElementById("mobileSidebar");
+  const mobileOverlay = document.getElementById("mobileOverlay");
+
   if (mobileSidebar && mobileOverlay) {
-    const isOpen = !mobileSidebar.classList.contains('translate-x-full');
-    
+    const isOpen = !mobileSidebar.classList.contains("translate-x-full");
+
     if (isOpen) {
       closeMobileMenu();
     } else {
@@ -1167,47 +1197,49 @@ function toggleMobileMenu() {
 }
 
 function openMobileMenu() {
-  const mobileSidebar = document.getElementById('mobileSidebar');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-  
+  const mobileSidebar = document.getElementById("mobileSidebar");
+  const mobileOverlay = document.getElementById("mobileOverlay");
+
   if (mobileSidebar && mobileOverlay) {
-    mobileSidebar.classList.remove('translate-x-full');
-    mobileOverlay.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    mobileSidebar.classList.remove("translate-x-full");
+    mobileOverlay.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
   }
 }
 
 function closeMobileMenu() {
-  const mobileSidebar = document.getElementById('mobileSidebar');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-  
+  const mobileSidebar = document.getElementById("mobileSidebar");
+  const mobileOverlay = document.getElementById("mobileOverlay");
+
   if (mobileSidebar && mobileOverlay) {
-    mobileSidebar.classList.add('translate-x-full');
-    mobileOverlay.classList.add('hidden');
-    document.body.style.overflow = ''; // Restore scrolling
+    mobileSidebar.classList.add("translate-x-full");
+    mobileOverlay.classList.add("hidden");
+    document.body.style.overflow = ""; // Restore scrolling
   }
 }
 
 // Responsive behavior improvements
 function handleResponsiveLayout() {
-  const chatContainer = document.getElementById('chatContainer');
-  const chatInputArea = document.getElementById('chatInputArea');
-  const chatMessages = document.getElementById('chatMessages');
-  
-  if (window.innerWidth < 1024) { // Mobile and tablet
+  const chatContainer = document.getElementById("chatContainer");
+  const chatInputArea = document.getElementById("chatInputArea");
+  const chatMessages = document.getElementById("chatMessages");
+
+  if (window.innerWidth < 1024) {
+    // Mobile and tablet
     // Adjust chat messages height for mobile
     if (chatMessages) {
-      chatMessages.style.height = 'calc(100vh - 120px)';
-      chatMessages.style.paddingBottom = '120px';
+      chatMessages.style.height = "calc(100vh - 120px)";
+      chatMessages.style.paddingBottom = "120px";
     }
-  } else { // Desktop
+  } else {
+    // Desktop
     // Restore desktop height
     if (chatMessages) {
-      chatMessages.style.height = 'calc(100vh - 160px)';
-      chatMessages.style.paddingBottom = '140px';
+      chatMessages.style.height = "calc(100vh - 160px)";
+      chatMessages.style.paddingBottom = "140px";
     }
   }
-  
+
   // Force scroll to bottom after layout change
   setTimeout(() => {
     scrollToBottom();
@@ -1226,12 +1258,12 @@ function initializeResponsive() {
         sidebar.style.display = "block";
       }
     }
-    
+
     // Close mobile menu on resize to desktop
     if (window.innerWidth >= 1024) {
       closeMobileMenu();
     }
-    
+
     // Handle responsive layout
     handleResponsiveLayout();
   }
@@ -1253,53 +1285,57 @@ function initializeResponsive() {
 
 // Language Dropdown Functions
 function toggleLanguageDropdown() {
-  const dropdown = document.getElementById('languageDropdown');
+  const dropdown = document.getElementById("languageDropdown");
   if (dropdown) {
-    dropdown.classList.toggle('hidden');
+    dropdown.classList.toggle("hidden");
   }
 }
 
 function selectLanguage(langCode, langName) {
   // Update the button text
-  const languageSelector = document.getElementById('languageSelector');
+  const languageSelector = document.getElementById("languageSelector");
   if (languageSelector) {
-    const span = languageSelector.querySelector('span');
+    const span = languageSelector.querySelector("span");
     if (span) {
       span.textContent = langName;
     }
   }
-  
+
   // Close the dropdown
-  const dropdown = document.getElementById('languageDropdown');
+  const dropdown = document.getElementById("languageDropdown");
   if (dropdown) {
-    dropdown.classList.add('hidden');
+    dropdown.classList.add("hidden");
   }
-  
+
   // Store selected language in localStorage
-  localStorage.setItem('selectedLanguage', langCode);
-  localStorage.setItem('selectedLanguageName', langName);
-  
+  localStorage.setItem("selectedLanguage", langCode);
+  localStorage.setItem("selectedLanguageName", langName);
+
   // You can add more language switching logic here
   console.log(`Language changed to: ${langName} (${langCode})`);
 }
 
 // Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-  const languageSelector = document.getElementById('languageSelector');
-  const dropdown = document.getElementById('languageDropdown');
-  
-  if (languageSelector && dropdown && !languageSelector.contains(event.target)) {
-    dropdown.classList.add('hidden');
+document.addEventListener("click", function (event) {
+  const languageSelector = document.getElementById("languageSelector");
+  const dropdown = document.getElementById("languageDropdown");
+
+  if (
+    languageSelector &&
+    dropdown &&
+    !languageSelector.contains(event.target)
+  ) {
+    dropdown.classList.add("hidden");
   }
 });
 
 // Initialize language on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const savedLanguage = localStorage.getItem('selectedLanguageName');
+document.addEventListener("DOMContentLoaded", function () {
+  const savedLanguage = localStorage.getItem("selectedLanguageName");
   if (savedLanguage) {
-    const languageSelector = document.getElementById('languageSelector');
+    const languageSelector = document.getElementById("languageSelector");
     if (languageSelector) {
-      const span = languageSelector.querySelector('span');
+      const span = languageSelector.querySelector("span");
       if (span) {
         span.textContent = savedLanguage;
       }
