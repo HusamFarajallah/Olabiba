@@ -717,21 +717,35 @@ function updateMobileSidebarModeSelection(selectedMode) {
 
 function showModeChangeFeedback(modeInfo) {
   const feedback = document.createElement("div");
-  feedback.className =
-    "fixed top-4 left-4 bg-white border-2 border-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-xl z-50 flex items-center space-x-3 space-x-reverse";
+
+  // Check current language from URL path
+  const currentPath = window.location.pathname;
+  const isEnglish = currentPath.includes("-en");
+
+  // Position feedback based on language - right for English, left for Arabic
+  const positionClass = isEnglish ? "right-4" : "left-4";
+  const spacingClass = isEnglish ? "space-x-3" : "space-x-3 space-x-reverse";
+
+  feedback.className = `fixed top-4 ${positionClass} bg-white border-2 border-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-xl z-50 flex items-center ${spacingClass}`;
+
+  // Show appropriate text based on language
+  const feedbackText = isEnglish
+    ? `${modeInfo.name} mode activated`
+    : `تم تفعيل النمط ${modeInfo.nameAr}`;
 
   feedback.innerHTML = `
         <span class="text-2xl">${modeInfo.emoji}</span>
         <div>
             <div class="font-semibold">${modeInfo.name}</div>
-            <div class="text-sm text-gray-600">تم تفعيل النمط ${modeInfo.nameAr}</div>
+            <div class="text-sm text-gray-600">${feedbackText}</div>
         </div>
     `;
 
   document.body.appendChild(feedback);
 
-  // Animate in
-  feedback.style.transform = "translateX(-100%)";
+  // Animate in - slide from appropriate direction
+  const slideDirection = isEnglish ? "translateX(100%)" : "translateX(-100%)";
+  feedback.style.transform = slideDirection;
   feedback.style.opacity = "0";
   setTimeout(() => {
     feedback.style.transform = "translateX(0)";
@@ -739,9 +753,9 @@ function showModeChangeFeedback(modeInfo) {
     feedback.style.transition = "all 0.3s ease";
   }, 10);
 
-  // Remove after 3 seconds
+  // Remove after 3 seconds - slide to appropriate direction
   setTimeout(() => {
-    feedback.style.transform = "translateX(-100%)";
+    feedback.style.transform = slideDirection;
     feedback.style.opacity = "0";
     setTimeout(() => {
       if (document.body.contains(feedback)) {
@@ -1032,7 +1046,7 @@ function toggleQuickActions() {
       floatingMenu.classList.remove("hidden");
       floatingMenu.style.opacity = "0";
       floatingMenu.style.transform = "translateY(20px) scale(0.95)";
-      
+
       setTimeout(() => {
         floatingMenu.style.opacity = "1";
         floatingMenu.style.transform = "translateY(0) scale(1)";
@@ -1043,7 +1057,7 @@ function toggleQuickActions() {
       floatingMenu.style.opacity = "0";
       floatingMenu.style.transform = "translateY(20px) scale(0.95)";
       floatingMenu.style.transition = "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)";
-      
+
       setTimeout(() => {
         floatingMenu.classList.add("hidden");
         floatingMenu.style.transform = "";
@@ -1056,7 +1070,7 @@ function toggleQuickActions() {
 function selectQuickAction(action) {
   const chatInput = document.getElementById("chatInput");
   const floatingMenu = document.getElementById("floatingQuickActions");
-  
+
   if (!chatInput) return;
 
   const actions = {
@@ -1068,25 +1082,25 @@ function selectQuickAction(action) {
 
   if (actions[action]) {
     // Add selected action feedback
-    const selectedButton = event.target.closest('button');
+    const selectedButton = event.target.closest("button");
     if (selectedButton) {
-      selectedButton.style.transform = 'scale(0.95)';
+      selectedButton.style.transform = "scale(0.95)";
       setTimeout(() => {
-        selectedButton.style.transform = '';
+        selectedButton.style.transform = "";
       }, 150);
     }
-    
+
     // Hide the floating menu with animation
     if (floatingMenu && !floatingMenu.classList.contains("hidden")) {
       floatingMenu.style.opacity = "0";
       floatingMenu.style.transform = "translateY(20px) scale(0.95)";
       floatingMenu.style.transition = "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)";
-      
+
       setTimeout(() => {
         floatingMenu.classList.add("hidden");
         floatingMenu.style.transform = "";
         floatingMenu.style.transition = "";
-        
+
         // Set input value and focus after menu is hidden
         chatInput.value = actions[action];
         chatInput.focus();
@@ -1102,42 +1116,47 @@ function selectQuickAction(action) {
 function updateAttachedFilesPreview() {
   const previewContainer = document.getElementById("attachedFilesPreview");
   const filesList = document.getElementById("attachedFilesList");
-  
+
   if (!previewContainer || !filesList) return;
-  
+
   if (attachedFiles.length === 0) {
     previewContainer.classList.add("hidden");
     return;
   }
-  
+
   previewContainer.classList.remove("hidden");
   filesList.innerHTML = "";
-  
-  attachedFiles.forEach(fileData => {
+
+  attachedFiles.forEach((fileData) => {
     const fileItem = document.createElement("div");
-    fileItem.className = "flex items-center justify-between bg-white rounded-lg p-2 border border-gray-200";
-    
+    fileItem.className =
+      "flex items-center justify-between bg-white rounded-lg p-2 border border-gray-200";
+
     fileItem.innerHTML = `
       <div class="flex items-center space-x-2 space-x-reverse">
         <div class="text-lg">${getFileIcon(fileData.type)}</div>
         <div class="flex-1">
-          <p class="text-sm font-medium text-gray-700 truncate max-w-32">${fileData.name}</p>
+          <p class="text-sm font-medium text-gray-700 truncate max-w-32">${
+            fileData.name
+          }</p>
           <p class="text-xs text-gray-500">${fileData.size}</p>
         </div>
       </div>
-      <button onclick="removeAttachedFile('${fileData.id}')" class="text-red-500 hover:text-red-700 p-1">
+      <button onclick="removeAttachedFile('${
+        fileData.id
+      }')" class="text-red-500 hover:text-red-700 p-1">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     `;
-    
+
     filesList.appendChild(fileItem);
   });
 }
 
 function removeAttachedFile(fileId) {
-  attachedFiles = attachedFiles.filter(file => file.id != fileId);
+  attachedFiles = attachedFiles.filter((file) => file.id != fileId);
   updateAttachedFilesPreview();
 }
 
@@ -1164,16 +1183,23 @@ function initializeFileAttachment() {
   fileInput.addEventListener("change", handleFileSelection);
 
   // Close floating menu when clicking outside
-  document.addEventListener("click", function(event) {
+  document.addEventListener("click", function (event) {
     const floatingMenu = document.getElementById("floatingQuickActions");
-    const quickActionBtn = event.target.closest('[onclick="toggleQuickActions()"]');
-    
-    if (floatingMenu && !floatingMenu.contains(event.target) && !quickActionBtn && !floatingMenu.classList.contains("hidden")) {
+    const quickActionBtn = event.target.closest(
+      '[onclick="toggleQuickActions()"]'
+    );
+
+    if (
+      floatingMenu &&
+      !floatingMenu.contains(event.target) &&
+      !quickActionBtn &&
+      !floatingMenu.classList.contains("hidden")
+    ) {
       // Hide with smooth animation
       floatingMenu.style.opacity = "0";
       floatingMenu.style.transform = "translateY(20px) scale(0.95)";
       floatingMenu.style.transition = "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)";
-      
+
       setTimeout(() => {
         floatingMenu.classList.add("hidden");
         floatingMenu.style.transform = "";
@@ -1218,9 +1244,9 @@ function addFileToAttachments(file) {
     file: file,
     name: file.name,
     size: formatFileSize(file.size),
-    type: getFileType(file.type)
+    type: getFileType(file.type),
   };
-  
+
   attachedFiles.push(fileData);
   updateAttachedFilesPreview();
 }
@@ -1342,7 +1368,10 @@ function toggleMobileMenu() {
   const mobileOverlay = document.getElementById("mobileOverlay");
 
   if (mobileSidebar && mobileOverlay) {
-    const isOpen = !mobileSidebar.classList.contains("translate-x-full");
+    // Check if it's English version by URL
+    const isEnglish = window.location.pathname.includes("-en");
+    const closedClass = isEnglish ? "-translate-x-full" : "translate-x-full";
+    const isOpen = !mobileSidebar.classList.contains(closedClass);
 
     if (isOpen) {
       closeMobileMenu();
@@ -1357,7 +1386,11 @@ function openMobileMenu() {
   const mobileOverlay = document.getElementById("mobileOverlay");
 
   if (mobileSidebar && mobileOverlay) {
-    mobileSidebar.classList.remove("translate-x-full");
+    // Check if it's English version by URL
+    const isEnglish = window.location.pathname.includes("-en");
+    const closedClass = isEnglish ? "-translate-x-full" : "translate-x-full";
+    
+    mobileSidebar.classList.remove(closedClass);
     mobileOverlay.classList.remove("hidden");
     document.body.style.overflow = "hidden"; // Prevent background scrolling
   }
@@ -1368,7 +1401,11 @@ function closeMobileMenu() {
   const mobileOverlay = document.getElementById("mobileOverlay");
 
   if (mobileSidebar && mobileOverlay) {
-    mobileSidebar.classList.add("translate-x-full");
+    // Check if it's English version by URL
+    const isEnglish = window.location.pathname.includes("-en");
+    const closedClass = isEnglish ? "-translate-x-full" : "translate-x-full";
+    
+    mobileSidebar.classList.add(closedClass);
     mobileOverlay.classList.add("hidden");
     document.body.style.overflow = ""; // Restore scrolling
   }
@@ -1513,12 +1550,14 @@ function addMessageWithFiles(text, files) {
   });
 
   messageDiv.className = "flex justify-end";
-  
+
   let filesHTML = "";
   if (files.length > 0) {
     filesHTML = `
       <div class="mb-3">
-        ${files.map(fileData => `
+        ${files
+          .map(
+            (fileData) => `
           <div class="flex items-center space-x-2 space-x-reverse mb-2 bg-red-700 rounded-lg p-2">
             <div class="text-lg">${getFileIcon(fileData.type)}</div>
             <div class="flex-1">
@@ -1526,15 +1565,17 @@ function addMessageWithFiles(text, files) {
               <p class="text-xs text-red-200">${fileData.size}</p>
             </div>
           </div>
-        `).join('')}
+        `
+          )
+          .join("")}
       </div>
     `;
   }
-  
+
   messageDiv.innerHTML = `
     <div class="bg-red-600 text-white rounded-2xl rounded-br-md px-4 py-3 max-w-xs shadow-sm">
       ${filesHTML}
-      ${text ? `<p class="text-sm">${text}</p>` : ''}
+      ${text ? `<p class="text-sm">${text}</p>` : ""}
       <div class="flex items-center justify-end mt-2 space-x-1 space-x-reverse">
         <span class="text-xs text-red-200">${timestamp}</span>
         <div class="w-4 h-4 rounded-full overflow-hidden">
