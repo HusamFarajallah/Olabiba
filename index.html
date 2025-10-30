@@ -370,6 +370,16 @@
       .dark-mode .bg-pink-100 {
         background: rgba(236, 72, 153, 0.15) !important;
       }
+      
+      /* Dark Mode for Back to Top Button */
+      .dark-mode #backToTop {
+        background: linear-gradient(to right, #7c3aed, #ec4899) !important;
+      }
+      
+      .dark-mode #backToTop:hover {
+        background: linear-gradient(to right, #6d28d9, #db2777) !important;
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4), 0 10px 10px -5px rgba(236, 72, 153, 0.4) !important;
+      }
     </style>
   </head>
   <body class="font-arabic bg-light-pink min-h-screen">
@@ -1228,6 +1238,17 @@
       </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 opacity-0 invisible"
+      onclick="scrollToTop()"
+    >
+      <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
 
@@ -1299,6 +1320,26 @@
             "from-purple-400",
             "to-pink-400"
           );
+        }
+      });
+
+      // Back to Top Button Functionality
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Show/Hide Back to Top Button
+      window.addEventListener('scroll', function() {
+        const backToTopButton = document.getElementById('backToTop');
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove('opacity-0', 'invisible');
+          backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+          backToTopButton.classList.add('opacity-0', 'invisible');
+          backToTopButton.classList.remove('opacity-100', 'visible');
         }
       });
     </script>
