@@ -19,6 +19,13 @@
 
     <!-- Custom Animations -->
     <style>
+      :root {
+        --primary-red: #dc2626;
+        --light-pink: #fdf2f8;
+        --dark-red: #b91c1c;
+        --medium-red: #ef4444;
+      }
+
       @keyframes fade-in-up {
         from {
           opacity: 0;
@@ -43,10 +50,10 @@
       @keyframes glow {
         0%,
         100% {
-          box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+          box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
         }
         50% {
-          box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+          box-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
         }
       }
 
@@ -68,7 +75,11 @@
       }
 
       .gradient-text {
-        background: linear-gradient(45deg, #8b5cf6, #ec4899);
+        background: linear-gradient(
+          45deg,
+          var(--primary-red),
+          var(--medium-red)
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -215,7 +226,7 @@
       .dark-mode .text-gray-700 {
         color: #cbd5e1 !important;
       }
-      
+
       /* Dark Mode for Language Selector */
       .dark-mode .bg-gradient-to-r.from-blue-50 {
         background: linear-gradient(
@@ -224,7 +235,7 @@
           rgba(99, 102, 241, 0.1)
         ) !important;
       }
-      
+
       .dark-mode .hover\:from-blue-100:hover {
         background: linear-gradient(
           to right,
@@ -232,19 +243,19 @@
           rgba(99, 102, 241, 0.2)
         ) !important;
       }
-      
+
       .dark-mode .border-blue-200 {
         border-color: rgba(59, 130, 246, 0.3) !important;
       }
-      
+
       .dark-mode .bg-white\/95 {
         background: rgba(30, 41, 59, 0.95) !important;
       }
-      
+
       .dark-mode .border-gray-200 {
         border-color: rgba(139, 92, 246, 0.2) !important;
       }
-      
+
       .dark-mode .hover\:from-purple-50:hover {
         background: linear-gradient(
           to right,
@@ -252,7 +263,7 @@
           rgba(236, 72, 153, 0.1)
         ) !important;
       }
-      
+
       .dark-mode .hover\:from-blue-50:hover {
         background: linear-gradient(
           to right,
@@ -260,7 +271,7 @@
           rgba(99, 102, 241, 0.1)
         ) !important;
       }
-      
+
       /* Dark Mode for Header Center Text */
       .dark-mode .bg-gradient-to-r.from-purple-50 {
         background: linear-gradient(
@@ -269,116 +280,145 @@
           rgba(236, 72, 153, 0.15)
         ) !important;
       }
-      
+
       .dark-mode .border-purple-100 {
         border-color: rgba(139, 92, 246, 0.3) !important;
       }
-      
+
       /* Dark Mode for Features Section */
       .dark-mode .bg-gradient-to-br.from-purple-50.to-pink-50 {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        background: linear-gradient(
+          135deg,
+          #1e293b 0%,
+          #334155 100%
+        ) !important;
       }
-      
+
       .dark-mode .bg-gradient-to-br.from-purple-50 {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%) !important;
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.1) 0%,
+          rgba(236, 72, 153, 0.1) 100%
+        ) !important;
       }
-      
+
       .dark-mode .bg-gradient-to-br.from-blue-50 {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%) !important;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.1) 0%,
+          rgba(6, 182, 212, 0.1) 100%
+        ) !important;
       }
-      
+
       .dark-mode .bg-gradient-to-br.from-green-50 {
-        background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%) !important;
+        background: linear-gradient(
+          135deg,
+          rgba(34, 197, 94, 0.1) 0%,
+          rgba(16, 185, 129, 0.1) 100%
+        ) !important;
       }
-      
+
       .dark-mode .bg-gradient-to-br.from-orange-50 {
-        background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%) !important;
+        background: linear-gradient(
+          135deg,
+          rgba(249, 115, 22, 0.1) 0%,
+          rgba(239, 68, 68, 0.1) 100%
+        ) !important;
       }
-      
+
       .dark-mode .bg-gradient-to-br.from-yellow-50 {
-        background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%) !important;
+        background: linear-gradient(
+          135deg,
+          rgba(234, 179, 8, 0.1) 0%,
+          rgba(249, 115, 22, 0.1) 100%
+        ) !important;
       }
-      
+
       .dark-mode .bg-gradient-to-br.from-pink-50 {
-        background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%) !important;
+        background: linear-gradient(
+          135deg,
+          rgba(236, 72, 153, 0.1) 0%,
+          rgba(244, 63, 94, 0.1) 100%
+        ) !important;
       }
-      
+
       .dark-mode .border-blue-100 {
         border-color: rgba(59, 130, 246, 0.2) !important;
       }
-      
+
       .dark-mode .border-green-100 {
         border-color: rgba(34, 197, 94, 0.2) !important;
       }
-      
+
       .dark-mode .border-orange-100 {
         border-color: rgba(249, 115, 22, 0.2) !important;
       }
-      
+
       .dark-mode .border-yellow-100 {
         border-color: rgba(234, 179, 8, 0.2) !important;
       }
-      
+
       .dark-mode .border-pink-100 {
         border-color: rgba(236, 72, 153, 0.2) !important;
       }
-      
+
       .dark-mode .hover\:border-purple-300:hover {
         border-color: rgba(139, 92, 246, 0.4) !important;
       }
-      
+
       .dark-mode .hover\:border-blue-300:hover {
         border-color: rgba(59, 130, 246, 0.4) !important;
       }
-      
+
       .dark-mode .hover\:border-green-300:hover {
         border-color: rgba(34, 197, 94, 0.4) !important;
       }
-      
+
       .dark-mode .hover\:border-orange-300:hover {
         border-color: rgba(249, 115, 22, 0.4) !important;
       }
-      
+
       .dark-mode .hover\:border-yellow-300:hover {
         border-color: rgba(234, 179, 8, 0.4) !important;
       }
-      
+
       .dark-mode .hover\:border-pink-300:hover {
         border-color: rgba(236, 72, 153, 0.4) !important;
       }
-      
+
       .dark-mode .bg-purple-100 {
         background: rgba(139, 92, 246, 0.15) !important;
       }
-      
+
       .dark-mode .bg-blue-100 {
         background: rgba(59, 130, 246, 0.15) !important;
       }
-      
+
       .dark-mode .bg-green-100 {
         background: rgba(34, 197, 94, 0.15) !important;
       }
-      
+
       .dark-mode .bg-orange-100 {
         background: rgba(249, 115, 22, 0.15) !important;
       }
-      
+
       .dark-mode .bg-yellow-100 {
         background: rgba(234, 179, 8, 0.15) !important;
       }
-      
+
       .dark-mode .bg-pink-100 {
         background: rgba(236, 72, 153, 0.15) !important;
       }
-      
+
       /* Dark Mode for Back to Top Button */
       .dark-mode #backToTop {
         background: linear-gradient(to right, #7c3aed, #ec4899) !important;
       }
-      
+
       .dark-mode #backToTop:hover {
         background: linear-gradient(to right, #6d28d9, #db2777) !important;
-        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4), 0 10px 10px -5px rgba(236, 72, 153, 0.4) !important;
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4),
+          0 10px 10px -5px rgba(236, 72, 153, 0.4) !important;
       }
     </style>
   </head>
@@ -394,13 +434,13 @@
           <div class="flex items-center group">
             <div class="flex items-center space-x-3 space-x-reverse">
               <div
-                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg group-hover:scale-110 transition-transform duration-300"
+                class="w-10 h-10 flex items-center justify-center text-white text-lg font-bold shadow-lg group-hover:scale-110 transition-transform duration-300"
               >
-                🤖
+                <img src="assets/img/logo.png" alt="Logo" class="w-10 h-10" />
               </div>
               <div>
                 <h1
-                  class="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+                  class="text-xl font-bold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent"
                 >
                   Olabiba
                 </h1>
@@ -414,7 +454,7 @@
           <!-- Main Text (Center) -->
           <div class="flex-1 text-center mx-2 hidden lg:block">
             <div
-              class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-full px-6 py-2 border border-purple-100"
+              class="bg-gradient-to-r from-red-50 to-pink-50 rounded-full px-6 py-2 border border-red-100"
             >
               <p
                 class="text-gray-700 text-sm font-medium italic"
@@ -487,7 +527,7 @@
                 <div class="py-2">
                   <a
                     href="index.html"
-                    class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 flex items-center justify-between transition-all duration-200 group"
+                    class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 flex items-center justify-between transition-all duration-200 group"
                     onclick="selectLanguage('ar', 'اللغة العربية')"
                   >
                     <span
@@ -576,7 +616,7 @@
 
           <!-- Floating Geometric Shapes -->
           <div
-            class="absolute top-20 right-10 w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl rotate-45 animate-float opacity-60"
+            class="absolute top-20 right-10 w-20 h-20 bg-gradient-to-br from-red-400 to-pink-400 rounded-2xl rotate-45 animate-float opacity-60"
           ></div>
           <div
             class="absolute top-40 left-20 w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full animate-pulse opacity-50"
@@ -602,7 +642,7 @@
                 <span
                   class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"
                 ></span>
-                <span>منصة تعلم اللغات الذكية</span>
+                <span>شات بوت ذكي للمحادثة الفورية</span>
               </div>
 
               <!-- Main Heading -->
@@ -610,9 +650,9 @@
                 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight animate-fade-in-up"
                 style="animation-delay: 0.2s"
               >
-                تعلم اللغات مع
+                دردش واستمتع مع
                 <span
-                  class="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 animate-pulse"
+                  class="block text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-red-500 to-red-400 animate-pulse"
                 >
                   لبيبة الذكية
                 </span>
@@ -623,8 +663,8 @@
                 class="text-xl text-gray-600 leading-relaxed max-w-lg animate-fade-in-up"
                 style="animation-delay: 0.4s"
               >
-                اكتشف طريقة جديدة ومبتكرة لتعلم اللغات مع مساعد ذكي يتكيف مع
-                أسلوب تعلمك الشخصي
+                شات بوت ذكي متاح 24/7 للدردشة بلغتك المفضلة. يجيب على أسئلتك،
+                يساعدك في مشاكلك، ويسليك - بدون تسجيل أو تعقيدات!
               </p>
 
               <!-- Stats -->
@@ -653,20 +693,11 @@
               >
                 <a
                   href="chat.html"
-                  class="inline-flex items-center justify-center space-x-2 space-x-reverse bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 hover:scale-105 hover:shadow-xl group"
+                  class="inline-flex items-center justify-center space-x-2 space-x-reverse bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 hover:scale-105 hover:shadow-xl group"
                 >
                   <span class="text-sm group-hover:animate-bounce">🚀</span>
-                  <span>ابدأ التعلم الآن</span>
+                  <span>ابدأ المحادثة فوراً</span>
                 </a>
-                <button
-                  class="inline-flex items-center justify-center space-x-2 space-x-reverse border-2 border-gray-300 hover:border-purple-400 text-gray-700 hover:text-purple-600 px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 hover:bg-purple-50 hover:scale-105 group"
-                >
-                  <span
-                    class="text-sm group-hover:scale-110 transition-transform"
-                    >▶️</span
-                  >
-                  <span>شاهد العرض التوضيحي</span>
-                </button>
               </div>
             </div>
 
@@ -679,21 +710,25 @@
               <div class="relative w-80 h-80 mx-auto">
                 <!-- Outer Ring -->
                 <div
-                  class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-200 via-pink-200 to-orange-200 animate-spin"
+                  class="absolute inset-0 rounded-full bg-gradient-to-r from-red-200 via-pink-200 to-red-300 animate-spin"
                   style="animation-duration: 20s"
                 ></div>
 
                 <!-- Middle Ring -->
                 <div
-                  class="absolute inset-4 rounded-full bg-gradient-to-r from-purple-300 via-pink-300 to-orange-300 animate-spin"
+                  class="absolute inset-4 rounded-full bg-gradient-to-r from-red-300 via-pink-300 to-red-400 animate-spin"
                   style="animation-duration: 15s; animation-direction: reverse"
                 ></div>
 
                 <!-- Inner Circle -->
                 <div
-                  class="absolute inset-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-2xl"
+                  class="absolute inset-8 rounded-full bg-gradient-to-br from-red-500 to-red-400 flex items-center justify-center shadow-2xl"
                 >
-                  <div class="text-8xl animate-bounce">🤖</div>
+                  <img
+                    src="assets/img/Characters2.png"
+                    alt="Logo"
+                    class="w-32 h-32 animate-bounce"
+                  />
                 </div>
 
                 <!-- Floating Elements Around -->
@@ -775,13 +810,19 @@
               style="animation-delay: 0.2s"
               data-mode="friendly"
             >
-              <div class="bg-orange-100 hover:bg-orange-200 border-2 border-orange-300 hover:border-orange-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+              <div
+                class="bg-orange-100 hover:bg-orange-200 border-2 border-orange-300 hover:border-orange-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+              >
                 <div class="flex items-center space-x-3 space-x-reverse">
-                  <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center text-2xl">
+                  <div
+                    class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center text-2xl"
+                  >
                     😊
                   </div>
                   <div>
-                    <h3 class="text-lg font-semibold text-orange-800">الودود</h3>
+                    <h3 class="text-lg font-semibold text-orange-800">
+                      الودود
+                    </h3>
                     <p class="text-sm text-orange-600">صديق مساعد</p>
                   </div>
                 </div>
@@ -794,9 +835,13 @@
               style="animation-delay: 0.3s"
               data-mode="tutor"
             >
-              <div class="bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 hover:border-blue-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+              <div
+                class="bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 hover:border-blue-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+              >
                 <div class="flex items-center space-x-3 space-x-reverse">
-                  <div class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-2xl">
+                  <div
+                    class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-2xl"
+                  >
                     🎓
                   </div>
                   <div>
@@ -813,9 +858,13 @@
               style="animation-delay: 0.4s"
               data-mode="funny"
             >
-              <div class="bg-green-100 hover:bg-green-200 border-2 border-green-300 hover:border-green-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+              <div
+                class="bg-green-100 hover:bg-green-200 border-2 border-green-300 hover:border-green-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+              >
                 <div class="flex items-center space-x-3 space-x-reverse">
-                  <div class="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-2xl">
+                  <div
+                    class="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-2xl"
+                  >
                     😄
                   </div>
                   <div>
@@ -832,13 +881,19 @@
               style="animation-delay: 0.5s"
               data-mode="creative"
             >
-              <div class="bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 hover:border-purple-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+              <div
+                class="bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 hover:border-purple-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+              >
                 <div class="flex items-center space-x-3 space-x-reverse">
-                  <div class="w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center text-2xl">
+                  <div
+                    class="w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center text-2xl"
+                  >
                     🎨
                   </div>
                   <div>
-                    <h3 class="text-lg font-semibold text-purple-800">المبدع</h3>
+                    <h3 class="text-lg font-semibold text-purple-800">
+                      المبدع
+                    </h3>
                     <p class="text-sm text-purple-600">خيالي ومبتكر</p>
                   </div>
                 </div>
@@ -853,7 +908,7 @@
           >
             <a
               href="chat.html"
-              class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 py-4 rounded-full text-xl font-bold hover:from-pink-600 hover:to-purple-700 transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl animate-glow"
+              class="inline-block bg-gradient-to-r from-red-500 to-red-400 text-white px-10 py-4 rounded-full text-xl font-bold hover:from-red-600 hover:to-red-500 transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl animate-glow"
             >
               🚀 ابدأ المغامرة الآن!
             </a>
@@ -862,7 +917,7 @@
       </div>
 
       <!-- Interactive Features Section -->
-      <div class="bg-gradient-to-br from-purple-50 to-pink-50 py-20">
+      <div class="bg-gradient-to-br from-red-50 to-pink-50 py-20">
         <div class="max-w-6xl mx-auto px-8">
           <div class="text-center mb-16">
             <h2
@@ -881,17 +936,25 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Feature 1 -->
             <div class="group animate-fade-in-up" style="animation-delay: 0.2s">
-              <div class="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100 hover:border-purple-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+              <div
+                class="relative bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 border border-red-100 hover:border-red-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
                 <!-- Background Pattern -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-purple-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
-                
+                <div
+                  class="absolute top-0 right-0 w-20 h-20 bg-purple-100 rounded-full -translate-y-10 translate-x-10 opacity-50"
+                ></div>
+
                 <div class="relative z-10">
                   <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <div
+                      class="w-14 h-14 bg-gradient-to-br from-red-400 to-pink-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"
+                    >
                       🧠
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-bold text-gray-800 mb-2">ذكية جداً!</h3>
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        ذكية جداً!
+                      </h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
                         تفهم ما تقوله وتتذكر محادثاتكم السابقة
                       </p>
@@ -903,17 +966,25 @@
 
             <!-- Feature 2 -->
             <div class="group animate-fade-in-up" style="animation-delay: 0.3s">
-              <div class="relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100 hover:border-blue-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+              <div
+                class="relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100 hover:border-blue-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
                 <!-- Background Pattern -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
-                
+                <div
+                  class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -translate-y-10 translate-x-10 opacity-50"
+                ></div>
+
                 <div class="relative z-10">
                   <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <div
+                      class="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"
+                    >
                       🌍
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-bold text-gray-800 mb-2">متعددة اللغات</h3>
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        متعددة اللغات
+                      </h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
                         تتحدث أكثر من 50 لغة بطلاقة تامة
                       </p>
@@ -925,17 +996,25 @@
 
             <!-- Feature 3 -->
             <div class="group animate-fade-in-up" style="animation-delay: 0.4s">
-              <div class="relative bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100 hover:border-green-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+              <div
+                class="relative bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100 hover:border-green-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
                 <!-- Background Pattern -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
-                
+                <div
+                  class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -translate-y-10 translate-x-10 opacity-50"
+                ></div>
+
                 <div class="relative z-10">
                   <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <div
+                      class="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"
+                    >
                       ⚡
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-bold text-gray-800 mb-2">سريعة البرق!</h3>
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        سريعة البرق!
+                      </h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
                         تجيب في أقل من ثانية مع دقة عالية
                       </p>
@@ -947,17 +1026,25 @@
 
             <!-- Feature 4 -->
             <div class="group animate-fade-in-up" style="animation-delay: 0.5s">
-              <div class="relative bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-100 hover:border-orange-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+              <div
+                class="relative bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-100 hover:border-orange-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
                 <!-- Background Pattern -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-orange-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
-                
+                <div
+                  class="absolute top-0 right-0 w-20 h-20 bg-orange-100 rounded-full -translate-y-10 translate-x-10 opacity-50"
+                ></div>
+
                 <div class="relative z-10">
                   <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <div
+                      class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"
+                    >
                       🎮
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-bold text-gray-800 mb-2">تعلم بالمرح!</h3>
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        تعلم بالمرح!
+                      </h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
                         تحول التعلم إلى لعبة ممتعة ومسلية
                       </p>
@@ -969,17 +1056,25 @@
 
             <!-- Feature 5 -->
             <div class="group animate-fade-in-up" style="animation-delay: 0.6s">
-              <div class="relative bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 hover:border-yellow-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+              <div
+                class="relative bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 hover:border-yellow-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
                 <!-- Background Pattern -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-yellow-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
-                
+                <div
+                  class="absolute top-0 right-0 w-20 h-20 bg-yellow-100 rounded-full -translate-y-10 translate-x-10 opacity-50"
+                ></div>
+
                 <div class="relative z-10">
                   <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <div
+                      class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"
+                    >
                       🌟
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-bold text-gray-800 mb-2">صبورة جداً!</h3>
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        صبورة جداً!
+                      </h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
                         لن تمل من الإجابة على أسئلتك أبداً
                       </p>
@@ -991,17 +1086,25 @@
 
             <!-- Feature 6 -->
             <div class="group animate-fade-in-up" style="animation-delay: 0.7s">
-              <div class="relative bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 border border-pink-100 hover:border-pink-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+              <div
+                class="relative bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 border border-pink-100 hover:border-pink-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
                 <!-- Background Pattern -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-pink-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
-                
+                <div
+                  class="absolute top-0 right-0 w-20 h-20 bg-pink-100 rounded-full -translate-y-10 translate-x-10 opacity-50"
+                ></div>
+
                 <div class="relative z-10">
                   <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                    <div
+                      class="w-14 h-14 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"
+                    >
                       💝
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-bold text-gray-800 mb-2">مجانية تماماً!</h3>
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        مجانية تماماً!
+                      </h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
                         جميع الميزات بدون رسوم مدى الحياة
                       </p>
@@ -1016,7 +1119,7 @@
 
       <!-- Final Call to Action -->
       <div
-        class="relative bg-gradient-to-r from-purple-600 via-pink-600 to-red-500 py-20 overflow-hidden"
+        class="relative bg-gradient-to-r from-red-600 via-red-500 to-red-400 py-20 overflow-hidden"
       >
         <!-- Animated Background -->
         <div class="absolute inset-0 overflow-hidden">
@@ -1123,32 +1226,32 @@
             <a
               href="#home"
               class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-              >Home</a
+              >الرئيسية</a
             >
             <a
               href="#faq"
               class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-              >FAQ</a
+              >الأسئلة الشائعة</a
             >
             <a
               href="#terms"
               class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-              >Terms and Conditions</a
+              >الشروط والأحكام</a
             >
             <a
               href="#privacy"
               class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-              >Privacy</a
+              >سياسة الخصوصية</a
             >
             <a
               href="#ip-policy"
               class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-              >IP Policy</a
+              >سياسة الملكية الفكرية</a
             >
             <a
               href="#contact"
               class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-              >Contact Us</a
+              >اتصل بنا</a
             >
           </div>
         </div>
@@ -1232,7 +1335,7 @@
         <!-- Copyright -->
         <div class="text-center">
           <div class="text-gray-400 text-sm">
-            ©2025 AUTOMA Inc. All rights reserved.
+            ©2025 شركة أوتوما. جميع الحقوق محفوظة.
           </div>
         </div>
       </div>
@@ -1241,11 +1344,21 @@
     <!-- Back to Top Button -->
     <button
       id="backToTop"
-      class="fixed bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 opacity-0 invisible"
+      class="fixed bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 opacity-0 invisible"
       onclick="scrollToTop()"
     >
-      <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      <svg
+        class="w-6 h-6 mx-auto"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        ></path>
       </svg>
     </button>
 
@@ -1271,7 +1384,7 @@
           themeIcon.textContent = "🌙";
           themeToggle.classList.remove(
             "bg-gradient-to-r",
-            "from-purple-400",
+            "from-red-400",
             "to-pink-400"
           );
           themeToggle.classList.add(
@@ -1292,7 +1405,7 @@
           );
           themeToggle.classList.add(
             "bg-gradient-to-r",
-            "from-purple-400",
+            "from-red-400",
             "to-pink-400"
           );
           localStorage.setItem("theme", "dark");
@@ -1317,7 +1430,7 @@
           );
           themeToggle.classList.add(
             "bg-gradient-to-r",
-            "from-purple-400",
+            "from-red-400",
             "to-pink-400"
           );
         }
@@ -1327,19 +1440,19 @@
       function scrollToTop() {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
 
       // Show/Hide Back to Top Button
-      window.addEventListener('scroll', function() {
-        const backToTopButton = document.getElementById('backToTop');
+      window.addEventListener("scroll", function () {
+        const backToTopButton = document.getElementById("backToTop");
         if (window.pageYOffset > 300) {
-          backToTopButton.classList.remove('opacity-0', 'invisible');
-          backToTopButton.classList.add('opacity-100', 'visible');
+          backToTopButton.classList.remove("opacity-0", "invisible");
+          backToTopButton.classList.add("opacity-100", "visible");
         } else {
-          backToTopButton.classList.add('opacity-0', 'invisible');
-          backToTopButton.classList.remove('opacity-100', 'visible');
+          backToTopButton.classList.add("opacity-0", "invisible");
+          backToTopButton.classList.remove("opacity-100", "visible");
         }
       });
     </script>
