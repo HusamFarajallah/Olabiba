@@ -1,305 +1,1306 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Olabiba - منصة تعلم اللغات</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="font-arabic bg-light-pink min-h-screen">
-   <!-- Header -->
-    <header class="bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-20 h-20">
-        <div class="flex h-full">
-            <!-- Sidebar Space -->
-            <div class="w-80 bg-white border-r border-gray-200 header-sidebar-space"></div>
-            
-            <!-- Header Content -->
-            <div class="flex-1 flex items-center justify-between px-6 py-4">
-             <!-- Main Text (Center) -->
-            <div class="flex-1 hidden lg:block">
-                <p class="text-gray-700 text-base font-medium" data-translate="header-text">
-                    "إذا ظهرت ليبية فشتاولها، قلب الأقوال ما قلت ليبية"
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Custom Animations -->
+    <style>
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .animate-glow {
+        animation: glow 2s ease-in-out infinite;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-8px) scale(1.02);
+      }
+
+      .gradient-text {
+        background: linear-gradient(45deg, #8b5cf6, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Dark Mode Styles */
+      .dark-mode {
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        color: #e2e8f0;
+      }
+
+      .dark-mode header {
+        background: rgba(30, 41, 59, 0.95) !important;
+        border-bottom-color: rgba(139, 92, 246, 0.3) !important;
+      }
+
+      .dark-mode .bg-white {
+        background: rgba(30, 41, 59, 0.8) !important;
+        color: #e2e8f0;
+      }
+
+      .dark-mode .text-gray-800 {
+        color: #e2e8f0 !important;
+      }
+
+      .dark-mode .text-gray-600 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark-mode .text-gray-700 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark-mode .border-gray-100,
+      .dark-mode .border-gray-200 {
+        border-color: rgba(139, 92, 246, 0.2) !important;
+      }
+
+      .dark-mode .bg-gradient-to-br.from-indigo-100 {
+        background: linear-gradient(
+          135deg,
+          #1e293b 0%,
+          #334155 50%,
+          #475569 100%
+        ) !important;
+      }
+
+      .dark-mode .bg-gradient-to-br.from-purple-50 {
+        background: linear-gradient(
+          135deg,
+          #1e293b 0%,
+          #334155 100%
+        ) !important;
+      }
+
+      .dark-mode .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+          0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .dark-mode .bg-white\/80 {
+        background: rgba(30, 41, 59, 0.8) !important;
+      }
+
+      .dark-mode .hover\:shadow-xl:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .dark-mode footer {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e1b4b 50%,
+          #312e81 100%
+        ) !important;
+      }
+
+      .dark-mode footer input {
+        background: rgba(15, 23, 42, 0.5) !important;
+        border-color: rgba(139, 92, 246, 0.3) !important;
+      }
+
+      .dark-mode footer input:focus {
+        border-color: rgba(139, 92, 246, 0.6) !important;
+      }
+
+      /* Dark Mode for New Hero Section */
+      .dark-mode .bg-gradient-to-br.from-indigo-50 {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 50%,
+          #334155 100%
+        ) !important;
+      }
+
+      .dark-mode .text-gray-900 {
+        color: #f1f5f9 !important;
+      }
+
+      .dark-mode .text-gray-600 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark-mode .text-gray-700 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark-mode .text-gray-500 {
+        color: #94a3b8 !important;
+      }
+
+      .dark-mode .bg-purple-100 {
+        background: rgba(139, 92, 246, 0.2) !important;
+      }
+
+      .dark-mode .text-purple-800 {
+        color: #c4b5fd !important;
+      }
+
+      .dark-mode .border-gray-300 {
+        border-color: rgba(139, 92, 246, 0.3) !important;
+      }
+
+      .dark-mode .hover\:border-purple-400:hover {
+        border-color: rgba(139, 92, 246, 0.6) !important;
+      }
+
+      .dark-mode .hover\:bg-purple-50:hover {
+        background: rgba(139, 92, 246, 0.1) !important;
+      }
+
+      .dark-mode .bg-white {
+        background: rgba(30, 41, 59, 0.9) !important;
+        color: #f1f5f9;
+      }
+
+      .dark-mode .text-gray-700 {
+        color: #cbd5e1 !important;
+      }
+      
+      /* Dark Mode for Language Selector */
+      .dark-mode .bg-gradient-to-r.from-blue-50 {
+        background: linear-gradient(
+          to right,
+          rgba(59, 130, 246, 0.1),
+          rgba(99, 102, 241, 0.1)
+        ) !important;
+      }
+      
+      .dark-mode .hover\:from-blue-100:hover {
+        background: linear-gradient(
+          to right,
+          rgba(59, 130, 246, 0.2),
+          rgba(99, 102, 241, 0.2)
+        ) !important;
+      }
+      
+      .dark-mode .border-blue-200 {
+        border-color: rgba(59, 130, 246, 0.3) !important;
+      }
+      
+      .dark-mode .bg-white\/95 {
+        background: rgba(30, 41, 59, 0.95) !important;
+      }
+      
+      .dark-mode .border-gray-200 {
+        border-color: rgba(139, 92, 246, 0.2) !important;
+      }
+      
+      .dark-mode .hover\:from-purple-50:hover {
+        background: linear-gradient(
+          to right,
+          rgba(139, 92, 246, 0.1),
+          rgba(236, 72, 153, 0.1)
+        ) !important;
+      }
+      
+      .dark-mode .hover\:from-blue-50:hover {
+        background: linear-gradient(
+          to right,
+          rgba(59, 130, 246, 0.1),
+          rgba(99, 102, 241, 0.1)
+        ) !important;
+      }
+      
+      /* Dark Mode for Header Center Text */
+      .dark-mode .bg-gradient-to-r.from-purple-50 {
+        background: linear-gradient(
+          to right,
+          rgba(139, 92, 246, 0.15),
+          rgba(236, 72, 153, 0.15)
+        ) !important;
+      }
+      
+      .dark-mode .border-purple-100 {
+        border-color: rgba(139, 92, 246, 0.3) !important;
+      }
+      
+      /* Dark Mode for Features Section */
+      .dark-mode .bg-gradient-to-br.from-purple-50.to-pink-50 {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+      }
+      
+      .dark-mode .bg-gradient-to-br.from-purple-50 {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%) !important;
+      }
+      
+      .dark-mode .bg-gradient-to-br.from-blue-50 {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%) !important;
+      }
+      
+      .dark-mode .bg-gradient-to-br.from-green-50 {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%) !important;
+      }
+      
+      .dark-mode .bg-gradient-to-br.from-orange-50 {
+        background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%) !important;
+      }
+      
+      .dark-mode .bg-gradient-to-br.from-yellow-50 {
+        background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%) !important;
+      }
+      
+      .dark-mode .bg-gradient-to-br.from-pink-50 {
+        background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%) !important;
+      }
+      
+      .dark-mode .border-blue-100 {
+        border-color: rgba(59, 130, 246, 0.2) !important;
+      }
+      
+      .dark-mode .border-green-100 {
+        border-color: rgba(34, 197, 94, 0.2) !important;
+      }
+      
+      .dark-mode .border-orange-100 {
+        border-color: rgba(249, 115, 22, 0.2) !important;
+      }
+      
+      .dark-mode .border-yellow-100 {
+        border-color: rgba(234, 179, 8, 0.2) !important;
+      }
+      
+      .dark-mode .border-pink-100 {
+        border-color: rgba(236, 72, 153, 0.2) !important;
+      }
+      
+      .dark-mode .hover\:border-purple-300:hover {
+        border-color: rgba(139, 92, 246, 0.4) !important;
+      }
+      
+      .dark-mode .hover\:border-blue-300:hover {
+        border-color: rgba(59, 130, 246, 0.4) !important;
+      }
+      
+      .dark-mode .hover\:border-green-300:hover {
+        border-color: rgba(34, 197, 94, 0.4) !important;
+      }
+      
+      .dark-mode .hover\:border-orange-300:hover {
+        border-color: rgba(249, 115, 22, 0.4) !important;
+      }
+      
+      .dark-mode .hover\:border-yellow-300:hover {
+        border-color: rgba(234, 179, 8, 0.4) !important;
+      }
+      
+      .dark-mode .hover\:border-pink-300:hover {
+        border-color: rgba(236, 72, 153, 0.4) !important;
+      }
+      
+      .dark-mode .bg-purple-100 {
+        background: rgba(139, 92, 246, 0.15) !important;
+      }
+      
+      .dark-mode .bg-blue-100 {
+        background: rgba(59, 130, 246, 0.15) !important;
+      }
+      
+      .dark-mode .bg-green-100 {
+        background: rgba(34, 197, 94, 0.15) !important;
+      }
+      
+      .dark-mode .bg-orange-100 {
+        background: rgba(249, 115, 22, 0.15) !important;
+      }
+      
+      .dark-mode .bg-yellow-100 {
+        background: rgba(234, 179, 8, 0.15) !important;
+      }
+      
+      .dark-mode .bg-pink-100 {
+        background: rgba(236, 72, 153, 0.15) !important;
+      }
+    </style>
+  </head>
+  <body class="font-arabic bg-light-pink min-h-screen">
+    <!-- Enhanced Header -->
+    <header
+      class="bg-white/95 backdrop-blur-md border-b border-purple-100 fixed top-0 left-0 right-0 z-20 h-20 shadow-lg"
+    >
+      <div class="flex h-full">
+        <!-- Header Content -->
+        <div class="flex-1 flex items-center justify-between px-6 py-4">
+          <!-- Logo/Brand (Right) -->
+          <div class="flex items-center group">
+            <div class="flex items-center space-x-3 space-x-reverse">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg group-hover:scale-110 transition-transform duration-300"
+              >
+                🤖
+              </div>
+              <div>
+                <h1
+                  class="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+                >
+                  Olabiba
+                </h1>
+                <p class="text-xs text-gray-500 hidden md:block">
+                  منصة تعلم اللغات
                 </p>
+              </div>
             </div>
-            
-                <!-- Language Selector (Left) -->
-            <div class="flex items-center">
-                <div class="relative">
-                    <button id="languageSelector" class="bg-white border-none text-gray-700 text-sm font-medium flex items-center space-x-2 space-x-reverse focus:outline-none hover:text-gray-900 transition-colors" onclick="toggleLanguageDropdown()">
-                        
-                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M2.75977 2C1.80165 2 1.00977 2.79188 1.00977 3.75V7.75C1.00977 8.70812 1.80165 9.5 2.75977 9.5H6.50977L9.81445 11.8604C9.9266 11.9403 10.0586 11.9879 10.196 11.9978C10.3333 12.0077 10.4708 11.9796 10.5933 11.9165C10.7157 11.8535 10.8184 11.7579 10.8902 11.6404C10.9619 11.5228 10.9999 11.3877 11 11.25V3.75C11 2.79188 10.2081 2 9.25 2H2.75977ZM12 2C11.79 2 11.58 2.00539 11.375 2.02539C11.395 2.04039 11.4052 2.05531 11.4102 2.07031C11.7252 2.47031 11.9296 2.96 11.9746 3.5H12C12.035 3.5 12.0754 3.49988 12.1104 3.50488C13.2454 3.60988 14.4453 5.315 15.0703 8H12V9.5H15.3398C15.3998 9.98 15.4496 10.48 15.4746 11H16.9746C16.9496 10.485 16.9097 9.985 16.8447 9.5H20.125C20.27 9.985 20.3804 10.485 20.4404 11H21.25C21.495 11 21.735 11.0297 21.96 11.0947C21.5 5.99973 17.21 2 12 2ZM2.75977 3.5H9.25C9.39488 3.5 9.5 3.60512 9.5 3.75V9.79297L7.18555 8.13965C7.05844 8.04889 6.90618 8.00007 6.75 8H2.75977C2.61488 8 2.50977 7.89488 2.50977 7.75V3.75C2.50977 3.60512 2.61488 3.5 2.75977 3.5ZM15.0898 4.08496C16.9798 4.82496 18.5451 6.225 19.4951 8H16.5996C16.2646 6.445 15.7448 5.09996 15.0898 4.08496ZM2.125 10.4248C2.04 10.9348 2 11.465 2 12C2 17.45 6.3748 21.8901 11.7998 21.9951C11.8648 21.9951 11.935 22 12 22C12.03 22 12.0598 22.0001 12.0898 21.9951C12.1198 22.0001 12.1497 22.0001 12.1797 21.9951L12.1748 21.9902C12.0698 21.7652 12.0098 21.51 12.0098 21.25V20.5H12C11.965 20.5 11.9246 20.5001 11.8896 20.4951C10.7546 20.3901 9.55457 18.685 8.93457 16H12V14.5H8.66016C8.56016 13.77 8.505 12.9852 8.5 12.1602L7.01953 11.0996C7.00453 11.3946 7 11.695 7 12C7 12.865 7.05539 13.705 7.15039 14.5H3.87793C3.63379 13.7091 3.5 12.8701 3.5 12C3.5 11.49 3.54465 10.985 3.63965 10.5H2.75C2.535 10.5 2.325 10.4748 2.125 10.4248ZM14.75 12C13.7919 12 13 12.7919 13 13.75V21.25C13.0001 21.3877 13.0381 21.5228 13.1098 21.6404C13.1816 21.7579 13.2843 21.8535 13.4067 21.9165C13.5292 21.9796 13.6667 22.0077 13.804 21.9978C13.9414 21.9879 14.0734 21.9403 14.1855 21.8604L17.4902 19.5H21.25C22.2081 19.5 23 18.7081 23 17.75V13.75C23 12.7919 22.2081 12 21.25 12H14.75ZM14.75 13.5H21.25C21.3949 13.5 21.5 13.6051 21.5 13.75V17.75C21.5 17.8949 21.3949 18 21.25 18H17.25C17.0938 18.0001 16.9416 18.0489 16.8145 18.1396L14.5 19.793V13.75C14.5 13.6051 14.6051 13.5 14.75 13.5ZM4.50879 16H7.40527C7.73527 17.555 8.25527 18.895 8.90527 19.915C7.01685 19.174 5.45982 17.7725 4.50879 16Z" fill="#1F2937"/>
-                        </svg>
-                        <span>اللغة العربية</span>
-                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div id="languageDropdown" class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg min-w-48 z-50">
-                        <div class="py-2">
-                            <a href="index.html" class="w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-between" onclick="selectLanguage('ar', 'اللغة العربية')">
-                                <span>🇸🇦</span>
-                                <span>اللغة العربية</span>
-                            </a>
-                            <a href="index-en.html" class="w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-between" onclick="selectLanguage('en', 'English')">
-                                <span>🇺🇸</span>
-                                <span>English</span>
-                            </a>
-                           
-                        </div>
-                    </div>
+          </div>
+
+          <!-- Main Text (Center) -->
+          <div class="flex-1 text-center mx-2 hidden lg:block">
+            <div
+              class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-full px-6 py-2 border border-purple-100"
+            >
+              <p
+                class="text-gray-700 text-sm font-medium italic"
+                data-translate="header-text"
+              >
+                "إذا ظَهرت لَبِيبةُ فسْألُوها، فَلُبُّ القَولِ مَا قَالت
+                لَبِيبة" ✨
+              </p>
+            </div>
+          </div>
+
+          <!-- Language Selector & Theme Toggle (Left) -->
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <!-- Dark/Light Mode Toggle -->
+            <button
+              id="themeToggle"
+              class="relative w-12 h-6 bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 rounded-full focus:outline-none transition-all duration-300 shadow-inner hover:shadow-md group"
+              onclick="toggleTheme()"
+            >
+              <div
+                class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center group-hover:scale-110"
+                id="themeToggleCircle"
+              >
+                <span class="text-xs" id="themeIcon">🌙</span>
+              </div>
+            </button>
+
+            <div class="relative">
+              <button
+                id="languageSelector"
+                class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 text-gray-700 text-sm font-medium flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full focus:outline-none hover:text-gray-900 transition-all duration-300 shadow-sm hover:shadow-md"
+                onclick="toggleLanguageDropdown()"
+              >
+                <div
+                  class="w-5 h-5 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    class="w-3 h-3 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
                 </div>
+                <span>العربية</span>
+                <svg
+                  class="w-4 h-4 text-gray-400 transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Enhanced Dropdown Menu -->
+              <div
+                id="languageDropdown"
+                class="hidden absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl shadow-xl min-w-48 z-50 overflow-hidden"
+              >
+                <div class="py-2">
+                  <a
+                    href="index.html"
+                    class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 flex items-center justify-between transition-all duration-200 group"
+                    onclick="selectLanguage('ar', 'اللغة العربية')"
+                  >
+                    <span
+                      class="text-lg group-hover:scale-110 transition-transform"
+                      >🇸🇦</span
+                    >
+                    <span class="font-medium">اللغة العربية</span>
+                  </a>
+                  <a
+                    href="index-en.html"
+                    class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center justify-between transition-all duration-200 group"
+                    onclick="selectLanguage('en', 'English')"
+                  >
+                    <span
+                      class="text-lg group-hover:scale-110 transition-transform"
+                      >🇺🇸</span
+                    >
+                    <span class="font-medium">English</span>
+                  </a>
+                </div>
+              </div>
             </div>
-            
-          
+
             <!-- Mobile Menu Button -->
             <div class="flex items-center lg:hidden">
-                <button id="mobileMenuBtn" class="p-2 text-gray-600 hover:text-gray-800 focus:outline-none" onclick="toggleMobileMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+              <button
+                id="mobileMenuBtn"
+                class="p-2 text-gray-600 hover:text-purple-600 focus:outline-none bg-gray-50 hover:bg-purple-50 rounded-full transition-all duration-300 hover:scale-110"
+                onclick="toggleMobileMenu()"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </button>
             </div>
-            
-            <!-- Empty right space for balance on desktop -->
+          </div>
         </div>
+      </div>
     </header>
 
-    <!-- Mobile Sidebar Overlay -->
-    <div id="mobileOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden" onclick="closeMobileMenu()"></div>
-    
-    <!-- Mobile Sidebar -->
-    <div id="mobileSidebar" class="fixed top-0 right-0 w-80 h-full bg-white z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
-        <div class="p-6">
-            <!-- Close Button -->
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-gray-800">القائمة</h2>
-                <button onclick="closeMobileMenu()" class="p-2 text-gray-600 hover:text-gray-800">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu Content -->
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-4">حدد المود</h3>
-                    <div class="space-y-3 mobile-mode-options">
-                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-3 cursor-pointer" data-mode="friendly">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-orange-500 rounded-full ml-3 mobile-mode-radio"></div>
-                                <span class="text-orange-800 font-medium">ودود</span>
-                            </div>
-                        </div>
-                        <div class="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 cursor-pointer" data-mode="tutor">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio"></div>
-                                <span class="text-gray-700">معلم</span>
-                            </div>
-                        </div>
-                        <div class="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 cursor-pointer" data-mode="funny">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio"></div>
-                                <span class="text-gray-700">مضحك</span>
-                            </div>
-                        </div>
-                        <div class="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 cursor-pointer" data-mode="flirty">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio"></div>
-                                <span class="text-gray-700">غزلي</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <div class="min-h-screen" dir="rtl">
+      <!-- Alternative Hero Section - Option 2 (New Design) -->
+      <!-- Uncomment this section to use the new hero design -->
+
+      <div
+        class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
+      >
+        <!-- Geometric Background Pattern -->
+        <div class="absolute inset-0">
+          <div class="absolute top-0 left-0 w-full h-full opacity-30">
+            <svg
+              class="w-full h-full"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <pattern
+                  id="grid"
+                  width="10"
+                  height="10"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 10 0 L 0 0 0 10"
+                    fill="none"
+                    stroke="#8B5CF6"
+                    stroke-width="0.5"
+                    opacity="0.3"
+                  />
+                </pattern>
+              </defs>
+              <rect width="100" height="100" fill="url(#grid)" />
+            </svg>
+          </div>
+
+          <!-- Floating Geometric Shapes -->
+          <div
+            class="absolute top-20 right-10 w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl rotate-45 animate-float opacity-60"
+          ></div>
+          <div
+            class="absolute top-40 left-20 w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full animate-pulse opacity-50"
+          ></div>
+          <div
+            class="absolute bottom-32 right-32 w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-400 rotate-12 animate-bounce opacity-70"
+            style="animation-delay: 1s"
+          ></div>
+          <div
+            class="absolute bottom-20 left-10 w-24 h-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-pulse opacity-40"
+            style="animation-delay: 2s"
+          ></div>
         </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Side - Content -->
+            <div class="space-y-8">
+              <!-- Badge -->
+              <div
+                class="inline-flex items-center space-x-2 space-x-reverse bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold animate-fade-in-up"
+              >
+                <span
+                  class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"
+                ></span>
+                <span>منصة تعلم اللغات الذكية</span>
+              </div>
+
+              <!-- Main Heading -->
+              <h1
+                class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight animate-fade-in-up"
+                style="animation-delay: 0.2s"
+              >
+                تعلم اللغات مع
+                <span
+                  class="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 animate-pulse"
+                >
+                  لبيبة الذكية
+                </span>
+              </h1>
+
+              <!-- Description -->
+              <p
+                class="text-xl text-gray-600 leading-relaxed max-w-lg animate-fade-in-up"
+                style="animation-delay: 0.4s"
+              >
+                اكتشف طريقة جديدة ومبتكرة لتعلم اللغات مع مساعد ذكي يتكيف مع
+                أسلوب تعلمك الشخصي
+              </p>
+
+              <!-- Stats -->
+              <div
+                class="flex flex-wrap gap-6 justify-center lg:justify-start animate-fade-in-up"
+                style="animation-delay: 0.6s"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-purple-600">50+</div>
+                  <div class="text-sm text-gray-500">لغة مدعومة</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-pink-600">24/7</div>
+                  <div class="text-sm text-gray-500">متاح دائماً</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-orange-600">100%</div>
+                  <div class="text-sm text-gray-500">مجاني</div>
+                </div>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div
+                class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start animate-fade-in-up"
+                style="animation-delay: 0.8s"
+              >
+                <a
+                  href="chat.html"
+                  class="inline-flex items-center justify-center space-x-2 space-x-reverse bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 hover:scale-105 hover:shadow-xl group"
+                >
+                  <span class="text-sm group-hover:animate-bounce">🚀</span>
+                  <span>ابدأ التعلم الآن</span>
+                </a>
+                <button
+                  class="inline-flex items-center justify-center space-x-2 space-x-reverse border-2 border-gray-300 hover:border-purple-400 text-gray-700 hover:text-purple-600 px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 hover:bg-purple-50 hover:scale-105 group"
+                >
+                  <span
+                    class="text-sm group-hover:scale-110 transition-transform"
+                    >▶️</span
+                  >
+                  <span>شاهد العرض التوضيحي</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Side - Visual -->
+            <div
+              class="relative animate-fade-in-up"
+              style="animation-delay: 1s"
+            >
+              <!-- Main Character Circle -->
+              <div class="relative w-80 h-80 mx-auto">
+                <!-- Outer Ring -->
+                <div
+                  class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-200 via-pink-200 to-orange-200 animate-spin"
+                  style="animation-duration: 20s"
+                ></div>
+
+                <!-- Middle Ring -->
+                <div
+                  class="absolute inset-4 rounded-full bg-gradient-to-r from-purple-300 via-pink-300 to-orange-300 animate-spin"
+                  style="animation-duration: 15s; animation-direction: reverse"
+                ></div>
+
+                <!-- Inner Circle -->
+                <div
+                  class="absolute inset-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-2xl"
+                >
+                  <div class="text-8xl animate-bounce">🤖</div>
+                </div>
+
+                <!-- Floating Elements Around -->
+                <div
+                  class="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-2xl animate-bounce shadow-lg"
+                  style="animation-delay: 0.5s"
+                >
+                  ✨
+                </div>
+                <div
+                  class="absolute -bottom-4 -left-4 w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-xl animate-pulse shadow-lg"
+                >
+                  💫
+                </div>
+                <div
+                  class="absolute top-1/2 -right-8 w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-lg animate-bounce shadow-lg"
+                  style="animation-delay: 1s"
+                >
+                  🌟
+                </div>
+                <div
+                  class="absolute top-1/2 -left-8 w-14 h-14 bg-red-400 rounded-full flex items-center justify-center text-xl animate-pulse shadow-lg"
+                  style="animation-delay: 1.5s"
+                >
+                  🎯
+                </div>
+              </div>
+
+              <!-- Language Bubbles -->
+              <div
+                class="absolute top-10 left-10 bg-white rounded-2xl px-4 py-2 shadow-lg animate-float"
+              >
+                <span class="text-sm font-semibold text-gray-700"
+                  >مرحباً! 👋</span
+                >
+              </div>
+              <div
+                class="absolute top-20 right-10 bg-white rounded-2xl px-4 py-2 shadow-lg animate-float"
+                style="animation-delay: 1s"
+              >
+                <span class="text-sm font-semibold text-gray-700"
+                  >Hello! 👋</span
+                >
+              </div>
+              <div
+                class="absolute bottom-20 left-20 bg-white rounded-2xl px-4 py-2 shadow-lg animate-float"
+                style="animation-delay: 2s"
+              >
+                <span class="text-sm font-semibold text-gray-700"
+                  >Bonjour! 👋</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Mode Selection -->
+      <div class="bg-white py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <div class="text-center mb-12">
+            <h2
+              class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up"
+            >
+              اختر شخصيتي المفضلة! 🎭
+            </h2>
+            <p
+              class="text-lg text-gray-600 animate-fade-in-up"
+              style="animation-delay: 0.2s"
+            >
+              كل شخصية لها طابع مميز في التعلم والتفاعل
+            </p>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <!-- Friendly Mode -->
+            <div
+              class="group cursor-pointer animate-fade-in-up"
+              style="animation-delay: 0.2s"
+              data-mode="friendly"
+            >
+              <div class="bg-orange-100 hover:bg-orange-200 border-2 border-orange-300 hover:border-orange-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                  <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center text-2xl">
+                    😊
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-800">الودود</h3>
+                    <p class="text-sm text-orange-600">صديق مساعد</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tutor Mode -->
+            <div
+              class="group cursor-pointer animate-fade-in-up"
+              style="animation-delay: 0.3s"
+              data-mode="tutor"
+            >
+              <div class="bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 hover:border-blue-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                  <div class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-2xl">
+                    🎓
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-blue-800">المعلم</h3>
+                    <p class="text-sm text-blue-600">منظم ومفصل</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Funny Mode -->
+            <div
+              class="group cursor-pointer animate-fade-in-up"
+              style="animation-delay: 0.4s"
+              data-mode="funny"
+            >
+              <div class="bg-green-100 hover:bg-green-200 border-2 border-green-300 hover:border-green-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                  <div class="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-2xl">
+                    😄
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-green-800">المرح</h3>
+                    <p class="text-sm text-green-600">مضحك ومسلي</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Creative Mode -->
+            <div
+              class="group cursor-pointer animate-fade-in-up"
+              style="animation-delay: 0.5s"
+              data-mode="creative"
+            >
+              <div class="bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 hover:border-purple-400 rounded-2xl px-6 py-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                  <div class="w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center text-2xl">
+                    🎨
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-purple-800">المبدع</h3>
+                    <p class="text-sm text-purple-600">خيالي ومبتكر</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Animated CTA Button -->
+          <div
+            class="text-center animate-fade-in-up"
+            style="animation-delay: 1s"
+          >
+            <a
+              href="chat.html"
+              class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 py-4 rounded-full text-xl font-bold hover:from-pink-600 hover:to-purple-700 transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl animate-glow"
+            >
+              🚀 ابدأ المغامرة الآن!
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Features Section -->
+      <div class="bg-gradient-to-br from-purple-50 to-pink-50 py-20">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center mb-16">
+            <h2
+              class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up"
+            >
+              ✨ ما يجعل لبيبة مميزة؟
+            </h2>
+            <p
+              class="text-lg text-gray-600 animate-fade-in-up"
+              style="animation-delay: 0.2s"
+            >
+              اكتشف القوى الخارقة التي تجعل تعلم اللغات أسهل وأمتع!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Feature 1 -->
+            <div class="group animate-fade-in-up" style="animation-delay: 0.2s">
+              <div class="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100 hover:border-purple-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-purple-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                  <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                      🧠
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">ذكية جداً!</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        تفهم ما تقوله وتتذكر محادثاتكم السابقة
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="group animate-fade-in-up" style="animation-delay: 0.3s">
+              <div class="relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100 hover:border-blue-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                  <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                      🌍
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">متعددة اللغات</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        تتحدث أكثر من 50 لغة بطلاقة تامة
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="group animate-fade-in-up" style="animation-delay: 0.4s">
+              <div class="relative bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100 hover:border-green-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                  <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                      ⚡
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">سريعة البرق!</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        تجيب في أقل من ثانية مع دقة عالية
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="group animate-fade-in-up" style="animation-delay: 0.5s">
+              <div class="relative bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-100 hover:border-orange-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-orange-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                  <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                      🎮
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">تعلم بالمرح!</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        تحول التعلم إلى لعبة ممتعة ومسلية
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="group animate-fade-in-up" style="animation-delay: 0.6s">
+              <div class="relative bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 hover:border-yellow-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-yellow-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                  <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                      🌟
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">صبورة جداً!</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        لن تمل من الإجابة على أسئلتك أبداً
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="group animate-fade-in-up" style="animation-delay: 0.7s">
+              <div class="relative bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 border border-pink-100 hover:border-pink-300 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-pink-100 rounded-full -translate-y-10 translate-x-10 opacity-50"></div>
+                
+                <div class="relative z-10">
+                  <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-14 h-14 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                      💝
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-800 mb-2">مجانية تماماً!</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        جميع الميزات بدون رسوم مدى الحياة
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Call to Action -->
+      <div
+        class="relative bg-gradient-to-r from-purple-600 via-pink-600 to-red-500 py-20 overflow-hidden"
+      >
+        <!-- Animated Background -->
+        <div class="absolute inset-0 overflow-hidden">
+          <div
+            class="absolute top-10 right-20 w-32 h-32 bg-white/10 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="absolute bottom-20 left-20 w-24 h-24 bg-white/10 rounded-full animate-bounce"
+          ></div>
+          <div
+            class="absolute top-1/2 left-1/2 w-40 h-40 bg-white/5 rounded-full animate-spin"
+            style="animation-duration: 20s"
+          ></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-8 text-center">
+          <div class="animate-fade-in-up">
+            <div class="text-6xl mb-6 animate-bounce">🎉</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+              هل أنت مستعد لبدء رحلة التعلم؟
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              انضم إلى آلاف الطلاب الذين يتعلمون مع لبيبة كل يوم واكتشف متعة
+              التعلم الحقيقية!
+            </p>
+          </div>
+
+          <div class="animate-fade-in-up" style="animation-delay: 0.3s">
+            <a
+              href="chat.html"
+              class="inline-block bg-white text-purple-600 px-12 py-4 rounded-full text-xl font-bold hover:bg-gray-100 transform hover:scale-110 hover:-translate-y-2 transition-all duration-300 shadow-2xl hover:shadow-3xl animate-glow"
+            >
+              🚀 ابدأ الآن مجاناً!
+            </a>
+          </div>
+
+          <div class="mt-8 animate-fade-in-up" style="animation-delay: 0.6s">
+            <p class="text-white/80 text-sm">
+              ✨ لا حاجة للتسجيل • مجاني تماماً • ابدأ فوراً ✨
+            </p>
+          </div>
+
+          <!-- Fun Stats -->
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 animate-fade-in-up"
+            style="animation-delay: 0.9s"
+          >
+            <div class="text-center">
+              <div class="text-3xl mb-2 animate-bounce">🏆</div>
+              <div class="text-white font-semibold">تعلم ممتع</div>
+            </div>
+            <div class="text-center">
+              <div
+                class="text-3xl mb-2 animate-bounce"
+                style="animation-delay: 0.2s"
+              >
+                ⭐
+              </div>
+              <div class="text-white font-semibold">نتائج سريعة</div>
+            </div>
+            <div class="text-center">
+              <div
+                class="text-3xl mb-2 animate-bounce"
+                style="animation-delay: 0.4s"
+              >
+                🎯
+              </div>
+              <div class="text-white font-semibold">دقة عالية</div>
+            </div>
+            <div class="text-center">
+              <div
+                class="text-3xl mb-2 animate-bounce"
+                style="animation-delay: 0.6s"
+              >
+                💝
+              </div>
+              <div class="text-white font-semibold">مجاني تماماً</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- Enhanced Footer with Original Content -->
+    <footer
+      class="relative bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 text-white py-12 overflow-hidden"
+    >
+      <!-- Subtle Background Elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div
+          class="absolute top-10 right-10 w-32 h-32 bg-purple-500/5 rounded-full blur-2xl"
+        ></div>
+        <div
+          class="absolute bottom-10 left-10 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl"
+        ></div>
+      </div>
 
-    <!-- Main Content -->
-    <main class="min-h-screen" dir="rtl">
-      <!-- Right Sidebar -->
-        <div class="fixed top-1 right-0 w-80 h-full bg-white border-l border-gray-200 p-6 overflow-y-auto sidebar-hidden-scroll hidden lg:block z-30" id="sidebar">
-            <div class="text-right">
-                <h2 class="text-2xl  text-gray-800 mb-4">الرئيسية</h2>
-                <h3 class="text-lg font-semibold text-gray-700 mb-6">حدد المود</h3>
-                
-                <!-- Model Options -->
-                <div class="space-y-4 mode-options">
-                    <!-- Friendly Model - Active -->
-                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 relative">
-                        <div class="flex items-center  mb-2">
-                            <div class="model-radio-active"></div>
-                            <div class="flex items-center space-x-2 space-x-reverse">
-                                <span class="text-orange-600 text-lg">😊</span>
-                                <span class="font-medium text-gray-800">Friendly</span>
-                                <span class="text-sm bg-orange-200 text-orange-800 px-2 py-1 rounded">(ودود)</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 text-right leading-relaxed">
-                            الشخصية الودودة التي تساعدك على التعلم بطريقة مريحة. 
-                            الوقت: يستمع جيداً ويعطيك في مساعدتك. 
-                            مثل صديق طيب دائماً موجود من أجلك.
-                        </p>
-                    </div>
-                    
-                    <!-- Tutor Model -->
-                    <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center  mb-2">
-                            <div class="model-radio-inactive"></div>
-                            <div class="flex items-center space-x-2 space-x-reverse">
-                                <span class="text-blue-600 text-lg">🎓</span>
-                                <span class="font-medium text-gray-800">Tutor</span>
-                                <span class="text-sm bg-blue-200 text-blue-800 px-2 py-1 rounded">(معلم)</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 text-right leading-relaxed">
-                            الشخصية المعلمة التي تركز على التعليم المنهجي. 
-                            الوقت: يقدم المعلومات بدقة، يشرح المفاهيم بشكل منظم، ويركز على التقدم المنهجي ومتابعة.
-                        </p>
-                    </div>
-                    
-                    <!-- Funny Model -->
-                    <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center  mb-2">
-                            <div class="model-radio-inactive"></div>
-                            <div class="flex items-center space-x-2 space-x-reverse">
-                                <span class="text-green-600 text-lg">😄</span>
-                                <span class="font-medium text-gray-800">Funny</span>
-                                <span class="text-sm bg-green-200 text-green-800 px-2 py-1 rounded">(مضحك)</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 text-right leading-relaxed">
-                            الشخصية المرحة التي تجعل التعلم ممتعاً. 
-                            الوقت: يحول المحادثة إلى متعة، 
-                            يستخدم الفكاهة والنكات الذكية، 
-                            ويجعل التعلم مليئاً بالبهجة.
-                        </p>
-                    </div>
-                    
-                    <!-- Flirty Model -->
-                    <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center  mb-2">
-                            <div class="model-radio-inactive"></div>
-                            <div class="flex items-center space-x-2 space-x-reverse">
-                                <span class="text-pink-600 text-lg">💕</span>
-                                <span class="font-medium text-gray-800">Flirty</span>
-                                <span class="text-sm bg-pink-200 text-pink-800 px-2 py-1 rounded">(غزلي)</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 text-right leading-relaxed">
-                            الشخصية الجذابة والطريفة. 
-                            الوقت: يستخدم المجاملات الذكية، 
-                            الكلمات الجميلة بطريقة لطيفة، ويجعل 
-                            المحادثة ممتعة بروماسية جميلة.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="relative z-10 max-w-6xl mx-auto px-8">
+        <!-- Main Navigation Links -->
+        <div class="text-center mb-8">
+          <div
+            class="flex flex-wrap justify-center items-center space-x-8 space-x-reverse text-sm"
+          >
+            <a
+              href="#home"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+              >Home</a
+            >
+            <a
+              href="#faq"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+              >FAQ</a
+            >
+            <a
+              href="#terms"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+              >Terms and Conditions</a
+            >
+            <a
+              href="#privacy"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+              >Privacy</a
+            >
+            <a
+              href="#ip-policy"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+              >IP Policy</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+              >Contact Us</a
+            >
+          </div>
         </div>
-        <!-- Main Content Area -->
-        <div class="bg-white  p-8 min-h-screen">
-            <div class="max-w-4xl mx-auto">
-                <!-- Main Title Section -->
-                <!-- Main Content Card -->
-                <div class="bg-white rounded-lg border-2 border-dashed border-pink-400 p-8 text-center mb-12 max-w-2xl mx-auto">
-                    <h1 class="text-3xl font-bold text-gray-800 mb-6" data-translate="welcome">
-                        مرحباً أنا ليبية، كيف يقدر أساعدك؟
-                    </h1>
-                    
-                    <p class="text-gray-600 text-base mb-8 leading-relaxed" >
-                        اختر مزاجك المفضل وأبدأ محادثة فريدة مع ذكاء اصطناعي يتكيف مع شخصيتك!                    </p>
-                                            
-                    <!-- CTA Button -->
-                    <a href="chat.html" class="bg-red-600 text-white px-12 py-3 rounded-lg font-medium text-base hover:bg-red-700 transition-colors shadow-lg" >
-                      أبدأ دردشتك الآن
-                    </a>
-                </div>
-                
-                <!-- Smart Experience Section -->
-                <div class="mt-12">
-                    <h2 class="text-3xl font-bold text-gray-800 text-center mb-8" >
-                        من وراء هذه التجربة الذكية؟
-                    </h2>
-                    
-                    <!-- Characters Container -->
-                    <!-- Character Cards Carousel -->
-                    <div class="relative max-w-6xl mx-auto h-96 overflow-hidden">
-                        <!-- Cards Container -->
-                        <div id="cardsContainer" class="relative w-full h-full flex items-center justify-center">
-                            
-                            <!-- Card 1 - Friendly (Active/Front) -->
-                            <div id="card-friendly" class="character-card active absolute bg-white rounded-3xl p-6 shadow-2xl transform transition-all duration-500 ease-in-out z-30" style="width: 400px; height: 280px;">
-                                <div class="flex flex-col items-center h-full">
-                                    <!-- Character -->
-                                    <div class="mb-3">
-                                        <div class="w-32 h-32 rounded-full overflow-hidden shadow-xl character-bounce border-4 border-white">
-                                            <img src="assets/img/Characters1.png" alt="Friendly Character" class="w-full h-full object-cover">
-                                        </div>
-                                    </div>
-                                    
-                                  
-                                    
-                                    <!-- Title -->
-                                    <h3 class="text-base font-bold text-gray-800 text-center mb-2">لبيبة هي صديقتك الذكية متعددة اللغات</h3>
-                                    
-                                    <!-- Description -->
-                                    <p class="card-description text-gray-600 text-xs text-center leading-relaxed">
-                                        بفضل قدرة لبيبة على التكيف لغوياً، يمكنك التواصل معها بلغتك المفضلة والمشاركة في مناقشات سلسة بفضل قدرات لبيبة الفائقة في التعامل مع مختلف اللغات.
-                                    </p>
-                                    </div>
-                                </div>
-                            
-                            <!-- Card 2 - Tutor (Left/Back) -->
-                            <div id="card-tutor" class="character-card left absolute bg-white rounded-3xl p-5 shadow-lg transform transition-all duration-500 ease-in-out z-20" style="width: 320px; height: 240px; transform: translateX(-200px) scale(0.8); opacity: 0.7;">
-                                <div class="flex flex-col items-center h-full">
-                                        <div class="w-32 h-32 rounded-full overflow-hidden shadow-xl character-bounce border-4 border-white">
-                                        <img src="assets/img/Characters2.png" alt="Tutor Character" class="w-full h-full object-cover">
-                                    </div>
-                                    
-                                    <h4 class="text-sm font-bold text-gray-800 text-center mb-2">ذاكرة لا تنسى، ولا تحتاج لتعريف نفسك</h4>
-                                    <p class="card-description text-gray-600 text-xs text-center hidden">بفضل قدرة لبيبة على التكيف لغوياً، يمكنك التواصل معها بلغتك المفضلة والمشاركة في مناقشات سلسة بفضل قدرات لبيبة الفائقة في التعامل مع مختلف اللغات.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Card 3 - Funny (Right/Back) -->
-                            <div id="card-funny" class="character-card right absolute bg-white rounded-3xl p-5 shadow-lg transform transition-all duration-500 ease-in-out z-20" style="width: 320px; height: 240px; transform: translateX(200px) scale(0.8); opacity: 0.7;">
-                                <div class="flex flex-col items-center h-full">
-                                    <div class="w-32 h-32 rounded-full overflow-hidden shadow-xl character-bounce border-4 border-white">
-                                        <img src="assets/img/Characters3.png" alt="Funny Character" class="w-full h-full object-cover">
-                                    </div>
-                                    
-                                    <h4 class="text-sm font-bold text-gray-800 text-center mb-2">ذكاء اصطناعي يتكيف مع مشاعرك</h4>
-                                    <p class="card-description text-gray-600 text-xs text-center hidden">بفضل قدرة لبيبة على التكيف لغوياً، يمكنك التواصل معها بلغتك المفضلة والمشاركة في مناقشات سلسة بفضل قدرات لبيبة الفائقة في التعامل مع مختلف اللغات.</p>
-                                </div>
-                            </div>
-                 
-                        </div>
-                    </div>
-                    
-                    <!-- Pagination dots -->
-                    <div class="flex justify-center  space-x-3 space-x-reverse">
-                        <div id="dot-0" class="w-3 h-3 bg-gray-800 rounded-full cursor-pointer transition-colors" onclick="showCard(0)"></div>
-                        <div id="dot-1" class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer transition-colors" onclick="showCard(1)"></div>
-                        <div id="dot-2" class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer transition-colors" onclick="showCard(2)"></div>
-                    </div>
-                </div>
-            </div>
+
+        <!-- Social Media Icons -->
+        <div
+          class="flex justify-center items-center space-x-6 space-x-reverse mb-8"
+        >
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+          >
+            <svg
+              class="w-5 h-5 text-gray-300 group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 hover:bg-pink-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+          >
+            <svg
+              class="w-5 h-5 text-gray-300 group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 hover:bg-black rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+          >
+            <svg
+              class="w-5 h-5 text-gray-300 group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 hover:bg-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+          >
+            <svg
+              class="w-5 h-5 text-gray-300 group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+          >
+            <svg
+              class="w-5 h-5 text-gray-300 group-hover:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              />
+            </svg>
+          </a>
         </div>
-    </main>
+
+        <!-- Copyright -->
+        <div class="text-center">
+          <div class="text-gray-400 text-sm">
+            ©2025 AUTOMA Inc. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
-</body>
+
+    <!-- Theme Toggle Script -->
+    <script>
+      // Theme Toggle Functionality
+      function toggleTheme() {
+        const body = document.body;
+        const themeToggleCircle = document.getElementById("themeToggleCircle");
+        const themeIcon = document.getElementById("themeIcon");
+        const themeToggle = document.getElementById("themeToggle");
+
+        // Check current theme
+        const isDark = body.classList.contains("dark-mode");
+
+        if (isDark) {
+          // Switch to light mode
+          body.classList.remove("dark-mode");
+          themeToggleCircle.style.transform = "translateX(0)";
+          themeIcon.textContent = "🌙";
+          themeToggle.classList.remove(
+            "bg-gradient-to-r",
+            "from-purple-400",
+            "to-pink-400"
+          );
+          themeToggle.classList.add(
+            "bg-gradient-to-r",
+            "from-gray-200",
+            "to-gray-300"
+          );
+          localStorage.setItem("theme", "light");
+        } else {
+          // Switch to dark mode
+          body.classList.add("dark-mode");
+          themeToggleCircle.style.transform = "translateX(24px)";
+          themeIcon.textContent = "☀️";
+          themeToggle.classList.remove(
+            "bg-gradient-to-r",
+            "from-gray-200",
+            "to-gray-300"
+          );
+          themeToggle.classList.add(
+            "bg-gradient-to-r",
+            "from-purple-400",
+            "to-pink-400"
+          );
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Load saved theme on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const savedTheme = localStorage.getItem("theme");
+        const themeToggleCircle = document.getElementById("themeToggleCircle");
+        const themeIcon = document.getElementById("themeIcon");
+        const themeToggle = document.getElementById("themeToggle");
+
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-mode");
+          themeToggleCircle.style.transform = "translateX(24px)";
+          themeIcon.textContent = "☀️";
+          themeToggle.classList.remove(
+            "bg-gradient-to-r",
+            "from-gray-200",
+            "to-gray-300"
+          );
+          themeToggle.classList.add(
+            "bg-gradient-to-r",
+            "from-purple-400",
+            "to-pink-400"
+          );
+        }
+      });
+    </script>
+  </body>
 </html>
