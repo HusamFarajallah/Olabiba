@@ -680,7 +680,7 @@ function updateMobileSidebarModeSelection(selectedMode) {
 
       // Update radio button
       if (radio) {
-        radio.className = `w-3 h-3 bg-${modeData[mode].color}-500 rounded-full ml-3 mobile-mode-radio`;
+        radio.className = `w-3 h-3 bg-${modeData[mode].color}-500 rounded-full gap-3 mobile-mode-radio`;
       }
 
       // Update text color
@@ -704,7 +704,7 @@ function updateMobileSidebarModeSelection(selectedMode) {
       // Update radio button
       if (radio) {
         radio.className =
-          "w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio";
+          "w-3 h-3 border-2 border-gray-300 rounded-full mobile-mode-radio";
       }
 
       // Update text color
@@ -1437,7 +1437,9 @@ function toggleMobileMenu() {
 
   if (mobileSidebar && mobileOverlay) {
     // Check if it's LTR version (English or Spanish) by URL
-    const isLTR = window.location.pathname.includes("-en") || window.location.pathname.includes("-es");
+    const isLTR =
+      window.location.pathname.includes("-en") ||
+      window.location.pathname.includes("-es");
     const closedClass = isLTR ? "-translate-x-full" : "translate-x-full";
     const isOpen = !mobileSidebar.classList.contains(closedClass);
 
@@ -1455,7 +1457,9 @@ function openMobileMenu() {
 
   if (mobileSidebar && mobileOverlay) {
     // Check if it's LTR version (English or Spanish) by URL
-    const isLTR = window.location.pathname.includes("-en") || window.location.pathname.includes("-es");
+    const isLTR =
+      window.location.pathname.includes("-en") ||
+      window.location.pathname.includes("-es");
     const closedClass = isLTR ? "-translate-x-full" : "translate-x-full";
 
     mobileSidebar.classList.remove(closedClass);
@@ -1470,7 +1474,9 @@ function closeMobileMenu() {
 
   if (mobileSidebar && mobileOverlay) {
     // Check if it's LTR version (English or Spanish) by URL
-    const isLTR = window.location.pathname.includes("-en") || window.location.pathname.includes("-es");
+    const isLTR =
+      window.location.pathname.includes("-en") ||
+      window.location.pathname.includes("-es");
     const closedClass = isLTR ? "-translate-x-full" : "translate-x-full";
 
     mobileSidebar.classList.add(closedClass);
