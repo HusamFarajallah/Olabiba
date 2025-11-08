@@ -1622,3 +1622,100 @@ window.toggleQuickActions = toggleQuickActions;
 window.selectQuickAction = selectQuickAction;
 window.removeAttachedFile = removeAttachedFile;
 window.clearAttachedFiles = clearAttachedFiles;
+
+// Theme Toggle Functionality from index.html
+function toggleTheme() {
+  const body = document.body;
+  const themeToggleCircle = document.getElementById("themeToggleCircle");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeToggle = document.getElementById("themeToggle");
+
+  // Check current theme
+  const isDark = body.classList.contains("dark-mode");
+
+  if (isDark) {
+    // Switch to light mode
+    body.classList.remove("dark-mode");
+    themeToggleCircle.style.transform = "translateX(0)";
+    themeIcon.textContent = "🌙";
+    themeToggle.classList.remove(
+      "bg-gradient-to-r",
+      "from-red-400",
+      "to-pink-400"
+    );
+    themeToggle.classList.add(
+      "bg-gradient-to-r",
+      "from-gray-200",
+      "to-gray-300"
+    );
+    localStorage.setItem("theme", "light");
+  } else {
+    // Switch to dark mode
+    body.classList.add("dark-mode");
+    themeToggleCircle.style.transform = "translateX(24px)";
+    themeIcon.textContent = "☀️";
+    themeToggle.classList.remove(
+      "bg-gradient-to-r",
+      "from-gray-200",
+      "to-gray-300"
+    );
+    themeToggle.classList.add(
+      "bg-gradient-to-r",
+      "from-red-400",
+      "to-pink-400"
+    );
+    localStorage.setItem("theme", "dark");
+  }
+}
+
+// Load saved theme on page load
+document.addEventListener("DOMContentLoaded", function () {
+  const savedTheme = localStorage.getItem("theme");
+  const themeToggleCircle = document.getElementById("themeToggleCircle");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeToggle = document.getElementById("themeToggle");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    if (themeToggleCircle) themeToggleCircle.style.transform = "translateX(24px)";
+    if (themeIcon) themeIcon.textContent = "☀️";
+    if (themeToggle) {
+      themeToggle.classList.remove(
+        "bg-gradient-to-r",
+        "from-gray-200",
+        "to-gray-300"
+      );
+      themeToggle.classList.add(
+        "bg-gradient-to-r",
+        "from-red-400",
+        "to-pink-400"
+      );
+    }
+  }
+});
+
+// Back to Top Button Functionality
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+// Show/Hide Back to Top Button
+window.addEventListener("scroll", function () {
+  const backToTopButton = document.getElementById("backToTop");
+  if (backToTopButton) {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.remove("opacity-0", "invisible");
+      backToTopButton.classList.add("opacity-100", "visible");
+    } else {
+      backToTopButton.classList.add("opacity-0", "invisible");
+      backToTopButton.classList.remove("opacity-100", "visible");
+    }
+  }
+});
+
+// Export theme functions
+window.toggleTheme = toggleTheme;
+window.scrollToTop = scrollToTop;

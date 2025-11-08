@@ -670,7 +670,7 @@ main {
   #mobileMenuBtn {
     display: block !important;
   }
-  
+
   /* Adjust chat messages area for mobile */
   #chatMessages {
     height: calc(100vh - 120px) !important;
@@ -741,4 +741,808 @@ main {
 }
 .mobile-mode-options .text-pink-800 {
   color: #9d174d !important;
+}
+
+/* Additional CSS from index.html */
+:root {
+  --primary-red: #dc2626;
+  --light-pink: #fdf2f8;
+  --dark-red: #b91c1c;
+  --medium-red: #ef4444;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary-red), var(--medium-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark Mode Styles - Unified Color System */
+.dark-mode {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  color: #e2e8f0;
+}
+
+/* Unified Dark Mode Variables */
+.dark-mode {
+  --dark-bg-primary: #0f172a;
+  --dark-bg-secondary: #1e293b;
+  --dark-bg-tertiary: #334155;
+  --dark-text-primary: #f1f5f9;
+  --dark-text-secondary: #cbd5e1;
+  --dark-text-muted: #94a3b8;
+  --dark-border: rgba(220, 38, 38, 0.2);
+  --dark-accent: rgba(220, 38, 38, 0.1);
+}
+
+.dark-mode header {
+  background: var(--dark-bg-secondary) !important;
+  border-bottom-color: var(--dark-border) !important;
+}
+
+.dark-mode .bg-white {
+  background: var(--dark-bg-secondary) !important;
+  color: var(--dark-text-primary);
+}
+
+.dark-mode .text-gray-800 {
+  color: var(--dark-text-primary) !important;
+}
+
+.dark-mode .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+.dark-mode .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark-mode .border-gray-100,
+.dark-mode .border-gray-200 {
+  border-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-indigo-100 {
+  background: linear-gradient(
+    135deg,
+    #1e293b 0%,
+    #334155 50%,
+    #475569 100%
+  ) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-purple-50 {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+.dark-mode .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark-mode .bg-white\/80 {
+  background: rgba(30, 41, 59, 0.8) !important;
+}
+
+.dark-mode .hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark-mode footer {
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e1b4b 50%,
+    #312e81 100%
+  ) !important;
+}
+
+.dark-mode footer input {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+.dark-mode footer input:focus {
+  border-color: rgba(139, 92, 246, 0.6) !important;
+}
+
+/* Dark Mode for New Hero Section */
+.dark-mode .bg-gradient-to-br.from-indigo-50 {
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 50%,
+    #334155 100%
+  ) !important;
+}
+
+.dark-mode .text-gray-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark-mode .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+.dark-mode .bg-purple-100 {
+  background: rgba(139, 92, 246, 0.2) !important;
+}
+
+.dark-mode .text-purple-800 {
+  color: #c4b5fd !important;
+}
+
+.dark-mode .border-gray-300 {
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+.dark-mode .hover\:border-purple-400:hover {
+  border-color: rgba(139, 92, 246, 0.6) !important;
+}
+
+.dark-mode .hover\:bg-purple-50:hover {
+  background: rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Dark Mode for Language Selector */
+.dark-mode .bg-gradient-to-r.from-blue-50 {
+  background: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0.1),
+    rgba(99, 102, 241, 0.1)
+  ) !important;
+}
+
+.dark-mode .hover\:from-blue-100:hover {
+  background: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0.2),
+    rgba(99, 102, 241, 0.2)
+  ) !important;
+}
+
+.dark-mode .border-blue-200 {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-mode .bg-white\/95 {
+  background: rgba(30, 41, 59, 0.95) !important;
+}
+
+.dark-mode .hover\:from-purple-50:hover {
+  background: linear-gradient(
+    to right,
+    rgba(139, 92, 246, 0.1),
+    rgba(236, 72, 153, 0.1)
+  ) !important;
+}
+
+.dark-mode .hover\:from-blue-50:hover {
+  background: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0.1),
+    rgba(99, 102, 241, 0.1)
+  ) !important;
+}
+
+/* Dark Mode for Header Center Text - Unified */
+.dark-mode .bg-gradient-to-r.from-red-50.to-pink-50 {
+  background: linear-gradient(
+    to right,
+    var(--dark-accent),
+    rgba(220, 38, 38, 0.05)
+  ) !important;
+}
+
+/* Dark Mode for Main Sections - Unified */
+.dark-mode .bg-gradient-to-br.from-red-50.to-pink-50 {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-primary) 0%,
+    var(--dark-bg-secondary) 100%
+  ) !important;
+}
+
+.dark-mode .border-red-100 {
+  border-color: rgba(220, 38, 38, 0.3) !important;
+}
+
+/* Dark Mode for Features Section - Unified */
+.dark-mode .bg-gradient-to-br.from-red-50.to-pink-50,
+.dark-mode .bg-gradient-to-br.from-blue-50.to-cyan-50,
+.dark-mode .bg-gradient-to-br.from-green-50.to-emerald-50,
+.dark-mode .bg-gradient-to-br.from-orange-50.to-red-50,
+.dark-mode .bg-gradient-to-br.from-yellow-50.to-orange-50,
+.dark-mode .bg-gradient-to-br.from-pink-50.to-purple-50 {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-secondary) 0%,
+    var(--dark-bg-tertiary) 100%
+  ) !important;
+  border: 1px solid var(--dark-border) !important;
+}
+
+/* Dark Mode Border Colors - Unified */
+.dark-mode .border-red-100,
+.dark-mode .border-blue-100,
+.dark-mode .border-green-100,
+.dark-mode .border-orange-100,
+.dark-mode .border-yellow-100,
+.dark-mode .border-pink-100 {
+  border-color: var(--dark-border) !important;
+}
+
+/* Dark Mode Hover Border Colors - Unified */
+.dark-mode .hover\:border-red-300:hover,
+.dark-mode .hover\:border-blue-300:hover,
+.dark-mode .hover\:border-green-300:hover,
+.dark-mode .hover\:border-orange-300:hover,
+.dark-mode .hover\:border-yellow-300:hover,
+.dark-mode .hover\:border-pink-300:hover {
+  border-color: rgba(220, 38, 38, 0.4) !important;
+}
+
+/* Dark Mode for Final CTA Section - Unified */
+.dark-mode .bg-gradient-to-br.from-gray-50.via-white.to-red-50 {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-primary) 0%,
+    var(--dark-bg-secondary) 50%,
+    var(--dark-bg-tertiary) 100%
+  ) !important;
+}
+
+/* Dark Mode for CTA Section Elements - Unified */
+.dark-mode .bg-gradient-to-br.from-red-100.to-pink-100,
+.dark-mode .bg-gradient-to-br.from-pink-100.to-red-100,
+.dark-mode .bg-gradient-to-br.from-orange-100.to-red-100,
+.dark-mode .bg-gradient-to-br.from-pink-100.to-purple-100 {
+  background: linear-gradient(
+    135deg,
+    var(--dark-accent) 0%,
+    rgba(220, 38, 38, 0.05) 100%
+  ) !important;
+}
+
+/* Dark Mode for Footer - Unified */
+.dark-mode footer {
+  background: linear-gradient(
+    to right,
+    var(--dark-bg-primary) 0%,
+    var(--dark-bg-secondary) 50%,
+    var(--dark-bg-primary) 100%
+  ) !important;
+}
+
+.dark-mode footer .bg-purple-500\/5 {
+  background: var(--dark-accent) !important;
+}
+
+.dark-mode footer .bg-blue-500\/5 {
+  background: rgba(220, 38, 38, 0.05) !important;
+}
+
+.dark-mode footer .text-gray-300 {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode footer .text-gray-400 {
+  color: var(--dark-text-muted) !important;
+}
+
+.dark-mode footer .hover\:text-white:hover {
+  color: var(--dark-text-primary) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-blue-50 {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(6, 182, 212, 0.1) 100%
+  ) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-green-50 {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  ) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-orange-50 {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.1) 0%,
+    rgba(239, 68, 68, 0.1) 100%
+  ) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-yellow-50 {
+  background: linear-gradient(
+    135deg,
+    rgba(234, 179, 8, 0.1) 0%,
+    rgba(249, 115, 22, 0.1) 100%
+  ) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-pink-50 {
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.1) 0%,
+    rgba(244, 63, 94, 0.1) 100%
+  ) !important;
+}
+
+.dark-mode .border-blue-100 {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-mode .border-green-100 {
+  border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.dark-mode .border-orange-100 {
+  border-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-mode .border-yellow-100 {
+  border-color: rgba(234, 179, 8, 0.2) !important;
+}
+
+.dark-mode .border-pink-100 {
+  border-color: rgba(236, 72, 153, 0.2) !important;
+}
+
+.dark-mode .hover\:border-purple-300:hover {
+  border-color: rgba(139, 92, 246, 0.4) !important;
+}
+
+.dark-mode .hover\:border-blue-300:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-mode .hover\:border-green-300:hover {
+  border-color: rgba(34, 197, 94, 0.4) !important;
+}
+
+.dark-mode .hover\:border-orange-300:hover {
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-mode .hover\:border-yellow-300:hover {
+  border-color: rgba(234, 179, 8, 0.4) !important;
+}
+
+.dark-mode .hover\:border-pink-300:hover {
+  border-color: rgba(236, 72, 153, 0.4) !important;
+}
+
+.dark-mode .bg-purple-100 {
+  background: rgba(139, 92, 246, 0.15) !important;
+}
+
+.dark-mode .bg-blue-100 {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+.dark-mode .bg-green-100 {
+  background: rgba(34, 197, 94, 0.15) !important;
+}
+
+.dark-mode .bg-orange-100 {
+  background: rgba(249, 115, 22, 0.15) !important;
+}
+
+.dark-mode .bg-yellow-100 {
+  background: rgba(234, 179, 8, 0.15) !important;
+}
+
+.dark-mode .bg-pink-100 {
+  background: rgba(236, 72, 153, 0.15) !important;
+}
+
+/* Dark Mode Support for Mode Options */
+.dark-mode .bg-orange-50 {
+  background: rgba(249, 115, 22, 0.1) !important;
+}
+
+.dark-mode .bg-blue-50 {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+.dark-mode .bg-green-50 {
+  background: rgba(34, 197, 94, 0.1) !important;
+}
+
+.dark-mode .bg-pink-50 {
+  background: rgba(236, 72, 153, 0.1) !important;
+}
+
+/* Dark Mode Border Colors for Mode Options */
+.dark-mode .border-orange-200 {
+  border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+.dark-mode .border-blue-200 {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-mode .border-green-200 {
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+.dark-mode .border-pink-200 {
+  border-color: rgba(236, 72, 153, 0.3) !important;
+}
+
+/* Dark Mode Text Colors for Mode Options */
+.dark-mode .text-orange-600 {
+  color: rgba(249, 115, 22, 0.9) !important;
+}
+
+.dark-mode .text-blue-600 {
+  color: rgba(59, 130, 246, 0.9) !important;
+}
+
+.dark-mode .text-green-600 {
+  color: rgba(34, 197, 94, 0.9) !important;
+}
+
+.dark-mode .text-pink-600 {
+  color: rgba(236, 72, 153, 0.9) !important;
+}
+
+/* Dark Mode Badge Colors */
+.dark-mode .bg-orange-200 {
+  background: rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-mode .text-orange-800 {
+  color: rgba(249, 115, 22, 1) !important;
+}
+
+.dark-mode .bg-blue-200 {
+  background: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-mode .text-blue-800 {
+  color: rgba(59, 130, 246, 1) !important;
+}
+
+.dark-mode .bg-green-200 {
+  background: rgba(34, 197, 94, 0.2) !important;
+}
+
+.dark-mode .text-green-800 {
+  color: rgba(34, 197, 94, 1) !important;
+}
+
+.dark-mode .bg-pink-200 {
+  background: rgba(236, 72, 153, 0.2) !important;
+}
+
+.dark-mode .text-pink-800 {
+  color: rgba(236, 72, 153, 1) !important;
+}
+
+/* Dark Mode Hover Effects for Mode Options */
+.dark-mode .hover\:bg-gray-50:hover {
+  background: rgba(55, 65, 81, 0.1) !important;
+}
+
+/* Dark Mode Radio Button */
+.dark-mode .model-radio-active {
+  background: #f97316 !important;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-mode .model-radio-inactive {
+  border-color: rgba(156, 163, 175, 0.6) !important;
+  background: transparent !important;
+}
+
+/* Dark Mode Mobile Mode Options */
+.dark-mode .mobile-mode-options .bg-orange-500 {
+  background: #f97316 !important;
+}
+
+.dark-mode .mobile-mode-options .border-2.border-gray-300 {
+  border-color: rgba(156, 163, 175, 0.4) !important;
+}
+
+/* Dark Mode Support for Mode Selection Headers */
+.dark-mode .bg-gradient-to-r.from-red-50.via-pink-50.to-purple-50 {
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.1) 0%,
+    rgba(236, 72, 153, 0.1) 50%,
+    rgba(139, 92, 246, 0.1) 100%
+  ) !important;
+}
+
+.dark-mode .border-red-100 {
+  border-color: rgba(220, 38, 38, 0.3) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-red-500.to-pink-500 {
+  background: linear-gradient(135deg, #dc2626 0%, #ec4899 100%) !important;
+}
+
+.dark-mode .bg-gradient-to-r.from-red-600.to-pink-600 {
+  background: linear-gradient(to right, #dc2626 0%, #ec4899 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.dark-mode .text-gray-600 {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Dark Mode Support for Quick Actions Menu */
+.dark-mode .bg-white\/95 {
+  background: rgba(30, 41, 59, 0.95) !important;
+}
+
+.dark-mode .backdrop-blur-sm {
+  backdrop-filter: blur(4px) !important;
+}
+
+.dark-mode .border-gray-200\/50 {
+  border-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+.dark-mode .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .text-gray-800 {
+  color: var(--dark-text-primary) !important;
+}
+
+.dark-mode .bg-gradient-to-r.from-red-500.to-pink-500 {
+  background: linear-gradient(to right, #dc2626, #ec4899) !important;
+}
+
+/* Quick Action Buttons */
+.dark-mode .bg-gray-50 {
+  background: rgba(55, 65, 81, 0.3) !important;
+}
+
+.dark-mode .hover\:bg-gray-100:hover {
+  background: rgba(75, 85, 99, 0.4) !important;
+}
+
+.dark-mode .text-gray-700 {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode .text-gray-600 {
+  color: var(--dark-text-muted) !important;
+}
+
+.dark-mode .text-gray-500 {
+  color: var(--dark-text-muted) !important;
+}
+
+/* Dark Mode Support for Chat Input Area */
+.dark-mode .border-t.border-gray-200 {
+  border-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+/* Attached Files Preview */
+.dark-mode .bg-gray-50 {
+  background: rgba(55, 65, 81, 0.2) !important;
+}
+
+.dark-mode .border-gray-200 {
+  border-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+.dark-mode .text-gray-700 {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode .text-red-600 {
+  color: #f87171 !important;
+}
+
+.dark-mode .hover\:text-red-800:hover {
+  color: #dc2626 !important;
+}
+
+/* Input Buttons */
+.dark-mode .text-gray-400 {
+  color: var(--dark-text-muted) !important;
+}
+
+.dark-mode .hover\:text-gray-600:hover {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode .hover\:text-red-600:hover {
+  color: #f87171 !important;
+}
+
+/* Chat Input Field */
+.dark-mode .bg-gray-100 {
+  background: rgba(55, 65, 81, 0.3) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+.dark-mode .focus\:ring-red-500:focus {
+  --tw-ring-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+.dark-mode input::placeholder {
+  color: var(--dark-text-muted) !important;
+}
+
+/* Send Button */
+.dark-mode .bg-red-600 {
+  background: #dc2626 !important;
+}
+
+.dark-mode .hover\:bg-red-700:hover {
+  background: #b91c1c !important;
+}
+
+/* Quick Actions Button Gradient Hover */
+.dark-mode .hover\:from-purple-500:hover {
+  --tw-gradient-from: #8b5cf6 !important;
+}
+
+.dark-mode .hover\:to-pink-500:hover {
+  --tw-gradient-to: #ec4899 !important;
+}
+
+.dark-mode .from-purple-400 {
+  --tw-gradient-from: #a78bfa !important;
+}
+
+.dark-mode .to-pink-400 {
+  --tw-gradient-to: #f472b6 !important;
+}
+
+/* Dark Mode Support for Sidebar Footer */
+.dark-mode .border-t.border-gray-200 {
+  border-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+.dark-mode .border-t.border-gray-100 {
+  border-color: rgba(75, 85, 99, 0.2) !important;
+}
+
+.dark-mode .text-gray-800 {
+  color: var(--dark-text-primary) !important;
+}
+
+.dark-mode .text-gray-500 {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode .text-gray-400 {
+  color: var(--dark-text-muted) !important;
+}
+
+.dark-mode .text-gray-600 {
+  color: var(--dark-text-secondary) !important;
+}
+
+.dark-mode .hover\:text-red-600:hover {
+  color: #f87171 !important;
+}
+
+/* Stats Cards Dark Mode */
+.dark-mode .bg-gradient-to-br.from-blue-50.to-blue-100 {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1),
+    rgba(59, 130, 246, 0.15)
+  ) !important;
+}
+
+.dark-mode .bg-gradient-to-br.from-green-50.to-green-100 {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1),
+    rgba(34, 197, 94, 0.15)
+  ) !important;
+}
+
+.dark-mode .text-blue-600 {
+  color: rgba(59, 130, 246, 0.9) !important;
+}
+
+.dark-mode .text-blue-500 {
+  color: rgba(59, 130, 246, 0.8) !important;
+}
+
+.dark-mode .text-green-600 {
+  color: rgba(34, 197, 94, 0.9) !important;
+}
+
+.dark-mode .text-green-500 {
+  color: rgba(34, 197, 94, 0.8) !important;
+}
+
+/* Dark Mode Support for Enhanced Hero Section */
+.dark-mode .bg-gradient-to-br.from-indigo-50.via-white.to-purple-50 {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.8),
+    rgba(15, 23, 42, 0.9),
+    rgba(30, 41, 59, 0.8)
+  ) !important;
+}
+
+.dark-mode .bg-white\/80 {
+  background: rgba(30, 41, 59, 0.8) !important;
+}
+
+.dark-mode .border-white\/50 {
+  border-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+.dark-mode .from-gray-800.via-red-600.to-pink-600 {
+  background: linear-gradient(
+    to right,
+    rgba(229, 231, 235, 0.9),
+    rgba(239, 68, 68, 0.9),
+    rgba(236, 72, 153, 0.9)
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.dark-mode .text-red-600 {
+  color: rgba(239, 68, 68, 0.9) !important;
+}
+
+.dark-mode .text-blue-600 {
+  color: rgba(59, 130, 246, 0.9) !important;
+}
+
+.dark-mode .text-green-600 {
+  color: rgba(34, 197, 94, 0.9) !important;
 }
