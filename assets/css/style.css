@@ -1546,3 +1546,44 @@ main {
 .dark-mode .text-green-600 {
   color: rgba(34, 197, 94, 0.9) !important;
 }
+
+/* ========================================== */
+/* Accessibility Improvements - Better Color Contrast */
+/* Fix for PageSpeed Insights Accessibility Issues */
+/* ========================================== */
+
+/* Orange text on orange background - improve contrast */
+.bg-orange-100 .text-orange-600 {
+  color: #c2410c !important; /* orange-700 for better contrast */
+}
+
+.bg-orange-100:hover .text-orange-600 {
+  color: #9a3412 !important; /* orange-800 for even better contrast on hover */
+}
+
+/* Green text on green background - improve contrast */
+.bg-green-100 .text-green-600 {
+  color: #15803d !important; /* green-700 for better contrast */
+}
+
+.bg-green-100:hover .text-green-600 {
+  color: #166534 !important; /* green-800 for even better contrast on hover */
+}
+
+/* Ensure sufficient contrast for all text elements */
+.text-orange-600 {
+  color: #c2410c !important; /* Darker orange for better contrast */
+}
+
+.text-green-600 {
+  color: #15803d !important; /* Darker green for better contrast */
+}
+
+/* Dark mode accessibility improvements */
+.dark-mode .bg-orange-100 .text-orange-600 {
+  color: #fb923c !important; /* orange-400 for dark mode */
+}
+
+.dark-mode .bg-green-100 .text-green-600 {
+  color: #4ade80 !important; /* green-400 for dark mode */
+}

@@ -164,30 +164,59 @@
           <div class="max-w-4xl mx-auto">
             <!-- Simple Icon -->
             <div class="flex items-center justify-center mb-12">
-              <div class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <div
+                class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center shadow-lg"
+              >
+                <svg
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
               </div>
             </div>
 
             <!-- Clean Typography -->
-            <h1 class="text-5xl md:text-6xl font-light text-gray-900 mb-6 tracking-tight">
+            <h1
+              class="text-5xl md:text-6xl font-light text-gray-900 mb-6 tracking-tight"
+            >
               الأسئلة الشائعة
             </h1>
-            
+
             <div class="w-16 h-0.5 bg-red-500 mx-auto mb-8"></div>
-            
-            <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-12">
+
+            <p
+              class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-12"
+            >
               إجابات واضحة ومباشرة على أهم الأسئلة حول منصة أولابيبا
             </p>
 
             <!-- Simple CTA -->
             <div class="flex items-center justify-center">
-              <a href="#faq-content" class="inline-flex items-center text-red-500 font-medium hover:text-red-600 transition-colors">
+              <a
+                href="#faq-content"
+                class="inline-flex items-center text-red-500 font-medium hover:text-red-600 transition-colors"
+              >
                 <span>ابدأ القراءة</span>
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  ></path>
                 </svg>
               </a>
             </div>
@@ -502,6 +531,8 @@
             <a
               href="https://www.facebook.com/olabibacom/"
               target="_blank"
+              aria-label="زيارة صفحة أولابيبا على فيسبوك"
+              title="فيسبوك - أولابيبا"
               class="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
             >
               <svg
@@ -517,6 +548,8 @@
             <a
               href="https://www.instagram.com/olabibacom"
               target="_blank"
+              aria-label="زيارة حساب أولابيبا على إنستغرام"
+              title="إنستغرام - أولابيبا"
               class="w-10 h-10 bg-white/10 hover:bg-pink-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
             >
               <svg
@@ -532,6 +565,8 @@
             <a
               href="https://www.x.com/olabibacom"
               target="_blank"
+              aria-label="زيارة حساب أولابيبا على تويتر (X)"
+              title="تويتر (X) - أولابيبا"
               class="w-10 h-10 bg-white/10 hover:bg-black rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
             >
               <svg
@@ -547,6 +582,8 @@
             <a
               href="https://www.tiktok.com/@olabiba.com"
               target="_blank"
+              aria-label="زيارة حساب أولابيبا على تيك توك"
+              title="تيك توك - أولابيبا"
               class="w-10 h-10 bg-white/10 hover:bg-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
             >
               <svg
@@ -562,6 +599,8 @@
             <a
               href="https://www.youtube.com/@Olabiba"
               target="_blank"
+              aria-label="زيارة قناة أولابيبا على يوتيوب"
+              title="يوتيوب - أولابيبا"
               class="w-10 h-10 bg-white/10 hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
             >
               <svg
@@ -585,7 +624,28 @@
         </div>
       </footer>
     </div>
-
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 opacity-0 invisible"
+      onclick="scrollToTop()"
+      aria-label="العودة إلى أعلى الصفحة"
+      title="العودة للأعلى"
+    >
+      <svg
+        class="w-6 h-6 mx-auto"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        ></path>
+      </svg>
+    </button>
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
   </body>
