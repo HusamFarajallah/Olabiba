@@ -423,7 +423,7 @@
               <span class="text-xs text-gray-400">الإصدار</span>
               <span class="text-xs font-medium text-gray-500">2.1.0</span>
             </div>
-            <p class="text-xs text-gray-400">
+            <p class="text-xs text-gray-500">
               © 2025 Olabiba. جميع الحقوق محفوظة
             </p>
           </div>
@@ -670,6 +670,7 @@
               class="p-3 text-gray-400 hover:text-gray-600 transition-colors"
               onclick="openFileDialog()"
               title="رفع مرفق"
+              aria-label="رفع ملف مرفق"
             >
               <svg
                 class="w-5 h-5"
@@ -693,6 +694,7 @@
                 id="chatInput"
                 placeholder="اكتب رسالتك..."
                 class="w-full bg-gray-100 border-0 rounded-full px-5 py-3 text-right focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-sm"
+                aria-label="حقل إدخال الرسالة"
               />
             </div>
 
@@ -701,6 +703,7 @@
               class="group relative p-3 text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg"
               onclick="toggleQuickActions()"
               title="إجراءات سريعة"
+              aria-label="فتح قائمة الإجراءات السريعة"
             >
               <svg
                 class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
@@ -724,6 +727,8 @@
             <!-- Voice Button -->
             <button
               class="p-3 text-gray-400 hover:text-red-600 transition-colors"
+              aria-label="تسجيل رسالة صوتية"
+              title="تسجيل صوتي"
             >
               <svg
                 class="w-5 h-5"
@@ -745,6 +750,8 @@
               id="sendButton"
               class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors"
               onclick="sendMessage()"
+              aria-label="إرسال الرسالة"
+              title="إرسال"
             >
               <svg
                 class="w-5 h-5"
