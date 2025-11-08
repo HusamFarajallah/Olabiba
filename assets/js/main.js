@@ -1067,20 +1067,85 @@ function toggleQuickActions() {
   }
 }
 
+// Multi-language support for quick actions
+function getQuickActionText(actionKey, language = null) {
+  // Auto-detect language if not provided
+  if (!language) {
+    const htmlLang = document.documentElement.lang || "ar";
+    const htmlDir = document.documentElement.dir || "rtl";
+
+    if (htmlLang === "en" || htmlDir === "ltr") {
+      language = "en";
+    } else if (htmlLang === "es") {
+      language = "es";
+    } else {
+      language = "ar";
+    }
+  }
+
+  const actionTexts = {
+    shorten: {
+      ar: "يرجى تقصير النص التالي: ",
+      en: "Please shorten the following text: ",
+      es: "Por favor, acorta el siguiente texto: ",
+    },
+    lengthen: {
+      ar: "يرجى إطالة وتوسيع النص التالي: ",
+      en: "Please expand and lengthen the following text: ",
+      es: "Por favor, expande y alarga el siguiente texto: ",
+    },
+    improve: {
+      ar: "يرجى تحسين وتطوير النص التالي: ",
+      en: "Please improve and enhance the following text: ",
+      es: "Por favor, mejora y perfecciona el siguiente texto: ",
+    },
+    translate: {
+      ar: "يرجى ترجمة النص التالي: ",
+      en: "Please translate the following text: ",
+      es: "Por favor, traduce el siguiente texto: ",
+    },
+  };
+
+  return actionTexts[actionKey] && actionTexts[actionKey][language]
+    ? actionTexts[actionKey][language]
+    : actionTexts[actionKey]["ar"]; // Fallback to Arabic
+}
+
 function selectQuickAction(action) {
   const chatInput = document.getElementById("chatInput");
   const floatingMenu = document.getElementById("floatingQuickActions");
 
   if (!chatInput) return;
 
-  const actions = {
-    "تقصير النص": "يرجى تقصير النص التالي: ",
-    "إطالة النص": "يرجى إطالة وتوسيع النص التالي: ",
-    تحسين: "يرجى تحسين وتطوير النص التالي: ",
-    ترجمة: "يرجى ترجمة النص التالي: ",
+  // Map display text to action keys for different languages
+  const actionKeyMap = {
+    // Arabic
+    "تقصير النص": "shorten",
+    "إطالة النص": "lengthen",
+    تحسين: "improve",
+    ترجمة: "translate",
+
+    // English
+    "Shorten the text": "shorten",
+    Shorten: "shorten",
+    "Longen the text": "lengthen",
+    Longen: "lengthen",
+    Improvement: "improve",
+    Translation: "translate",
+
+    // Spanish
+    "Acortar el texto": "shorten",
+    Acortar: "shorten",
+    "Alargar el texto": "lengthen",
+    Alargar: "lengthen",
+    Mejora: "improve",
+    Mejorar: "improve",
+    Traducción: "translate",
   };
 
-  if (actions[action]) {
+  const actionKey = actionKeyMap[action];
+
+  if (actionKey) {
     // Add selected action feedback
     const selectedButton = event.target.closest("button");
     if (selectedButton) {
@@ -1089,6 +1154,9 @@ function selectQuickAction(action) {
         selectedButton.style.transform = "";
       }, 150);
     }
+
+    // Get the appropriate text for current language
+    const actionText = getQuickActionText(actionKey);
 
     // Hide the floating menu with animation
     if (floatingMenu && !floatingMenu.classList.contains("hidden")) {
@@ -1102,11 +1170,11 @@ function selectQuickAction(action) {
         floatingMenu.style.transition = "";
 
         // Set input value and focus after menu is hidden
-        chatInput.value = actions[action];
+        chatInput.value = actionText;
         chatInput.focus();
       }, 200);
     } else {
-      chatInput.value = actions[action];
+      chatInput.value = actionText;
       chatInput.focus();
     }
   }
@@ -1368,9 +1436,9 @@ function toggleMobileMenu() {
   const mobileOverlay = document.getElementById("mobileOverlay");
 
   if (mobileSidebar && mobileOverlay) {
-    // Check if it's English version by URL
-    const isEnglish = window.location.pathname.includes("-en");
-    const closedClass = isEnglish ? "-translate-x-full" : "translate-x-full";
+    // Check if it's LTR version (English or Spanish) by URL
+    const isLTR = window.location.pathname.includes("-en") || window.location.pathname.includes("-es");
+    const closedClass = isLTR ? "-translate-x-full" : "translate-x-full";
     const isOpen = !mobileSidebar.classList.contains(closedClass);
 
     if (isOpen) {
@@ -1386,10 +1454,10 @@ function openMobileMenu() {
   const mobileOverlay = document.getElementById("mobileOverlay");
 
   if (mobileSidebar && mobileOverlay) {
-    // Check if it's English version by URL
-    const isEnglish = window.location.pathname.includes("-en");
-    const closedClass = isEnglish ? "-translate-x-full" : "translate-x-full";
-    
+    // Check if it's LTR version (English or Spanish) by URL
+    const isLTR = window.location.pathname.includes("-en") || window.location.pathname.includes("-es");
+    const closedClass = isLTR ? "-translate-x-full" : "translate-x-full";
+
     mobileSidebar.classList.remove(closedClass);
     mobileOverlay.classList.remove("hidden");
     document.body.style.overflow = "hidden"; // Prevent background scrolling
@@ -1401,10 +1469,10 @@ function closeMobileMenu() {
   const mobileOverlay = document.getElementById("mobileOverlay");
 
   if (mobileSidebar && mobileOverlay) {
-    // Check if it's English version by URL
-    const isEnglish = window.location.pathname.includes("-en");
-    const closedClass = isEnglish ? "-translate-x-full" : "translate-x-full";
-    
+    // Check if it's LTR version (English or Spanish) by URL
+    const isLTR = window.location.pathname.includes("-en") || window.location.pathname.includes("-es");
+    const closedClass = isLTR ? "-translate-x-full" : "translate-x-full";
+
     mobileSidebar.classList.add(closedClass);
     mobileOverlay.classList.add("hidden");
     document.body.style.overflow = ""; // Restore scrolling
@@ -1677,7 +1745,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
-    if (themeToggleCircle) themeToggleCircle.style.transform = "translateX(24px)";
+    if (themeToggleCircle)
+      themeToggleCircle.style.transform = "translateX(24px)";
     if (themeIcon) themeIcon.textContent = "☀️";
     if (themeToggle) {
       themeToggle.classList.remove(

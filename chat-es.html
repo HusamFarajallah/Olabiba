@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="es" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Olabiba - منصة تعلم اللغات</title>
+    <title>Olabiba - Chatea con Labiba</title>
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -17,7 +17,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body class="font-arabic bg-light-pink min-h-screen">
+  <body class="font-sans bg-light-pink min-h-screen">
     <!-- Enhanced Header -->
     <header
       class="bg-white/95 backdrop-blur-md border-b border-purple-100 fixed top-0 left-0 right-0 z-20 h-20 shadow-lg"
@@ -27,9 +27,9 @@
         <div class="flex-1 flex items-center justify-between px-6 py-4">
           <!-- Logo/Brand (Right) -->
           <div class="flex items-center group">
-            <div class="flex items-center space-x-3 space-x-reverse">
+            <div class="flex items-center space-x-3">
               <a
-                href="index.html"
+                href="index-es.html"
                 class="transition-transform duration-200 hover:scale-105"
               >
                 <img
@@ -50,8 +50,8 @@
                 class="text-gray-700 text-base font-medium italic"
                 data-translate="header-text"
               >
-                "إذا ظَهرت لَبِيبةُ فسْألُوها، فَلُبُّ القَولِ مَا قَالت
-                لَبِيبة" ✨
+                "Si aparece Labiba, pregúntale lo que quieras - convertirá tus
+                palabras en sabiduría" ✨
               </p>
             </div>
           </div>
@@ -75,7 +75,7 @@
             <div class="relative">
               <button
                 id="languageSelector"
-                class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 text-gray-700 text-sm font-medium flex items-center space-x-2 space-x-reverse px-2 sm:px-4 py-2 rounded-full focus:outline-none hover:text-gray-900 transition-all duration-300 shadow-sm hover:shadow-md"
+                class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 text-gray-700 text-sm font-medium flex items-center space-x-2 px-2 sm:px-4 py-2 rounded-full focus:outline-none hover:text-gray-900 transition-all duration-300 shadow-sm hover:shadow-md"
                 onclick="toggleLanguageDropdown()"
               >
                 <div
@@ -93,7 +93,7 @@
                     ></path>
                   </svg>
                 </div>
-                <span class="hidden sm:inline">العربية</span>
+                <span class="hidden sm:inline">Español</span>
                 <svg
                   class="w-4 h-4 text-gray-400 transition-transform duration-200"
                   fill="none"
@@ -112,7 +112,7 @@
               <!-- Enhanced Dropdown Menu -->
               <div
                 id="languageDropdown"
-                class="hidden absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl shadow-xl min-w-48 z-50 overflow-hidden"
+                class="hidden absolute top-full right-0 mt-2 bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl shadow-xl min-w-48 z-50 overflow-hidden"
               >
                 <div class="py-2">
                   <a
@@ -189,12 +189,12 @@
     <!-- Mobile Sidebar -->
     <div
       id="mobileSidebar"
-      class="fixed top-0 right-0 w-80 h-full bg-white z-50 transform translate-x-full transition-transform duration-300 lg:hidden"
+      class="fixed top-0 left-0 w-80 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 lg:hidden"
     >
       <div class="p-6">
         <!-- Close Button -->
         <div class="flex justify-between items-center mb-6">
-          <h2 class="text-xl font-bold text-gray-800">القائمة</h2>
+          <h2 class="text-xl font-bold text-gray-800">Menú</h2>
           <button
             onclick="closeMobileMenu()"
             class="p-2 text-gray-600 hover:text-gray-800"
@@ -222,9 +222,7 @@
               <div
                 class="bg-gradient-to-r from-red-50 via-pink-50 to-purple-50 rounded-xl p-4 border border-red-100 shadow-sm"
               >
-                <div
-                  class="flex items-center justify-center space-x-2 space-x-reverse"
-                >
+                <div class="flex items-center justify-center space-x-2">
                   <div
                     class="w-6 h-6 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center"
                   >
@@ -233,11 +231,11 @@
                   <h3
                     class="text-xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent"
                   >
-                    حدد المود المفضل
+                    Selecciona tu modo favorito
                   </h3>
                 </div>
                 <p class="text-center text-sm text-gray-600 mt-2">
-                  اختر الشخصية التي تناسب أسلوب تعلمك
+                  Elige la personalidad que se adapte a tu estilo de aprendizaje
                 </p>
               </div>
             </div>
@@ -250,7 +248,7 @@
                   <div
                     class="w-3 h-3 bg-orange-500 rounded-full ml-3 mobile-mode-radio"
                   ></div>
-                  <span class="text-orange-800 font-medium">ودود</span>
+                  <span class="text-orange-800 font-medium">Amigable</span>
                 </div>
               </div>
               <div
@@ -261,7 +259,7 @@
                   <div
                     class="w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio"
                   ></div>
-                  <span class="text-gray-700">معلم</span>
+                  <span class="text-gray-700">Tutor</span>
                 </div>
               </div>
               <div
@@ -272,7 +270,7 @@
                   <div
                     class="w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio"
                   ></div>
-                  <span class="text-gray-700">مضحك</span>
+                  <span class="text-gray-700">Divertido</span>
                 </div>
               </div>
               <div
@@ -283,7 +281,7 @@
                   <div
                     class="w-3 h-3 border-2 border-gray-300 rounded-full ml-3 mobile-mode-radio"
                   ></div>
-                  <span class="text-gray-700">غزلي</span>
+                  <span class="text-gray-700">Coqueto</span>
                 </div>
               </div>
             </div>
@@ -293,20 +291,18 @@
     </div>
 
     <!-- Main Content -->
-    <main class="min-h-screen" dir="rtl">
+    <main class="min-h-screen">
       <!-- Right Sidebar -->
       <div
-        class="fixed top-20 right-0 w-80 bg-white border-l border-gray-200 p-6 overflow-y-auto sidebar-hidden-scroll hidden lg:block z-30"
+        class="fixed top-20 left-0 w-80 bg-white border-r border-gray-200 p-6 overflow-y-auto sidebar-hidden-scroll hidden lg:block z-30"
         id="sidebar"
         style="height: calc(100vh - 70px); padding-bottom: 100px"
       >
-        <div class="text-right">
+        <div class="text-left">
           <div
             class="bg-gradient-to-r mb-6 from-red-50 via-pink-50 to-purple-50 rounded-xl p-4 border border-red-100 shadow-sm"
           >
-            <div
-              class="flex items-center justify-center space-x-2 space-x-reverse"
-            >
+            <div class="flex items-center justify-center space-x-2">
               <div
                 class="w-6 h-6 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center"
               >
@@ -315,11 +311,11 @@
               <h3
                 class="text-xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent"
               >
-                حدد المود المفضل
+                Selecciona tu modo favorito
               </h3>
             </div>
             <p class="text-center text-sm text-gray-600 mt-2">
-              اختر الشخصية التي تناسب أسلوب تعلمك
+              Elige la personalidad que se adapte a tu estilo de aprendizaje
             </p>
           </div>
 
@@ -331,19 +327,19 @@
             >
               <div class="flex items-center mb-2">
                 <div class="model-radio-active"></div>
-                <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="flex items-center space-x-2">
                   <span class="text-orange-600 text-lg">😊</span>
-                  <span class="font-medium text-gray-800">Friendly</span>
+                  <span class="font-medium text-gray-800">Amigable</span>
                   <span
                     class="text-sm bg-orange-200 text-orange-800 px-2 py-1 rounded"
-                    >(ودود)</span
+                    >(Amigable)</span
                   >
                 </div>
               </div>
               <p class="text-sm text-gray-600 text-right leading-relaxed">
-                الشخصية الودودة التي تساعدك على التعلم بطريقة مريحة. الوقت:
-                يستمع جيداً ويعطيك في مساعدتك. مثل صديق طيب دائماً موجود من
-                أجلك.
+                La personalidad amigable que te ayuda a aprender de manera
+                divertida. Siempre escucha bien y te ayuda. Como un buen amigo
+                siempre presente contigo.
               </p>
             </div>
 
@@ -353,19 +349,20 @@
             >
               <div class="flex items-center mb-2">
                 <div class="model-radio-inactive"></div>
-                <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="flex items-center space-x-2">
                   <span class="text-blue-600 text-lg">🎓</span>
                   <span class="font-medium text-gray-800">Tutor</span>
                   <span
                     class="text-sm bg-blue-200 text-blue-800 px-2 py-1 rounded"
-                    >(معلم)</span
+                    >(Tutor)</span
                   >
                 </div>
               </div>
               <p class="text-sm text-gray-600 text-right leading-relaxed">
-                الشخصية المعلمة التي تركز على التعليم المنهجي. الوقت: يقدم
-                المعلومات بدقة، يشرح المفاهيم بشكل منظم، ويركز على التقدم
-                المنهجي ومتابعة.
+                La personalidad del tutor se enfoca en la educación pedagógica.
+                Proporciona información con precisión, explica conceptos
+                sistemáticamente y se enfoca en el progreso pedagógico y
+                seguimiento.
               </p>
             </div>
 
@@ -375,19 +372,19 @@
             >
               <div class="flex items-center mb-2">
                 <div class="model-radio-inactive"></div>
-                <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="flex items-center space-x-2">
                   <span class="text-green-600 text-lg">😄</span>
-                  <span class="font-medium text-gray-800">Funny</span>
+                  <span class="font-medium text-gray-800">Divertido</span>
                   <span
                     class="text-sm bg-green-200 text-green-800 px-2 py-1 rounded"
-                    >(مضحك)</span
+                    >(Divertido)</span
                   >
                 </div>
               </div>
               <p class="text-sm text-gray-600 text-right leading-relaxed">
-                الشخصية المرحة التي تجعل التعلم ممتعاً. الوقت: يحول المحادثة إلى
-                متعة، يستخدم الفكاهة والنكات الذكية، ويجعل التعلم مليئاً
-                بالبهجة.
+                La personalidad divertida hace que el aprendizaje sea agradable.
+                Convierte la conversación en diversión, usa chistes ingeniosos e
+                inteligentes, y hace que el aprendizaje esté lleno de alegría.
               </p>
             </div>
 
@@ -397,19 +394,20 @@
             >
               <div class="flex items-center mb-2">
                 <div class="model-radio-inactive"></div>
-                <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="flex items-center space-x-2">
                   <span class="text-pink-600 text-lg">💕</span>
-                  <span class="font-medium text-gray-800">Flirty</span>
+                  <span class="font-medium text-gray-800">Coqueto</span>
                   <span
                     class="text-sm bg-pink-200 text-pink-800 px-2 py-1 rounded"
-                    >(غزلي)</span
+                    >(Coqueto)</span
                   >
                 </div>
               </div>
               <p class="text-sm text-gray-600 text-right leading-relaxed">
-                الشخصية الجذابة والطريفة. الوقت: يستخدم المجاملات الذكية،
-                الكلمات الجميلة بطريقة لطيفة، ويجعل المحادثة ممتعة بروماسية
-                جميلة.
+                La personalidad coqueta hace que la conversación sea
+                interesante. Usa chistes ingeniosos e inteligentes, utiliza
+                palabras hermosas de manera gentil, y hace que la conversación
+                sea interesante con un hermoso coqueteo.
               </p>
             </div>
           </div>
@@ -417,14 +415,12 @@
           <!-- Sidebar Footer -->
           <div class="mt-8 pt-6 border-t border-gray-200 text-center">
             <!-- Version & Copyright -->
-            <div
-              class="flex items-center justify-center space-x-1 space-x-reverse mb-1"
-            >
-              <span class="text-xs text-gray-400">الإصدار</span>
+            <div class="flex items-center justify-center space-x-1 mb-1">
+              <span class="text-xs text-gray-400">Version</span>
               <span class="text-xs font-medium text-gray-500">2.1.0</span>
             </div>
             <p class="text-xs text-gray-500">
-              © 2025 Olabiba. جميع الحقوق محفوظة
+              © 2025 Olabiba. Todos los derechos reservados
             </p>
           </div>
         </div>
@@ -451,7 +447,7 @@
                   <span class="text-white text-2xl">👋</span>
                 </div>
                 <p class="text-gray-700 font-medium">
-                  مرحباً! أنا لبيبة، مساعدتك الذكية
+                  ¡Hola! Soy Labiba, tu asistente inteligente
                 </p>
               </div>
             </div>
@@ -462,12 +458,10 @@
                 class="bg-red-600 text-white rounded-2xl rounded-br-md px-4 py-3 max-w-xs shadow-sm"
               >
                 <p class="text-sm">
-                  مرحباً، أنا أسمي لبيبة. لقيتني الذكية وحاجة أجاوبك على أي سؤال
-                  عندك. كيف يقدر أساعدك؟
+                  Hola, mi nombre es Labiba. Te conocí por casualidad y necesito
+                  responder cualquier pregunta que tengas. ¿Cómo puedo ayudarte?
                 </p>
-                <div
-                  class="flex items-center justify-end mt-2 space-x-1 space-x-reverse"
-                >
+                <div class="flex items-center justify-end mt-2 space-x-1">
                   <span class="text-xs text-red-200">2:03 PM, 15 Nov</span>
                   <div class="w-4 h-4 rounded-full overflow-hidden">
                     <img
@@ -486,10 +480,8 @@
               <div
                 class="bg-white rounded-2xl rounded-bl-md px-4 py-3 max-w-xs shadow-sm border border-gray-200"
               >
-                <p class="text-sm text-gray-800">ما هي لبيبة؟</p>
-                <div
-                  class="flex items-center justify-start mt-2 space-x-1 space-x-reverse"
-                >
+                <p class="text-sm text-gray-800">¿Quién es Labiba?</p>
+                <div class="flex items-center justify-start mt-2 space-x-1">
                   <div class="w-4 h-4 rounded-full overflow-hidden">
                     <img
                       src="assets/img/Characters1.png"
@@ -509,15 +501,15 @@
                 class="bg-white rounded-2xl rounded-bl-md px-4 py-3 max-w-md shadow-sm border border-gray-200"
               >
                 <p class="text-sm text-gray-800 leading-relaxed">
-                  في Olabiba هي عبارة عن نظام ذكاء اصطناعي تم تطويره من قبل فريق
-                  كذا. تميز لبيبة بتحديث بياناتها بشكل مستمر مما يجعلها قادرة
-                  على تقديم معلومات دقيقة وحديثة. كما أنها تتمتع بقدرة على
-                  التعبير عن المشاعر ونستطيع عرض الصور ومقاطع الفيديو عند الطلب،
-                  دون الحاجة إلى تسجيل دخول. كيف يمكنني مساعدتك؟
+                  Labiba es un sistema de inteligencia artificial desarrollado
+                  por un equipo de expertos. Labiba se distingue por sus
+                  actualizaciones continuas, lo que la hace capaz de
+                  proporcionar información precisa y actualizada. También tiene
+                  la capacidad de expresar emociones y podemos mostrar imágenes
+                  y videos cuando se solicite, sin necesidad de iniciar sesión.
+                  ¿Cómo puedo ayudarte?
                 </p>
-                <div
-                  class="flex items-center justify-start mt-2 space-x-1 space-x-reverse"
-                >
+                <div class="flex items-center justify-start mt-2 space-x-1">
                   <div class="w-4 h-4 rounded-full overflow-hidden">
                     <img
                       src="assets/img/Characters1.png"
@@ -544,7 +536,7 @@
             <!-- Header -->
             <div class="text-center mb-3">
               <h3 class="text-sm font-semibold text-gray-800 mb-1">
-                الإجراءات السريعة
+                Acciones Rápidas
               </h3>
               <div
                 class="w-12 h-0.5 bg-gradient-to-r from-red-500 to-pink-500 mx-auto rounded-full"
@@ -552,10 +544,10 @@
             </div>
 
             <!-- Actions Row -->
-            <div class="flex justify-center space-x-2 space-x-reverse">
+            <div class="flex justify-center space-x-2">
               <button
-                class="group flex items-center space-x-1 space-x-reverse bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
-                onclick="selectQuickAction('تقصير النص')"
+                class="group flex items-center space-x-1 bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
+                onclick="selectQuickAction('Acortar')"
               >
                 <svg
                   class="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform"
@@ -570,12 +562,12 @@
                     d="M19 14l-7 7m0 0l-7-7m7 7V3"
                   ></path>
                 </svg>
-                <span class="text-xs font-medium">تقصير</span>
+                <span class="text-xs font-medium">Acortar</span>
               </button>
 
               <button
-                class="group flex items-center space-x-1 space-x-reverse bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
-                onclick="selectQuickAction('إطالة النص')"
+                class="group flex items-center space-x-1 bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
+                onclick="selectQuickAction('Alargar')"
               >
                 <svg
                   class="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform"
@@ -590,12 +582,12 @@
                     d="M5 10l7-7m0 0l7 7m-7-7v18"
                   ></path>
                 </svg>
-                <span class="text-xs font-medium">إطالة</span>
+                <span class="text-xs font-medium">Alargar</span>
               </button>
 
               <button
-                class="group flex items-center space-x-1 space-x-reverse bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
-                onclick="selectQuickAction('تحسين')"
+                class="group flex items-center space-x-1 bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
+                onclick="selectQuickAction('Mejora')"
               >
                 <svg
                   class="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform"
@@ -610,12 +602,12 @@
                     d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                   ></path>
                 </svg>
-                <span class="text-xs font-medium">تحسين</span>
+                <span class="text-xs font-medium">Mejorar</span>
               </button>
 
               <button
-                class="group flex items-center space-x-1 space-x-reverse bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
-                onclick="selectQuickAction('ترجمة')"
+                class="group flex items-center space-x-1 bg-gray-50 hover:bg-gray-100 text-gray-700 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md"
+                onclick="selectQuickAction('Traducción')"
               >
                 <svg
                   class="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform"
@@ -630,13 +622,15 @@
                     d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
                   ></path>
                 </svg>
-                <span class="text-xs font-medium">ترجمة</span>
+                <span class="text-xs font-medium">Traducir</span>
               </button>
             </div>
 
             <!-- Close hint -->
             <div class="text-center mt-2">
-              <p class="text-xs text-gray-500">اضغط خارج القائمة للإغلاق</p>
+              <p class="text-xs text-gray-500">
+                Presiona fuera de la lista para cerrar
+              </p>
             </div>
           </div>
         </div>
@@ -651,26 +645,26 @@
             <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-sm font-medium text-gray-700"
-                  >الملفات المرفقة:</span
+                  >Archivos adjuntos:</span
                 >
                 <button
                   onclick="clearAttachedFiles()"
                   class="text-xs text-red-600 hover:text-red-800"
                 >
-                  إزالة الكل
+                  Eliminar todo
                 </button>
               </div>
               <div id="attachedFilesList" class="space-y-2"></div>
             </div>
           </div>
 
-          <div class="flex items-center space-x-3 space-x-reverse">
+          <div class="flex items-center space-x-3">
             <!-- Attachment Button -->
             <button
               class="p-3 text-gray-400 hover:text-gray-600 transition-colors"
               onclick="openFileDialog()"
-              title="رفع مرفق"
-              aria-label="رفع ملف مرفق"
+              title="Subir archivo adjunto"
+              aria-label="Subir archivo adjunto"
             >
               <svg
                 class="w-5 h-5"
@@ -692,9 +686,9 @@
               <input
                 type="text"
                 id="chatInput"
-                placeholder="اكتب رسالتك..."
+                placeholder="Escribe tu mensaje..."
                 class="w-full bg-gray-100 border-0 rounded-full px-5 py-3 text-right focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-sm"
-                aria-label="حقل إدخال الرسالة"
+                aria-label="Campo de entrada de mensaje"
               />
             </div>
 
@@ -702,8 +696,8 @@
             <button
               class="group relative p-3 text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg"
               onclick="toggleQuickActions()"
-              title="إجراءات سريعة"
-              aria-label="فتح قائمة الإجراءات السريعة"
+              title="Acciones rápidas"
+              aria-label="Abrir menú de acciones rápidas"
             >
               <svg
                 class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
@@ -727,8 +721,8 @@
             <!-- Voice Button -->
             <button
               class="p-3 text-gray-400 hover:text-red-600 transition-colors"
-              aria-label="تسجيل رسالة صوتية"
-              title="تسجيل صوتي"
+              aria-label="Mensaje de voz"
+              title="Mensaje de voz"
             >
               <svg
                 class="w-5 h-5"
@@ -750,8 +744,8 @@
               id="sendButton"
               class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors"
               onclick="sendMessage()"
-              aria-label="إرسال الرسالة"
-              title="إرسال"
+              aria-label="Enviar mensaje"
+              title="Enviar mensaje"
             >
               <svg
                 class="w-5 h-5"
@@ -772,7 +766,7 @@
 
         <!-- Left Advertising Space -->
         <div
-          class="fixed top-20 left-0 w-80 bg-white border-r border-gray-200 p-4 overflow-y-auto sidebar-hidden-scroll hidden xl:block"
+          class="fixed top-20 right-0 w-80 bg-white border-l border-gray-200 p-4 overflow-y-auto sidebar-hidden-scroll hidden xl:block"
           style="height: calc(100vh - 80px); padding-bottom: 20px"
           id="adSpace"
         >
@@ -780,7 +774,7 @@
             <!-- Ad Header -->
             <div class="text-center mb-6">
               <h3 class="text-lg font-semibold text-gray-800 mb-2">
-                إعلانات مميزة
+                Anuncios Destacados
               </h3>
               <div class="w-16 h-1 bg-red-500 mx-auto rounded"></div>
             </div>
@@ -795,18 +789,19 @@
                 >
                   <span class="text-white text-xl">📚</span>
                 </div>
-                <div class="mr-3">
-                  <h4 class="font-semibold text-blue-800">كورس الإنجليزية</h4>
-                  <p class="text-xs text-blue-600">تعلم من الصفر</p>
+                <div class="ml-3">
+                  <h4 class="font-semibold text-blue-800">Curso de Inglés</h4>
+                  <p class="text-xs text-blue-600">Aprende desde cero</p>
                 </div>
               </div>
               <p class="text-sm text-gray-700 mb-3">
-                ابدأ رحلتك في تعلم اللغة الإنجليزية مع أفضل المدرسين
+                Comienza tu viaje en el aprendizaje del inglés con los mejores
+                profesores
               </p>
               <button
                 class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
               >
-                اشترك الآن - 50% خصم
+                Suscríbete ahora - 50% de descuento
               </button>
             </div>
 
@@ -820,29 +815,31 @@
                 >
                   <span class="text-white text-xl">⭐</span>
                 </div>
-                <div class="mr-3">
-                  <h4 class="font-semibold text-purple-800">لبيبة بريميوم</h4>
-                  <p class="text-xs text-purple-600">ميزات متقدمة</p>
+                <div class="ml-3">
+                  <h4 class="font-semibold text-purple-800">
+                    Biblioteca Premium
+                  </h4>
+                  <p class="text-xs text-purple-600">Funciones avanzadas</p>
                 </div>
               </div>
               <ul class="text-sm text-gray-700 mb-3 space-y-1">
                 <li class="flex items-center gap-2">
                   <span class="text-green-500">✓</span>
-                  محادثات غير محدودة
+                  Conversaciones ilimitadas
                 </li>
                 <li class="flex items-center gap-2">
                   <span class="text-green-500">✓</span>
-                  أولوية في الردود
+                  Respuestas prioritarias
                 </li>
                 <li class="flex items-center gap-2">
                   <span class="text-green-500">✓</span>
-                  تحليل مفصل للتقدم
+                  Análisis detallado del progreso
                 </li>
               </ul>
               <button
                 class="w-full bg-purple-500 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-purple-600 transition-colors"
               >
-                جرب مجاناً لمدة 7 أيام
+                Prueba gratis por 7 días
               </button>
             </div>
 
@@ -856,18 +853,21 @@
                 >
                   <span class="text-white text-xl">🌍</span>
                 </div>
-                <div class="mr-3">
-                  <h4 class="font-semibold text-green-800">تبادل اللغات</h4>
-                  <p class="text-xs text-green-600">تواصل مع الآخرين</p>
+                <div class="ml-3">
+                  <h4 class="font-semibold text-green-800">
+                    Intercambio de idiomas
+                  </h4>
+                  <p class="text-xs text-green-600">Conéctate con otros</p>
                 </div>
               </div>
               <p class="text-sm text-gray-700 mb-3">
-                انضم لمجتمع متعلمي اللغات وتبادل الخبرات
+                Únete a la comunidad de aprendizaje de idiomas e intercambia
+                experiencias
               </p>
               <button
                 class="w-full bg-green-500 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-green-600 transition-colors"
               >
-                انضم للمجتمع
+                Únete a la comunidad
               </button>
             </div>
 
@@ -881,15 +881,18 @@
                 >
                   <span class="text-white text-xl">📱</span>
                 </div>
-                <div class="mr-3">
-                  <h4 class="font-semibold text-orange-800">تطبيق الموبايل</h4>
-                  <p class="text-xs text-orange-600">تعلم في أي مكان</p>
+                <div class="ml-3">
+                  <h4 class="font-semibold text-orange-800">
+                    Aplicación Móvil
+                  </h4>
+                  <p class="text-xs text-orange-600">Aprende en movimiento</p>
                 </div>
               </div>
               <p class="text-sm text-gray-700 mb-3">
-                حمل التطبيق وتعلم اللغات أثناء التنقل
+                Descarga la aplicación y aprende idiomas mientras estás en
+                movimiento
               </p>
-              <div class="flex space-x-2 space-x-reverse">
+              <div class="flex space-x-2">
                 <button
                   class="flex-1 bg-black text-white py-2 px-3 rounded-lg text-xs font-medium hover:bg-gray-800 transition-colors"
                 >
@@ -908,11 +911,11 @@
               class="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-4 text-white text-center"
             >
               <h4 class="font-bold text-lg mb-2">+100,000</h4>
-              <p class="text-sm opacity-90">متعلم يثق في لبيبة</p>
+              <p class="text-sm opacity-90">Estudiantes confían en Labiba</p>
               <div class="flex justify-center mt-3 space-x-1">
                 <span class="text-yellow-300">⭐⭐⭐⭐⭐</span>
               </div>
-              <p class="text-xs mt-1 opacity-80">تقييم 4.9/5</p>
+              <p class="text-xs mt-1 opacity-80">Calificación 4.9/5</p>
             </div>
           </div>
         </div>
