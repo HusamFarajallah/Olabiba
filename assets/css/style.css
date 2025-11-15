@@ -1617,7 +1617,8 @@ main {
 
 /* Font Support for English */
 .font-sans {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif !important;
 }
 
 /* LTR Specific Adjustments */
@@ -1767,7 +1768,12 @@ main {
 /* ========================================== */
 
 /* Better line height for English text */
-[dir="ltr"] h1, [dir="ltr"] h2, [dir="ltr"] h3, [dir="ltr"] h4, [dir="ltr"] h5, [dir="ltr"] h6 {
+[dir="ltr"] h1,
+[dir="ltr"] h2,
+[dir="ltr"] h3,
+[dir="ltr"] h4,
+[dir="ltr"] h5,
+[dir="ltr"] h6 {
   line-height: 1.2;
 }
 
@@ -1781,7 +1787,8 @@ main {
 }
 
 /* English form input styling */
-[dir="ltr"] input[type="text"], [dir="ltr"] textarea {
+[dir="ltr"] input[type="text"],
+[dir="ltr"] textarea {
   text-align: left;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1797,12 +1804,12 @@ main {
     padding-left: 1rem;
     padding-right: 0;
   }
-  
+
   [dir="ltr"] .mobile-padding-right {
     padding-right: 1rem;
     padding-left: 0;
   }
-  
+
   [dir="ltr"] .mobile-text-left {
     text-align: left !important;
   }
@@ -1814,7 +1821,7 @@ main {
     margin-left: 2rem;
     margin-right: 0;
   }
-  
+
   [dir="ltr"] .tablet-margin-right {
     margin-right: 2rem;
     margin-left: 0;
@@ -1888,4 +1895,126 @@ main {
 [dir="ltr"] .dark-mode .border-l {
   border-left: none;
   border-right: 1px solid;
+}
+
+/* ========================================== */
+/* Mobile Optimizations */
+/* ========================================== */
+
+/* Mobile header improvements */
+@media (max-width: 640px) {
+  .header-mobile {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Improve touch targets */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile language selector improvements */
+  #mobileLanguageSelector {
+    touch-action: manipulation;
+  }
+
+  #mobileLanguageDropdown {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Mobile menu improvements */
+  #mobileMenu {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Improve mobile sidebar */
+  #mobileMenu {
+    width: min(320px, 85vw);
+  }
+}
+
+/* Improve mobile interactions */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+
+  .hover\:shadow-md:hover {
+    box-shadow: inherit;
+  }
+
+  /* Improve button press feedback */
+  button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Ensure crisp rendering on retina displays */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* ========================================== */
+/* Accessibility & Color Contrast */
+/* ========================================== */
+
+/* Ensure sufficient color contrast ratios */
+.bg-red-600 .text-red-200,
+.bg-red-700 .text-red-300,
+.bg-red-800 .text-red-400 {
+  /* Override low contrast combinations */
+  color: rgb(254 242 242) !important; /* red-50 equivalent */
+}
+
+.bg-blue-600 .text-blue-200,
+.bg-blue-700 .text-blue-300,
+.bg-blue-800 .text-blue-400 {
+  color: rgb(239 246 255) !important; /* blue-50 equivalent */
+}
+
+.bg-green-600 .text-green-200,
+.bg-green-700 .text-green-300,
+.bg-green-800 .text-green-400 {
+  color: rgb(240 253 244) !important; /* green-50 equivalent */
+}
+
+.bg-gray-600 .text-gray-200,
+.bg-gray-700 .text-gray-300,
+.bg-gray-800 .text-gray-400 {
+  color: rgb(249 250 251) !important; /* gray-50 equivalent */
+}
+
+/* Focus indicators for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Ensure minimum touch target size */
+@media (pointer: coarse) {
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }

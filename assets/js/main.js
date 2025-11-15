@@ -1791,6 +1791,56 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// Export theme functions
+// Mobile Language Dropdown Functions
+function toggleMobileLanguageDropdown() {
+  const dropdown = document.getElementById("mobileLanguageDropdown");
+  if (dropdown) {
+    dropdown.classList.toggle("hidden");
+  }
+}
+
+// Close mobile language dropdown when clicking outside
+document.addEventListener("click", function (event) {
+  const mobileSelector = document.getElementById("mobileLanguageSelector");
+  const mobileDropdown = document.getElementById("mobileLanguageDropdown");
+
+  if (
+    mobileSelector &&
+    mobileDropdown &&
+    !mobileSelector.contains(event.target) &&
+    !mobileDropdown.contains(event.target)
+  ) {
+    mobileDropdown.classList.add("hidden");
+  }
+});
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("mobileOverlay");
+
+  if (mobileMenu && overlay) {
+    mobileMenu.classList.toggle("translate-x-full");
+    overlay.classList.toggle("hidden");
+    document.body.classList.toggle("overflow-hidden");
+  }
+}
+
+// Close mobile menu when clicking overlay
+function closeMobileMenu() {
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("mobileOverlay");
+
+  if (mobileMenu && overlay) {
+    mobileMenu.classList.add("translate-x-full");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+  }
+}
+
+// Export all functions
 window.toggleTheme = toggleTheme;
 window.scrollToTop = scrollToTop;
+window.toggleMobileLanguageDropdown = toggleMobileLanguageDropdown;
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeMobileMenu = closeMobileMenu;
