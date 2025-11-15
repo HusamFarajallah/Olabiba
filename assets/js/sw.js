@@ -1,24 +1,31 @@
 // Service Worker for Olabiba Platform - Performance Optimization
-// Version 1.0.0
+// Version 1.1.0 - Enhanced Caching
 
-const CACHE_NAME = "olabiba-v1.0.0";
-const STATIC_CACHE_NAME = "olabiba-static-v1.0.0";
-const DYNAMIC_CACHE_NAME = "olabiba-dynamic-v1.0.0";
+const CACHE_NAME = "olabiba-v1.1.0";
+const STATIC_CACHE_NAME = "olabiba-static-v1.1.0";
+const DYNAMIC_CACHE_NAME = "olabiba-dynamic-v1.1.0";
 
-// Critical assets to cache immediately
+// Cache expiration times (in milliseconds)
+const CACHE_EXPIRATION = {
+  static: 30 * 24 * 60 * 60 * 1000, // 30 days for static assets
+  images: 7 * 24 * 60 * 60 * 1000,   // 7 days for images
+  external: 24 * 60 * 60 * 1000,     // 1 day for external resources
+  html: 60 * 60 * 1000,               // 1 hour for HTML pages
+};
+
+// Critical assets to cache immediately - only existing files
 const STATIC_ASSETS = [
   "/",
   "/index.html",
-  "/chat.html",
   "/index-en.html",
-  "/chat-en.html",
+  "/index-es.html",
+  "/faq.html",
+  "/faq-en.html",
+  "/faq-es.html",
   "/assets/css/style.css",
   "/assets/js/main.js",
-  "/assets/img/Olabiba-logo-tagline.png",
   "/assets/img/Olabiba-logo-tagline.webp",
-  "/assets/img/Characters2.png",
   "/assets/img/Characters2.webp",
-  "/assets/img/Characters1.png",
 ];
 
 // External resources to cache with long TTL
@@ -103,18 +110,44 @@ self.addEventListener("fetch", (event) => {
   }
 });
 
-// Cache First Strategy - Best for static assets
+// Cache First Strategy - Best for static assets with extended cache
 async function cacheFirst(request, cacheName) {
   try {
     const cachedResponse = await caches.match(request);
+    
+    // Check if cache is still valid
     if (cachedResponse) {
-      return cachedResponse;
+      const cachedDate = new Date(cachedResponse.headers.get('sw-cached-date'));
+      const now = new Date();
+      const age = now - cachedDate;
+      
+      // Determine max age based on resource type
+      let maxAge = CACHE_EXPIRATION.static;
+      if (request.url.match(/\.(png|webp|jpg|jpeg|svg)$/)) {
+        maxAge = CACHE_EXPIRATION.images;
+      }
+      
+      // Return cached response if still fresh
+      if (age < maxAge) {
+        return cachedResponse;
+      }
     }
 
+    // Fetch from network
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
       const cache = await caches.open(cacheName);
-      cache.put(request, networkResponse.clone());
+      
+      // Add timestamp to track cache age
+      const responseToCache = new Response(networkResponse.body, {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers: new Headers(networkResponse.headers)
+      });
+      responseToCache.headers.append('sw-cached-date', new Date().toISOString());
+      
+      cache.put(request, responseToCache.clone());
+      return networkResponse;
     }
     return networkResponse;
   } catch (error) {

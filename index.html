@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Cache and Performance Hints -->
+    <meta http-equiv="Cache-Control" content="public, max-age=2592000, immutable" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
     <title>Olabiba - منصة تعلم اللغات</title>
     <meta
       name="description"
@@ -126,9 +131,16 @@
       
       /* Logo container - prevent layout shift */
       .logo-container {
-        width: 160px;
+        max-width: 200px;
         height: 40px;
+        width: auto;
         contain: layout;
+      }
+      
+      .logo-container img {
+        height: 40px;
+        width: auto;
+        max-width: 200px;
       }
       
       /* Prevent layout shift for main content */
@@ -225,8 +237,15 @@
         
         /* Logo container on mobile */
         .logo-container {
-          width: 140px;
+          max-width: 180px;
           height: 36px;
+          width: auto;
+        }
+        
+        .logo-container img {
+          height: 36px;
+          width: auto;
+          max-width: 180px;
         }
         
         /* Prevent grid layout shift on mobile */
@@ -285,9 +304,7 @@
       }
     </style>
 
-    <!-- Preload critical font files to prevent layout shift -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLtz6BYgTZBfZvzgeCg.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLtz6BYgTZBfZvzgeCg.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Note: Font preload removed to prevent 404 errors - fonts will be loaded via CSS -->
     
     <!-- Google Fonts with font-display: optional to prevent layout shift -->
     <link
@@ -323,10 +340,13 @@
     />
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
 
-    <!-- Preload critical resources -->
-    <link rel="prefetch" href="chat.html" />
-    <link rel="preload" href="assets/img/Characters1.png" as="image" />
-    <link rel="preload" href="assets/img/user-avatar.png" as="image" />
+    <!-- Preload critical resources with cache hints -->
+    <link rel="preload" href="assets/img/Olabiba-logo-tagline.webp" as="image" fetchpriority="high" />
+    <link rel="preload" href="assets/img/Characters2.webp" as="image" fetchpriority="high" />
+    
+    <!-- Prefetch static assets for better performance -->
+    <link rel="prefetch" href="assets/css/style.css" />
+    <link rel="prefetch" href="assets/js/main.js" />
   </head>
   <body class="font-arabic bg-light-pink min-h-screen">
     <!-- Enhanced Header -->
@@ -346,10 +366,12 @@
                 <img
                   src="assets/img/Olabiba-logo-tagline.webp"
                   alt="Olabiba - منصة تعلم اللغات الذكية"
-                  class="w-40 h-10"
-                  width="160"
-                  height="40"
+                  class="h-10 w-auto"
+                  width="200"
+                  height="44"
                   fetchpriority="high"
+                  decoding="async"
+                  style="height: 40px; width: auto; max-width: 200px; object-fit: contain;"
                   onerror="this.src='assets/img/Olabiba-logo-tagline.png'"
                 />
               </a>
@@ -623,10 +645,13 @@
                   <img
                     src="assets/img/Characters2.webp"
                     alt="شخصية لبيبة - المساعد الذكي"
-                    class="w-32 h-32"
+                    class="w-32 h-auto"
                     width="128"
-                    height="128"
-                    loading="lazy"
+                    height="122"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                    style="max-width: 128px; height: auto; object-fit: contain;"
                     onerror="this.src='assets/img/Characters2.png'"
                   />
                 </div>
@@ -1333,22 +1358,8 @@
       
       // Preload critical resources after page load
       window.addEventListener('load', function() {
-        // Preload chat page for faster navigation
-        const chatLink = document.createElement('link');
-        chatLink.rel = 'prefetch';
-        chatLink.href = '/chat.html';
-        document.head.appendChild(chatLink);
-        
-        // Preload critical images
-        const criticalImages = [
-          '/assets/img/Characters1.png',
-          '/assets/img/user-avatar.png'
-        ];
-        
-        criticalImages.forEach(function(src) {
-          const img = new Image();
-          img.src = src;
-        });
+        // Note: Removed preload for non-existent files to prevent 404 errors
+        // Only preload files that actually exist on the server
         
         // Optimize animations - use CSS will-change sparingly
         // Removed: setting will-change on all animated elements to prevent performance issues
