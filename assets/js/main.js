@@ -795,10 +795,19 @@ function initializeChat() {
     }
   });
 
-  // Auto-resize input
+  // Auto-resize input - optimized to prevent forced reflow
   chatInput.addEventListener("input", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
+    // Use requestAnimationFrame to batch reads and writes separately
+    requestAnimationFrame(() => {
+      // Read phase
+      const scrollHeight = this.scrollHeight;
+      
+      // Write phase
+      requestAnimationFrame(() => {
+        this.style.height = "auto";
+        this.style.height = scrollHeight + "px";
+      });
+    });
   });
 
   // Focus input on page load
@@ -1015,13 +1024,19 @@ function generateAIResponse(userMessage) {
 function scrollToBottom() {
   const chatMessages = document.getElementById("chatMessages");
   if (chatMessages) {
-    // Force scroll to the very bottom with a small delay to ensure content is rendered
-    setTimeout(() => {
-      chatMessages.scrollTo({
-        top: chatMessages.scrollHeight + 100, // Add extra pixels to ensure we reach the bottom
-        behavior: "smooth",
+    // Optimized to prevent forced reflow - read then write in separate frames
+    requestAnimationFrame(() => {
+      // Read phase - get scrollHeight without causing reflow
+      const scrollHeight = chatMessages.scrollHeight;
+      
+      // Write phase - apply scroll in next frame
+      requestAnimationFrame(() => {
+        chatMessages.scrollTo({
+          top: scrollHeight + 100, // Add extra pixels to ensure we reach the bottom
+          behavior: "smooth",
+        });
       });
-    }, 50);
+    });
   }
 }
 
@@ -1491,13 +1506,16 @@ function closeMobileMenu() {
   }
 }
 
-// Responsive behavior improvements
+// Responsive behavior improvements - optimized to prevent forced reflows
 function handleResponsiveLayout() {
   const chatContainer = document.getElementById("chatContainer");
   const chatInputArea = document.getElementById("chatInputArea");
   const chatMessages = document.getElementById("chatMessages");
 
-  if (window.innerWidth < 1024) {
+  // Use matchMedia instead of window.innerWidth to prevent forced reflows
+  const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+
+  if (isMobile) {
     // Mobile and tablet
     // Adjust chat messages height for mobile
     if (chatMessages) {
@@ -1519,13 +1537,18 @@ function handleResponsiveLayout() {
   }, 100);
 }
 
-// Initialize responsive behavior
+// Initialize responsive behavior - optimized to prevent forced reflows
 function initializeResponsive() {
+  // Use matchMedia instead of checking window.innerWidth repeatedly
+  const mobileQuery = window.matchMedia("(max-width: 1023px)");
+  
   // Handle sidebar visibility on mobile
   function handleResize() {
     const sidebar = document.querySelector(".sidebar");
+    const isMobile = mobileQuery.matches;
+    
     if (sidebar) {
-      if (window.innerWidth < 1024) {
+      if (isMobile) {
         sidebar.style.display = "none";
       } else {
         sidebar.style.display = "block";
@@ -1533,7 +1556,7 @@ function initializeResponsive() {
     }
 
     // Close mobile menu on resize to desktop
-    if (window.innerWidth >= 1024) {
+    if (!isMobile) {
       closeMobileMenu();
     }
 
@@ -1541,8 +1564,12 @@ function initializeResponsive() {
     handleResponsiveLayout();
   }
 
-  window.addEventListener("resize", handleResize);
-  handleResize(); // Initial call
+  // Use debounced version for resize events to reduce forced reflows
+  const debouncedResize = debounce(handleResize, 150);
+  window.addEventListener("resize", debouncedResize);
+  
+  // Initial call without debounce
+  handleResize();
 
   // Mobile menu toggle (if needed)
   const mobileMenuButton = document.querySelector(".mobile-menu-button");
@@ -1783,19 +1810,30 @@ function scrollToTop() {
   });
 }
 
-// Show/Hide Back to Top Button
+// Show/Hide Back to Top Button - optimized to prevent forced reflows
+let ticking = false;
 window.addEventListener("scroll", function () {
-  const backToTopButton = document.getElementById("backToTop");
-  if (backToTopButton) {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.remove("opacity-0", "invisible");
-      backToTopButton.classList.add("opacity-100", "visible");
-    } else {
-      backToTopButton.classList.add("opacity-0", "invisible");
-      backToTopButton.classList.remove("opacity-100", "visible");
-    }
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const backToTopButton = document.getElementById("backToTop");
+      if (backToTopButton) {
+        // Read scroll position
+        const scrollPosition = window.pageYOffset;
+        
+        // Update UI based on scroll position
+        if (scrollPosition > 300) {
+          backToTopButton.classList.remove("opacity-0", "invisible");
+          backToTopButton.classList.add("opacity-100", "visible");
+        } else {
+          backToTopButton.classList.add("opacity-0", "invisible");
+          backToTopButton.classList.remove("opacity-100", "visible");
+        }
+      }
+      ticking = false;
+    });
+    ticking = true;
   }
-});
+}, { passive: true }); // passive for better scroll performance
 
 // Export theme functions
 window.toggleTheme = toggleTheme;
