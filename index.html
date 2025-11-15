@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Olabiba - منصة تعلم اللغات</title>
     <meta
       name="description"
@@ -36,7 +36,9 @@
         background: #f9fafb;
         line-height: 1.6;
         min-height: 100vh;
+        min-height: calc(100vh + env(safe-area-inset-bottom));
         padding-top: 80px;
+        padding-top: max(80px, env(safe-area-inset-top));
       }
 
       .font-arabic {
@@ -113,7 +115,13 @@
       #languageSelector {
         min-width: 120px;
         height: 40px;
+        contain: layout style;
+      }
+      
+      #languageSelector span {
         contain: layout;
+        display: inline-block;
+        min-width: 50px;
       }
       
       /* Logo container - prevent layout shift */
@@ -162,6 +170,89 @@
       .hero-section .relative.w-80 {
         min-height: 320px;
         contain: layout;
+      }
+      
+      /* Mobile-specific optimizations to prevent layout shifts */
+      @media (max-width: 768px) {
+        .min-h-screen {
+          min-height: 100vh !important;
+          min-height: 100dvh !important; /* Dynamic viewport height for mobile browsers */
+          contain: layout style;
+        }
+        
+        /* Reserve space for hero content on mobile */
+        .hero-section {
+          min-height: 100vh !important;
+          min-height: 100dvh !important;
+          contain: layout style paint;
+        }
+        
+        .hero-content {
+          min-height: 600px;
+        }
+        
+        /* Adjust text heights for mobile */
+        .hero-section h1 {
+          min-height: 240px;
+          font-size: clamp(2rem, 8vw, 3.75rem);
+        }
+        
+        .hero-section p {
+          min-height: 100px;
+          font-size: clamp(1rem, 4vw, 1.25rem);
+        }
+        
+        /* Prevent badge layout shift on mobile */
+        .hero-section .inline-flex.items-center {
+          min-height: 44px;
+        }
+        
+        /* Fix stats section on mobile */
+        .hero-section .flex.flex-wrap.gap-6 {
+          min-height: 80px;
+        }
+        
+        /* Language selector stability on mobile */
+        #languageSelector {
+          min-width: 100px;
+          height: 44px;
+        }
+        
+        #languageSelector span {
+          display: inline-block;
+          min-width: 50px;
+        }
+        
+        /* Logo container on mobile */
+        .logo-container {
+          width: 140px;
+          height: 36px;
+        }
+        
+        /* Prevent grid layout shift on mobile */
+        .grid.grid-cols-1 {
+          min-height: 400px;
+        }
+        
+        /* Disable animation delays on mobile to prevent shifts */
+        .animate-fade-in-up {
+          animation-delay: 0s !important;
+        }
+        
+        /* Ensure body doesn't shift on mobile */
+        body {
+          min-height: 100vh;
+          min-height: 100dvh;
+        }
+        
+        /* Prevent header from causing shifts */
+        header {
+          height: 64px;
+        }
+        
+        body {
+          padding-top: 64px;
+        }
       }
       
       /* Optimize below-the-fold content */
@@ -301,6 +392,7 @@
                 id="languageSelector"
                 class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 text-gray-700 text-sm font-medium flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full focus:outline-none hover:text-gray-900 transition-all duration-300 shadow-sm hover:shadow-md"
                 onclick="toggleLanguageDropdown()"
+                style="min-height: 40px; min-width: 120px;"
               >
                 <div
                   class="w-5 h-5 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
@@ -317,7 +409,7 @@
                     ></path>
                   </svg>
                 </div>
-                <span>العربية</span>
+                <span style="min-width: 50px; display: inline-block;">العربية</span>
                 <svg
                   class="w-4 h-4 text-gray-400 transition-transform duration-200"
                   fill="none"
@@ -383,11 +475,12 @@
     </header>
 
     <!-- Main Content -->
-    <div class="min-h-screen" dir="rtl">
+    <div class="min-h-screen" dir="rtl" style="min-height: 100vh;">
       <!--Hero design -->
 
       <div
         class="hero-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
+        style="min-height: 100vh;"
       >
         <!-- Geometric Background Pattern -->
         <div class="absolute inset-0">
@@ -434,8 +527,8 @@
           ></div>
         </div>
 
-        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center hero-content">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center hero-content" style="min-height: 500px;">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" style="min-height: 400px;">
             <!-- Left Side - Content -->
             <div class="space-y-8" style="min-height: 500px;">
               <!-- Badge -->
