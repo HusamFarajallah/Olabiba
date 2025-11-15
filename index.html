@@ -32,15 +32,27 @@
       }
 
       body {
-        font-family: "Noto Kufi Arabic", sans-serif;
+        font-family: "Noto Kufi Arabic", system-ui, -apple-system, sans-serif;
         background: #f9fafb;
         line-height: 1.6;
         min-height: 100vh;
         padding-top: 80px;
+        font-display: swap;
       }
 
       .font-arabic {
-        font-family: "Noto Kufi Arabic", sans-serif !important;
+        font-family: "Noto Kufi Arabic", system-ui, -apple-system, sans-serif !important;
+        font-display: swap;
+      }
+      
+      /* Prevent layout shift by setting consistent font metrics */
+      @font-face {
+        font-family: 'Noto Kufi Arabic Fallback';
+        src: local('Arial'), local('Helvetica');
+        font-display: swap;
+        ascent-override: 105%;
+        descent-override: 35%;
+        line-gap-override: 0%;
       }
 
       .bg-light-pink {
@@ -78,7 +90,7 @@
         animation: float 3s ease-in-out infinite;
       }
 
-      /* Header critical styles */
+      /* Header critical styles - prevent layout shift */
       header {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
@@ -90,10 +102,38 @@
         z-index: 20;
         height: 80px;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        contain: layout style paint;
+      }
+      
+      /* Language selector - prevent layout shift */
+      #languageSelector {
+        min-width: 120px;
+        height: 40px;
+        contain: layout;
+      }
+      
+      /* Logo container - prevent layout shift */
+      .logo-container {
+        width: 160px;
+        height: 40px;
+        contain: layout;
+      }
+      
+      /* Prevent layout shift during font loading */
+      .text-loading {
+        visibility: hidden;
+      }
+      
+      .fonts-loaded .text-loading {
+        visibility: visible;
       }
     </style>
 
-    <!-- Google Fonts with optimized loading -->
+    <!-- Preload critical font files to prevent layout shift -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLtz6BYgTZBfZvzgeCg.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLtz6BYgTZBfZvzgeCg.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Google Fonts with font-display: swap to prevent FOIT -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -145,7 +185,7 @@
             <div class="flex items-center space-x-3 space-x-reverse">
               <a
                 href="index.html"
-                class="transition-transform duration-200 hover:scale-105"
+                class="transition-transform duration-200 hover:scale-105 logo-container"
               >
                 <img
                   src="assets/img/Olabiba-logo-tagline.webp"
@@ -166,7 +206,7 @@
               class="bg-gradient-to-r from-red-50 to-pink-50 rounded-full px-6 py-2 border border-red-100"
             >
               <p
-                class="text-gray-700 text-base font-medium italic"
+                class="text-gray-700 text-base font-medium italic text-loading"
                 data-translate="header-text"
               >
                 "إذا ظَهرت لَبِيبةُ فسْألُوها، فَلُبُّ القَولِ مَا قَالت
@@ -1122,6 +1162,25 @@
         });
       }
       
+      // Font loading detection to prevent layout shift
+      if ('fonts' in document) {
+        document.fonts.ready.then(function() {
+          document.documentElement.classList.add('fonts-loaded');
+          console.log('✅ Fonts loaded successfully');
+        });
+        
+        // Fallback timeout
+        setTimeout(function() {
+          if (!document.documentElement.classList.contains('fonts-loaded')) {
+            document.documentElement.classList.add('fonts-loaded');
+            console.log('⚠️ Font loading timeout - using fallback');
+          }
+        }, 3000);
+      } else {
+        // Fallback for browsers without Font Loading API
+        document.documentElement.classList.add('fonts-loaded');
+      }
+      
       // Preload critical resources after page load
       window.addEventListener('load', function() {
         // Preload chat page for faster navigation
@@ -1139,6 +1198,12 @@
         criticalImages.forEach(function(src) {
           const img = new Image();
           img.src = src;
+        });
+        
+        // Optimize animations to prevent layout shift
+        const animatedElements = document.querySelectorAll('[class*="animate-"]');
+        animatedElements.forEach(function(el) {
+          el.style.willChange = 'transform, opacity';
         });
       });
     </script>
