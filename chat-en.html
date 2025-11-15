@@ -4,18 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Olabiba - Chat with Lbiby</title>
-
-    <!-- DNS Prefetch for external resources -->
-    <link rel="dns-prefetch" href="//cdn.tailwindcss.com" />
-
-    <!-- Preload LCP image -->
-    <link
-      rel="preload"
-      href="assets/img/Olabiba-logo-tagline.webp"
-      as="image"
-      fetchpriority="high"
-    />
-
     <!-- Local Fonts - No external requests -->
     <link
       rel="preload"
@@ -33,6 +21,17 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com" />
+
+    <!-- Preload LCP image -->
+    <link
+      rel="preload"
+      href="assets/img/Olabiba-logo-tagline.webp"
+      as="image"
+      fetchpriority="high"
+    />
 
     <!-- Tailwind CSS - defer loading -->
     <script src="https://cdn.tailwindcss.com" defer></script>
@@ -53,11 +52,9 @@
                 class="transition-transform duration-200 hover:scale-105"
               >
                 <img
-                  src="assets/img/Olabiba-logo-tagline.webp"
+                  src="assets/img/Olabiba-logo-tagline.png"
                   alt="Logo"
                   class="w-40 h-10"
-                  fetchpriority="high"
-                  loading="eager"
                 />
               </a>
             </div>
@@ -210,7 +207,7 @@
 
     <!-- Mobile Sidebar -->
     <div
-      id="mobileMenu"
+      id="mobileSidebar"
       class="fixed top-0 left-0 w-80 h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 lg:hidden"
     >
       <div class="p-6">
@@ -219,9 +216,7 @@
           <h2 class="text-xl font-bold text-gray-800">Menu</h2>
           <button
             onclick="closeMobileMenu()"
-            class="p-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-full hover:bg-gray-100 transition-all duration-200"
-            aria-label="Close menu"
-            title="Close"
+            class="p-2 text-gray-600 hover:text-gray-800"
           >
             <svg
               class="w-6 h-6"
@@ -486,7 +481,7 @@
                   answer any question you have. How can I help you?
                 </p>
                 <div class="flex items-center justify-end mt-2 space-x-1">
-                  <span class="text-xs">2:03 PM, 15 Nov</span>
+                  <span class="text-xs text-red-200">2:03 PM, 15 Nov</span>
                   <div class="w-4 h-4 rounded-full overflow-hidden">
                     <img
                       src="assets/img/user-avatar.png"
@@ -938,10 +933,7 @@
       </div>
     </main>
 
-    <!-- Preload JavaScript -->
-    <link rel="preload" href="assets/js/main.js" as="script" />
-
-    <!-- JavaScript - async loading -->
-    <script src="assets/js/main.js" async></script>
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
