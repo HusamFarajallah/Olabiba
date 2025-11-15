@@ -4,18 +4,133 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Olabiba - منصة تعلم اللغات</title>
+    <meta
+      name="description"
+      content="شات بوت ذكي متاح 24/7 للدردشة بلغتك المفضلة. يجيب على أسئلتك، يساعدك في مشاكلك، ويسليك - بدون تسجيل أو تعقيدات!"
+    />
 
-    <!-- Google Fonts -->
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="dns-prefetch" href="https://husamfarajallah.github.io" />
+
+    <!-- Critical CSS inline for above-the-fold content -->
+    <style>
+      /* Critical CSS - Above the fold styles */
+      :root {
+        --primary-red: #dc2626;
+        --light-pink: #fdf2f8;
+        --dark-gray: #1f2937;
+        --medium-gray: #6b7280;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Kufi Arabic", sans-serif;
+        background: #f9fafb;
+        line-height: 1.6;
+        min-height: 100vh;
+        padding-top: 80px;
+      }
+
+      .font-arabic {
+        font-family: "Noto Kufi Arabic", sans-serif !important;
+      }
+
+      .bg-light-pink {
+        background-color: var(--light-pink) !important;
+      }
+
+      /* Critical animations */
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Header critical styles */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        height: 80px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+
+    <!-- Google Fonts with optimized loading -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS with async loading -->
+    <script>
+      // Load Tailwind CSS asynchronously to prevent render blocking
+      (function () {
+        const tailwindScript = document.createElement("script");
+        tailwindScript.src = "https://cdn.tailwindcss.com";
+        tailwindScript.async = true;
+        document.head.appendChild(tailwindScript);
+      })();
+    </script>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Custom CSS with preload for non-blocking loading -->
+    <link
+      rel="preload"
+      href="assets/css/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+
+    <!-- Preload critical resources -->
+    <link rel="prefetch" href="chat.html" />
+    <link rel="preload" href="assets/img/Characters1.png" as="image" />
+    <link rel="preload" href="assets/img/user-avatar.png" as="image" />
   </head>
   <body class="font-arabic bg-light-pink min-h-screen">
     <!-- Enhanced Header -->
@@ -33,9 +148,13 @@
                 class="transition-transform duration-200 hover:scale-105"
               >
                 <img
-                  src="assets/img/Olabiba-logo-tagline.png"
-                  alt="Logo"
+                  src="assets/img/Olabiba-logo-tagline.webp"
+                  alt="Olabiba - منصة تعلم اللغات الذكية"
                   class="w-40 h-10"
+                  width="160"
+                  height="40"
+                  fetchpriority="high"
+                  onerror="this.src='assets/img/Olabiba-logo-tagline.png'"
                 />
               </a>
             </div>
@@ -302,9 +421,13 @@
                   class="absolute inset-8 rounded-full bg-gradient-to-br from-red-500 to-red-400 flex items-center justify-center shadow-2xl"
                 >
                   <img
-                    src="assets/img/Characters2.png"
-                    alt="Logo"
+                    src="assets/img/Characters2.webp"
+                    alt="شخصية لبيبة - المساعد الذكي"
                     class="w-32 h-32"
+                    width="128"
+                    height="128"
+                    loading="lazy"
+                    onerror="this.src='assets/img/Characters2.png'"
                   />
                 </div>
 
@@ -952,7 +1075,7 @@
         <!-- Copyright -->
         <div class="text-center">
           <div class="text-gray-400 text-sm">
-            ©2025 شركة أوتوما. جميع الحقوق محفوظة.
+            2025 شركة أوتوما. جميع الحقوق محفوظة.
           </div>
         </div>
       </div>
@@ -981,7 +1104,43 @@
       </svg>
     </button>
 
-    <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
+    <!-- JavaScript with defer loading for better performance -->
+    <script src="assets/js/main.js" defer></script>
+
+    <!-- Service Worker for advanced caching -->
+    <script>
+      // Register Service Worker for caching and offline support
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/assets/js/sw.js')
+            .then(function(registration) {
+              console.log('✅ SW registered successfully:', registration.scope);
+            })
+            .catch(function(registrationError) {
+              console.log('❌ SW registration failed:', registrationError);
+            });
+        });
+      }
+      
+      // Preload critical resources after page load
+      window.addEventListener('load', function() {
+        // Preload chat page for faster navigation
+        const chatLink = document.createElement('link');
+        chatLink.rel = 'prefetch';
+        chatLink.href = '/chat.html';
+        document.head.appendChild(chatLink);
+        
+        // Preload critical images
+        const criticalImages = [
+          '/assets/img/Characters1.png',
+          '/assets/img/user-avatar.png'
+        ];
+        
+        criticalImages.forEach(function(src) {
+          const img = new Image();
+          img.src = src;
+        });
+      });
+    </script>
   </body>
 </html>
