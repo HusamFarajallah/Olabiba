@@ -20,6 +20,19 @@
     />
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
 
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com" />
+
+    <!-- Preload LCP image -->
+    <link
+      rel="preload"
+      href="assets/img/Olabiba-logo-tagline.webp"
+      as="image"
+      fetchpriority="high"
+    />
+
     <!-- Tailwind CSS - defer loading -->
     <script src="https://cdn.tailwindcss.com" defer></script>
   </head>
