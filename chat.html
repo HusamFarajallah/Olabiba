@@ -92,6 +92,56 @@
       /* Prevent header layout shifts */
       header {
         contain: layout;
+        min-height: 80px; /* Fixed header height */
+      }
+
+      /* Desktop layout shift prevention */
+      @media (min-width: 1024px) {
+        /* Reserve space for center text to prevent layout shifts */
+        .header-center-text {
+          min-width: 400px;
+          min-height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Ensure header content maintains stable layout */
+        .header-content {
+          display: grid;
+          grid-template-columns: 1fr 2fr 1fr;
+          align-items: center;
+          gap: 1rem;
+          width: 100%;
+        }
+      }
+
+      /* Prevent layout shifts from dynamic content */
+      .dynamic-content {
+        contain: layout style size;
+      }
+
+      /* Stable dimensions for interactive elements */
+      button,
+      .dropdown {
+        contain: layout;
+      }
+
+      /* Prevent layout shifts during font loading */
+      * {
+        font-display: swap;
+      }
+
+      /* Ensure stable layout during content loading */
+      .content-container {
+        min-height: calc(100vh - 80px);
+        contain: layout;
+      }
+
+      /* Prevent shifts in language selector */
+      .language-selector {
+        min-width: 120px;
+        contain: layout;
       }
 
       /* Critical CSS for immediate rendering */
@@ -142,7 +192,7 @@
       <div class="flex h-full">
         <!-- Header Content -->
         <div
-          class="flex-1 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4"
+          class="header-content flex-1 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 lg:grid lg:grid-cols-3 lg:gap-4"
         >
           <!-- Logo/Brand (Right) -->
           <div class="flex items-center group">
@@ -166,9 +216,11 @@
           </div>
 
           <!-- Main Text (Center) -->
-          <div class="flex-1 text-center mx-2 hidden lg:block">
+          <div
+            class="header-center-text flex-1 text-center mx-2 hidden lg:flex"
+          >
             <div
-              class="bg-gradient-to-r from-red-50 to-pink-50 rounded-full px-6 py-2 border border-red-100"
+              class="dynamic-content bg-gradient-to-r from-red-50 to-pink-50 rounded-full px-6 py-2 border border-red-100 w-full"
             >
               <p
                 class="text-gray-700 text-base font-medium italic"
@@ -197,7 +249,7 @@
               </div>
             </button>
 
-            <div class="relative hidden sm:block">
+            <div class="language-selector relative hidden sm:block">
               <button
                 id="languageSelector"
                 class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 text-gray-700 text-sm font-medium flex items-center space-x-2 space-x-reverse px-2 sm:px-4 py-2 rounded-full focus:outline-none hover:text-gray-900 transition-all duration-300 shadow-sm hover:shadow-md"
@@ -219,7 +271,7 @@
                     ></path>
                   </svg>
                 </div>
-                <span class="hidden sm:inline">العربية</span>
+                <span class="hidden sm:inline">اللغة العربية</span>
                 <svg
                   class="w-4 h-4 text-gray-400 transition-transform duration-200"
                   fill="none"
@@ -487,7 +539,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="min-h-screen" dir="rtl">
+    <main class="content-container min-h-screen" dir="rtl">
       <!-- Right Sidebar -->
       <div
         class="fixed top-20 right-0 w-80 bg-white border-l border-gray-200 p-6 overflow-y-auto sidebar-hidden-scroll hidden lg:block z-30"
