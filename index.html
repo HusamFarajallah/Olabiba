@@ -4,18 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Olabiba - منصة تعلم اللغات</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Google Fonts -->
+    <!-- Local Fonts - No external requests -->
     <link
       rel="preload"
+      href="assets/fonts/fonts.css"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
-    />
+    <noscript><link rel="stylesheet" href="assets/fonts/fonts.css" /></noscript>
 
     <!-- Preload critical CSS -->
     <link
@@ -27,8 +23,6 @@
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
 
     <!-- DNS Prefetch for external resources -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//cdn.tailwindcss.com" />
 
     <!-- Preload LCP image -->

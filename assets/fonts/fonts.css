@@ -1,0 +1,49 @@
+/* Local Noto Kufi Arabic Font */
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./NotoKufiArabic-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./NotoKufiArabic-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./NotoKufiArabic-Bold.ttf") format("truetype");
+}
+
+/* Inter Font for English/Spanish versions */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./Inter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./Inter-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./Inter-Bold.ttf") format("truetype");
+}

@@ -5,17 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Olabiba - Plataforma de Aprendizaje de Idiomas</title>
 
-    <!-- Google Fonts -->
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com" />
+
+    <!-- Preload LCP image -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="assets/img/Olabiba-logo-tagline.webp"
+      as="image"
+      fetchpriority="high"
     />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Local Fonts - No external requests -->
+    <link
+      rel="preload"
+      href="assets/fonts/fonts.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="assets/fonts/fonts.css" /></noscript>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Preload critical CSS -->
+    <link
+      rel="preload"
+      href="assets/css/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+
+    <!-- Tailwind CSS - defer loading -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
   </head>
   <body class="font-sans bg-light-pink min-h-screen">
     <!-- Enhanced Header -->
