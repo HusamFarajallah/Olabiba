@@ -17,7 +17,6 @@
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <link rel="dns-prefetch" href="https://husamfarajallah.github.io" />
 
     <!-- Critical CSS inline for above-the-fold content -->
@@ -333,25 +332,15 @@
       />
     </noscript>
 
-    <!-- Tailwind CSS with async loading -->
-    <script>
-      // Load Tailwind CSS asynchronously to prevent render blocking
-      (function () {
-        const tailwindScript = document.createElement("script");
-        tailwindScript.src = "https://cdn.tailwindcss.com";
-        tailwindScript.async = true;
-        document.head.appendChild(tailwindScript);
-      })();
-    </script>
+    <!-- Preload critical CSS files -->
+    <link rel="preload" href="assets/css/tailwind-minimal.css" as="style" />
+    <link rel="preload" href="assets/css/style.css" as="style" />
 
-    <!-- Custom CSS with preload for non-blocking loading -->
-    <link
-      rel="preload"
-      href="assets/css/style.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+    <!-- Tailwind CSS Minimal - Local (12 KB instead of 123 KB from CDN) -->
+    <link rel="stylesheet" href="assets/css/tailwind-minimal.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- Preload critical resources with cache hints -->
     <link rel="preload" href="assets/img/Olabiba-logo-tagline.webp" as="image" fetchpriority="high" />

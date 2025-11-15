@@ -1,9 +1,9 @@
 // Service Worker for Olabiba Platform - Performance Optimization
 // Version 1.1.0 - Enhanced Caching
 
-const CACHE_NAME = "olabiba-v1.1.0";
-const STATIC_CACHE_NAME = "olabiba-static-v1.1.0";
-const DYNAMIC_CACHE_NAME = "olabiba-dynamic-v1.1.0";
+const CACHE_NAME = "olabiba-v1.2.0";
+const STATIC_CACHE_NAME = "olabiba-static-v1.2.0";
+const DYNAMIC_CACHE_NAME = "olabiba-dynamic-v1.2.0";
 
 // Cache expiration times (in milliseconds)
 const CACHE_EXPIRATION = {
@@ -22,6 +22,7 @@ const STATIC_ASSETS = [
   "/faq.html",
   "/faq-en.html",
   "/faq-es.html",
+  "/assets/css/tailwind-minimal.css",
   "/assets/css/style.css",
   "/assets/js/main.js",
   "/assets/img/Olabiba-logo-tagline.webp",
@@ -31,7 +32,6 @@ const STATIC_ASSETS = [
 // External resources to cache with long TTL
 const EXTERNAL_ASSETS = [
   "https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap",
-  "https://cdn.tailwindcss.com",
 ];
 
 // Install event - cache critical assets
