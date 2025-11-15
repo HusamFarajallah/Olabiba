@@ -2,353 +2,20 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    
-    <!-- Cache and Performance Hints -->
-    <meta http-equiv="Cache-Control" content="public, max-age=2592000, immutable" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Olabiba - منصة تعلم اللغات</title>
-    <meta
-      name="description"
-      content="شات بوت ذكي متاح 24/7 للدردشة بلغتك المفضلة. يجيب على أسئلتك، يساعدك في مشاكلك، ويسليك - بدون تسجيل أو تعقيدات!"
-    />
 
-    <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://husamfarajallah.github.io" />
-
-    <!-- Critical CSS inline for above-the-fold content -->
-    <style>
-      /* Critical CSS - Above the fold styles */
-      :root {
-        --primary-red: #dc2626;
-        --light-pink: #fdf2f8;
-        --dark-gray: #1f2937;
-        --medium-gray: #6b7280;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Noto Kufi Arabic", 'Noto Kufi Arabic Fallback', system-ui, -apple-system, sans-serif;
-        background: #f9fafb;
-        line-height: 1.6;
-        min-height: 100vh;
-        min-height: calc(100vh + env(safe-area-inset-bottom));
-        padding-top: 80px;
-        padding-top: max(80px, env(safe-area-inset-top));
-      }
-
-      .font-arabic {
-        font-family: "Noto Kufi Arabic", 'Noto Kufi Arabic Fallback', system-ui, -apple-system, sans-serif !important;
-      }
-      
-      /* Prevent layout shift when fonts-loaded class is added */
-      html.fonts-loaded body {
-        font-family: "Noto Kufi Arabic", 'Noto Kufi Arabic Fallback', system-ui, -apple-system, sans-serif !important;
-      }
-      
-      /* Prevent layout shift by setting consistent font metrics */
-      @font-face {
-        font-family: 'Noto Kufi Arabic Fallback';
-        src: local('Arial'), local('Helvetica');
-        font-display: optional;
-        ascent-override: 110%;
-        descent-override: 28%;
-        line-gap-override: 0%;
-        size-adjust: 95%;
-      }
-
-      .bg-light-pink {
-        background-color: var(--light-pink) !important;
-      }
-
-      /* Critical animations */
-      @keyframes fade-in-up {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      .animate-fade-in-up {
-        animation: fade-in-up 0.8s ease-out forwards;
-        opacity: 0;
-      }
-
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      /* Header critical styles - prevent layout shift */
-      header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 20;
-        height: 80px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        contain: layout style paint;
-      }
-      
-      /* Language selector - prevent layout shift */
-      #languageSelector {
-        min-width: 120px;
-        height: 40px;
-        contain: layout style;
-      }
-      
-      #languageSelector span {
-        contain: layout;
-        display: inline-block;
-        min-width: 50px;
-      }
-      
-      /* Logo container - prevent layout shift */
-      .logo-container {
-        max-width: 200px;
-        height: 40px;
-        width: auto;
-        contain: layout;
-      }
-      
-      .logo-container img {
-        height: 40px;
-        width: auto;
-        max-width: 200px;
-      }
-      
-      /* Prevent layout shift for main content */
-      .hero-section {
-        contain: layout style paint;
-        min-height: 100vh;
-      }
-      
-      /* Prevent hero content layout shift */
-      .hero-content {
-        min-height: 500px;
-      }
-      
-      /* Set explicit heights for text elements to prevent shift */
-      .hero-section h1 {
-        min-height: 200px;
-        line-height: 1.2;
-      }
-      
-      .hero-section p {
-        min-height: 80px;
-        line-height: 1.6;
-      }
-      
-      /* Prevent shift in CTA buttons */
-      .hero-section a.inline-flex {
-        min-height: 48px;
-        min-width: 200px;
-      }
-      
-      /* Touch-friendly targets - minimum 48x48px */
-      a, button, input[type="button"], input[type="submit"] {
-        min-height: 44px; /* iOS minimum */
-      }
-      
-      @media (pointer: coarse) {
-        /* For touch devices only */
-        a, button, input[type="button"], input[type="submit"] {
-          min-height: 48px;
-          min-width: 48px;
-        }
-      }
-      
-      /* Ensure images don't cause layout shifts */
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-      
-      /* Prevent character image layout shift */
-      .hero-section .relative.w-80 {
-        min-height: 320px;
-        contain: layout;
-      }
-      
-      /* Mobile-specific optimizations to prevent layout shifts */
-      @media (max-width: 768px) {
-        .min-h-screen {
-          min-height: 100vh !important;
-          min-height: 100dvh !important; /* Dynamic viewport height for mobile browsers */
-          contain: layout style;
-        }
-        
-        /* Reserve space for hero content on mobile */
-        .hero-section {
-          min-height: 100vh !important;
-          min-height: 100dvh !important;
-          contain: layout style paint;
-        }
-        
-        .hero-content {
-          min-height: 600px;
-        }
-        
-        /* Adjust text heights for mobile */
-        .hero-section h1 {
-          min-height: 240px;
-          font-size: clamp(2rem, 8vw, 3.75rem);
-        }
-        
-        .hero-section p {
-          min-height: 100px;
-          font-size: clamp(1rem, 4vw, 1.25rem);
-        }
-        
-        /* Prevent badge layout shift on mobile */
-        .hero-section .inline-flex.items-center {
-          min-height: 44px;
-        }
-        
-        /* Fix stats section on mobile */
-        .hero-section .flex.flex-wrap.gap-6 {
-          min-height: 80px;
-        }
-        
-        /* Language selector stability on mobile */
-        #languageSelector {
-          min-width: 100px;
-          height: 44px;
-        }
-        
-        #languageSelector span {
-          display: inline-block;
-          min-width: 50px;
-        }
-        
-        /* Logo container on mobile */
-        .logo-container {
-          max-width: 180px;
-          height: 36px;
-          width: auto;
-        }
-        
-        .logo-container img {
-          height: 36px;
-          width: auto;
-          max-width: 180px;
-        }
-        
-        /* Prevent grid layout shift on mobile */
-        .grid.grid-cols-1 {
-          min-height: 400px;
-        }
-        
-        /* Disable animation delays on mobile to prevent shifts */
-        .animate-fade-in-up {
-          animation-delay: 0s !important;
-        }
-        
-        /* Ensure body doesn't shift on mobile */
-        body {
-          min-height: 100vh;
-          min-height: 100dvh;
-        }
-        
-        /* Prevent header from causing shifts */
-        header {
-          height: 64px;
-        }
-        
-        body {
-          padding-top: 64px;
-        }
-      }
-      
-      /* Optimize below-the-fold content */
-      .below-fold-section {
-        content-visibility: auto;
-        contain-intrinsic-size: auto 500px;
-      }
-      
-      /* Prevent animation-related layout shifts */
-      .animate-fade-in-up,
-      .animate-float,
-      .animate-bounce,
-      .animate-pulse {
-        will-change: auto;
-      }
-      
-      /* Reserve space for animated content to prevent shifts */
-      .hero-section .space-y-8 > * {
-        transform: translateZ(0); /* Enable GPU acceleration */
-      }
-      
-      /* Prevent layout shift from stats section */
-      .hero-section .flex.flex-wrap.gap-6 {
-        min-height: 60px;
-      }
-      
-      /* Prevent layout shift from badge */
-      .hero-section .inline-flex.items-center {
-        min-height: 40px;
-      }
-    </style>
-
-    <!-- Note: Font preload removed to prevent 404 errors - fonts will be loaded via CSS -->
-    
-    <!-- Google Fonts with font-display: optional to prevent layout shift -->
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=optional"
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
     />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=optional"
-        rel="stylesheet"
-      />
-    </noscript>
 
-    <!-- Preload critical CSS files -->
-    <link rel="preload" href="assets/css/tailwind-minimal.css" as="style" />
-    <link rel="preload" href="assets/css/style.css" as="style" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Tailwind CSS Minimal - Local (12 KB instead of 123 KB from CDN) -->
-    <link rel="stylesheet" href="assets/css/tailwind-minimal.css" />
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
-
-    <!-- Preload critical resources with cache hints -->
-    <link rel="preload" href="assets/img/Olabiba-logo-tagline.webp" as="image" fetchpriority="high" />
-    <link rel="preload" href="assets/img/Characters2.webp" as="image" fetchpriority="high" />
-    
-    <!-- Prefetch static assets for better performance -->
-    <link rel="prefetch" href="assets/css/style.css" />
-    <link rel="prefetch" href="assets/js/main.js" />
   </head>
   <body class="font-arabic bg-light-pink min-h-screen">
     <!-- Enhanced Header -->
@@ -363,18 +30,12 @@
             <div class="flex items-center space-x-3 space-x-reverse">
               <a
                 href="index.html"
-                class="transition-transform duration-200 hover:scale-105 logo-container"
+                class="transition-transform duration-200 hover:scale-105"
               >
                 <img
-                  src="assets/img/Olabiba-logo-tagline.webp"
-                  alt="Olabiba - منصة تعلم اللغات الذكية"
-                  class="h-10 w-auto"
-                  width="200"
-                  height="44"
-                  fetchpriority="high"
-                  decoding="async"
-                  style="height: 40px; width: auto; max-width: 200px; object-fit: contain;"
-                  onerror="this.src='assets/img/Olabiba-logo-tagline.png'"
+                  src="assets/img/Olabiba-logo-tagline.png"
+                  alt="Logo"
+                  class="w-40 h-10"
                 />
               </a>
             </div>
@@ -416,7 +77,6 @@
                 id="languageSelector"
                 class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 text-gray-700 text-sm font-medium flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full focus:outline-none hover:text-gray-900 transition-all duration-300 shadow-sm hover:shadow-md"
                 onclick="toggleLanguageDropdown()"
-                style="min-height: 40px; min-width: 120px;"
               >
                 <div
                   class="w-5 h-5 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
@@ -433,14 +93,12 @@
                     ></path>
                   </svg>
                 </div>
-                <span style="min-width: 50px; display: inline-block;">العربية</span>
+                <span>العربية</span>
                 <svg
                   class="w-4 h-4 text-gray-400 transition-transform duration-200"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  width="16"
-                  height="16"
                 >
                   <path
                     stroke-linecap="round"
@@ -499,12 +157,11 @@
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-screen" dir="rtl" style="min-height: 100vh;" role="main" aria-label="المحتوى الرئيسي">
+    <div class="min-h-screen" dir="rtl">
       <!--Hero design -->
 
       <div
-        class="hero-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
-        style="min-height: 100vh;"
+        class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
       >
         <!-- Geometric Background Pattern -->
         <div class="absolute inset-0">
@@ -551,10 +208,10 @@
           ></div>
         </div>
 
-        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center hero-content" style="min-height: 500px;">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" style="min-height: 400px;">
+        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Left Side - Content -->
-            <div class="space-y-8" style="min-height: 500px;">
+            <div class="space-y-8">
               <!-- Badge -->
               <div
                 class="inline-flex items-center space-x-2 space-x-reverse bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold animate-fade-in-up"
@@ -645,16 +302,9 @@
                   class="absolute inset-8 rounded-full bg-gradient-to-br from-red-500 to-red-400 flex items-center justify-center shadow-2xl"
                 >
                   <img
-                    src="assets/img/Characters2.webp"
-                    alt="شخصية لبيبة - المساعد الذكي"
-                    class="w-32 h-auto"
-                    width="128"
-                    height="122"
-                    loading="eager"
-                    decoding="async"
-                    fetchpriority="high"
-                    style="max-width: 128px; height: auto; object-fit: contain;"
-                    onerror="this.src='assets/img/Characters2.webp'"
+                    src="assets/img/Characters2.png"
+                    alt="Logo"
+                    class="w-32 h-32"
                   />
                 </div>
 
@@ -714,7 +364,7 @@
       </div>
 
       <!-- Interactive Mode Selection -->
-      <div class="below-fold-section bg-white py-16">
+      <div class="bg-white py-16">
         <div class="max-w-5xl mx-auto px-8">
           <div class="text-center mb-12">
             <h2
@@ -1153,13 +803,11 @@
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer
       class="relative bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 text-white py-12 overflow-hidden"
-      role="contentinfo"
-      aria-label="معلومات الموقع والروابط"
     >
       <!-- Subtle Background Elements -->
       <div class="absolute inset-0 overflow-hidden">
@@ -1172,56 +820,54 @@
       </div>
 
       <div class="relative z-10 max-w-6xl mx-auto px-8">
-        <!-- Main Navigation Links - Touch-friendly -->
-        <nav class="text-center mb-8" role="navigation" aria-label="روابط التنقل الرئيسية">
+        <!-- Main Navigation Links -->
+        <div class="text-center mb-8">
           <div
-            class="flex flex-wrap justify-center items-center gap-4 text-sm"
+            class="flex flex-wrap justify-center items-center space-x-8 space-x-reverse text-sm"
           >
             <a
               href="index.html"
-              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline px-4 py-3 min-h-[48px] inline-flex items-center justify-center"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
               >الرئيسية</a
             >
             <a
               href="faq.html"
-              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline px-4 py-3 min-h-[48px] inline-flex items-center justify-center"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
               >الأسئلة الشائعة</a
             >
             <a
               href="#terms"
-              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline px-4 py-3 min-h-[48px] inline-flex items-center justify-center"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
               >الشروط والأحكام</a
             >
             <a
               href="#privacy"
-              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline px-4 py-3 min-h-[48px] inline-flex items-center justify-center"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
               >سياسة الخصوصية</a
             >
             <a
               href="#ip-policy"
-              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline px-4 py-3 min-h-[48px] inline-flex items-center justify-center"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
               >سياسة الملكية الفكرية</a
             >
             <a
               href="#contact"
-              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline px-4 py-3 min-h-[48px] inline-flex items-center justify-center"
+              class="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
               >اتصل بنا</a
             >
           </div>
-        </nav>
+        </div>
 
-        <!-- Social Media Icons - Touch-friendly (48x48px minimum) -->
-        <nav 
-          class="flex justify-center items-center gap-4 mb-8"
-          role="navigation"
-          aria-label="روابط التواصل الاجتماعي"
+        <!-- Social Media Icons -->
+        <div
+          class="flex justify-center items-center space-x-6 space-x-reverse mb-8"
         >
           <a
             href="https://www.facebook.com/olabibacom/"
             target="_blank"
             aria-label="زيارة صفحة أولابيبا على فيسبوك"
             title="فيسبوك - أولابيبا"
-            class="w-12 h-12 min-w-[48px] min-h-[48px] bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            class="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
           >
             <svg
               class="w-5 h-5 text-gray-300 group-hover:text-white"
@@ -1238,7 +884,7 @@
             target="_blank"
             aria-label="زيارة حساب أولابيبا على إنستغرام"
             title="إنستغرام - أولابيبا"
-            class="w-12 h-12 min-w-[48px] min-h-[48px] bg-white/10 hover:bg-pink-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            class="w-10 h-10 bg-white/10 hover:bg-pink-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
           >
             <svg
               class="w-5 h-5 text-gray-300 group-hover:text-white"
@@ -1255,7 +901,7 @@
             target="_blank"
             aria-label="زيارة حساب أولابيبا على تويتر (X)"
             title="تويتر (X) - أولابيبا"
-            class="w-12 h-12 min-w-[48px] min-h-[48px] bg-white/10 hover:bg-black rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            class="w-10 h-10 bg-white/10 hover:bg-black rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
           >
             <svg
               class="w-5 h-5 text-gray-300 group-hover:text-white"
@@ -1272,7 +918,7 @@
             target="_blank"
             aria-label="زيارة حساب أولابيبا على تيك توك"
             title="تيك توك - أولابيبا"
-            class="w-12 h-12 min-w-[48px] min-h-[48px] bg-white/10 hover:bg-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            class="w-10 h-10 bg-white/10 hover:bg-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
           >
             <svg
               class="w-5 h-5 text-gray-300 group-hover:text-white"
@@ -1289,7 +935,7 @@
             target="_blank"
             aria-label="زيارة قناة أولابيبا على يوتيوب"
             title="يوتيوب - أولابيبا"
-            class="w-12 h-12 min-w-[48px] min-h-[48px] bg-white/10 hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            class="w-10 h-10 bg-white/10 hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
           >
             <svg
               class="w-5 h-5 text-gray-300 group-hover:text-white"
@@ -1301,21 +947,21 @@
               />
             </svg>
           </a>
-        </nav>
+        </div>
 
         <!-- Copyright -->
         <div class="text-center">
           <div class="text-gray-400 text-sm">
-            2025 شركة أوتوما. جميع الحقوق محفوظة.
+            ©2025 شركة أوتوما. جميع الحقوق محفوظة.
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Back to Top Button - Touch-friendly (56x56px) -->
+    <!-- Back to Top Button -->
     <button
       id="backToTop"
-      class="fixed bottom-8 left-8 w-14 h-14 min-w-[56px] min-h-[56px] bg-gradient-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 opacity-0 invisible"
+      class="fixed bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 opacity-0 invisible"
       onclick="scrollToTop()"
       aria-label="العودة إلى أعلى الصفحة"
       title="العودة للأعلى"
@@ -1335,42 +981,7 @@
       </svg>
     </button>
 
-    <!-- JavaScript with defer loading for better performance -->
-    <script src="assets/js/main.js" defer></script>
-
-    <!-- Service Worker for advanced caching -->
-    <script>
-      // Register Service Worker for caching and offline support
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/assets/js/sw.js')
-            .then(function(registration) {
-              console.log('✅ SW registered successfully:', registration.scope);
-            })
-            .catch(function(registrationError) {
-              console.log('❌ SW registration failed:', registrationError);
-            });
-        });
-      }
-      
-      // Font loading detection (optimized to prevent layout shift)
-      // Removed: font-loaded class application to prevent CLS
-      if ('fonts' in document) {
-        document.fonts.ready.then(function() {
-          console.log('✅ Fonts loaded successfully');
-          // Don't add classes or modify layout after fonts load
-        });
-      }
-      
-      // Preload critical resources after page load
-      window.addEventListener('load', function() {
-        // Note: Removed preload for non-existent files to prevent 404 errors
-        // Only preload files that actually exist on the server
-        
-        // Optimize animations - use CSS will-change sparingly
-        // Removed: setting will-change on all animated elements to prevent performance issues
-        // The CSS already contains optimized will-change: auto for animations
-      });
-    </script>
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

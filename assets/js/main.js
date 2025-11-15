@@ -27,34 +27,28 @@ function initializeAnimations() {
     ctaButton.classList.add("pulse-soft");
   }
 
-  // Intersection Observer for scroll animations - optimized to prevent forced reflows
+  // Intersection Observer for scroll animations
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
-    // Batch all style changes together using requestAnimationFrame
-    requestAnimationFrame(() => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
     });
   }, observerOptions);
 
-  // Observe all cards and sections - Use CSS classes to prevent forced reflow
+  // Observe all cards and sections
   const animatedElements = document.querySelectorAll(".card, .hero-section");
   animatedElements.forEach((el) => {
-    // Use requestAnimationFrame to batch DOM operations
-    requestAnimationFrame(() => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
-      el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      observer.observe(el);
-    });
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    observer.observe(el);
   });
 }
 
@@ -795,19 +789,10 @@ function initializeChat() {
     }
   });
 
-  // Auto-resize input - optimized to prevent forced reflow
+  // Auto-resize input
   chatInput.addEventListener("input", function () {
-    // Use requestAnimationFrame to batch reads and writes separately
-    requestAnimationFrame(() => {
-      // Read phase
-      const scrollHeight = this.scrollHeight;
-      
-      // Write phase
-      requestAnimationFrame(() => {
-        this.style.height = "auto";
-        this.style.height = scrollHeight + "px";
-      });
-    });
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
   });
 
   // Focus input on page load
@@ -1024,19 +1009,13 @@ function generateAIResponse(userMessage) {
 function scrollToBottom() {
   const chatMessages = document.getElementById("chatMessages");
   if (chatMessages) {
-    // Optimized to prevent forced reflow - read then write in separate frames
-    requestAnimationFrame(() => {
-      // Read phase - get scrollHeight without causing reflow
-      const scrollHeight = chatMessages.scrollHeight;
-      
-      // Write phase - apply scroll in next frame
-      requestAnimationFrame(() => {
-        chatMessages.scrollTo({
-          top: scrollHeight + 100, // Add extra pixels to ensure we reach the bottom
-          behavior: "smooth",
-        });
+    // Force scroll to the very bottom with a small delay to ensure content is rendered
+    setTimeout(() => {
+      chatMessages.scrollTo({
+        top: chatMessages.scrollHeight + 100, // Add extra pixels to ensure we reach the bottom
+        behavior: "smooth",
       });
-    });
+    }, 50);
   }
 }
 
@@ -1506,16 +1485,13 @@ function closeMobileMenu() {
   }
 }
 
-// Responsive behavior improvements - optimized to prevent forced reflows
+// Responsive behavior improvements
 function handleResponsiveLayout() {
   const chatContainer = document.getElementById("chatContainer");
   const chatInputArea = document.getElementById("chatInputArea");
   const chatMessages = document.getElementById("chatMessages");
 
-  // Use matchMedia instead of window.innerWidth to prevent forced reflows
-  const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-
-  if (isMobile) {
+  if (window.innerWidth < 1024) {
     // Mobile and tablet
     // Adjust chat messages height for mobile
     if (chatMessages) {
@@ -1537,18 +1513,13 @@ function handleResponsiveLayout() {
   }, 100);
 }
 
-// Initialize responsive behavior - optimized to prevent forced reflows
+// Initialize responsive behavior
 function initializeResponsive() {
-  // Use matchMedia instead of checking window.innerWidth repeatedly
-  const mobileQuery = window.matchMedia("(max-width: 1023px)");
-  
   // Handle sidebar visibility on mobile
   function handleResize() {
     const sidebar = document.querySelector(".sidebar");
-    const isMobile = mobileQuery.matches;
-    
     if (sidebar) {
-      if (isMobile) {
+      if (window.innerWidth < 1024) {
         sidebar.style.display = "none";
       } else {
         sidebar.style.display = "block";
@@ -1556,7 +1527,7 @@ function initializeResponsive() {
     }
 
     // Close mobile menu on resize to desktop
-    if (!isMobile) {
+    if (window.innerWidth >= 1024) {
       closeMobileMenu();
     }
 
@@ -1564,12 +1535,8 @@ function initializeResponsive() {
     handleResponsiveLayout();
   }
 
-  // Use debounced version for resize events to reduce forced reflows
-  const debouncedResize = debounce(handleResize, 150);
-  window.addEventListener("resize", debouncedResize);
-  
-  // Initial call without debounce
-  handleResize();
+  window.addEventListener("resize", handleResize);
+  handleResize(); // Initial call
 
   // Mobile menu toggle (if needed)
   const mobileMenuButton = document.querySelector(".mobile-menu-button");
@@ -1810,30 +1777,19 @@ function scrollToTop() {
   });
 }
 
-// Show/Hide Back to Top Button - optimized to prevent forced reflows
-let ticking = false;
+// Show/Hide Back to Top Button
 window.addEventListener("scroll", function () {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const backToTopButton = document.getElementById("backToTop");
-      if (backToTopButton) {
-        // Read scroll position
-        const scrollPosition = window.pageYOffset;
-        
-        // Update UI based on scroll position
-        if (scrollPosition > 300) {
-          backToTopButton.classList.remove("opacity-0", "invisible");
-          backToTopButton.classList.add("opacity-100", "visible");
-        } else {
-          backToTopButton.classList.add("opacity-0", "invisible");
-          backToTopButton.classList.remove("opacity-100", "visible");
-        }
-      }
-      ticking = false;
-    });
-    ticking = true;
+  const backToTopButton = document.getElementById("backToTop");
+  if (backToTopButton) {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.remove("opacity-0", "invisible");
+      backToTopButton.classList.add("opacity-100", "visible");
+    } else {
+      backToTopButton.classList.add("opacity-0", "invisible");
+      backToTopButton.classList.remove("opacity-100", "visible");
+    }
   }
-}, { passive: true }); // passive for better scroll performance
+});
 
 // Export theme functions
 window.toggleTheme = toggleTheme;
