@@ -32,27 +32,31 @@
       }
 
       body {
-        font-family: "Noto Kufi Arabic", system-ui, -apple-system, sans-serif;
+        font-family: "Noto Kufi Arabic", 'Noto Kufi Arabic Fallback', system-ui, -apple-system, sans-serif;
         background: #f9fafb;
         line-height: 1.6;
         min-height: 100vh;
         padding-top: 80px;
-        font-display: swap;
       }
 
       .font-arabic {
-        font-family: "Noto Kufi Arabic", system-ui, -apple-system, sans-serif !important;
-        font-display: swap;
+        font-family: "Noto Kufi Arabic", 'Noto Kufi Arabic Fallback', system-ui, -apple-system, sans-serif !important;
+      }
+      
+      /* Prevent layout shift when fonts-loaded class is added */
+      html.fonts-loaded body {
+        font-family: "Noto Kufi Arabic", 'Noto Kufi Arabic Fallback', system-ui, -apple-system, sans-serif !important;
       }
       
       /* Prevent layout shift by setting consistent font metrics */
       @font-face {
         font-family: 'Noto Kufi Arabic Fallback';
         src: local('Arial'), local('Helvetica');
-        font-display: swap;
-        ascent-override: 105%;
-        descent-override: 35%;
+        font-display: optional;
+        ascent-override: 110%;
+        descent-override: 28%;
         line-gap-override: 0%;
+        size-adjust: 95%;
       }
 
       .bg-light-pink {
@@ -119,13 +123,74 @@
         contain: layout;
       }
       
-      /* Prevent layout shift during font loading */
-      .text-loading {
-        visibility: hidden;
+      /* Prevent layout shift for main content */
+      .hero-section {
+        contain: layout style paint;
+        min-height: 100vh;
       }
       
-      .fonts-loaded .text-loading {
-        visibility: visible;
+      /* Prevent hero content layout shift */
+      .hero-content {
+        min-height: 500px;
+      }
+      
+      /* Set explicit heights for text elements to prevent shift */
+      .hero-section h1 {
+        min-height: 200px;
+        line-height: 1.2;
+      }
+      
+      .hero-section p {
+        min-height: 80px;
+        line-height: 1.6;
+      }
+      
+      /* Prevent shift in CTA buttons */
+      .hero-section a.inline-flex {
+        min-height: 48px;
+        min-width: 200px;
+      }
+      
+      /* Ensure images don't cause layout shifts */
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      /* Prevent character image layout shift */
+      .hero-section .relative.w-80 {
+        min-height: 320px;
+        contain: layout;
+      }
+      
+      /* Optimize below-the-fold content */
+      .below-fold-section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 500px;
+      }
+      
+      /* Prevent animation-related layout shifts */
+      .animate-fade-in-up,
+      .animate-float,
+      .animate-bounce,
+      .animate-pulse {
+        will-change: auto;
+      }
+      
+      /* Reserve space for animated content to prevent shifts */
+      .hero-section .space-y-8 > * {
+        transform: translateZ(0); /* Enable GPU acceleration */
+      }
+      
+      /* Prevent layout shift from stats section */
+      .hero-section .flex.flex-wrap.gap-6 {
+        min-height: 60px;
+      }
+      
+      /* Prevent layout shift from badge */
+      .hero-section .inline-flex.items-center {
+        min-height: 40px;
       }
     </style>
 
@@ -133,16 +198,16 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLtz6BYgTZBfZvzgeCg.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLtz6BYgTZBfZvzgeCg.woff2" as="font" type="font/woff2" crossorigin>
     
-    <!-- Google Fonts with font-display: swap to prevent FOIT -->
+    <!-- Google Fonts with font-display: optional to prevent layout shift -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=optional"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=optional"
         rel="stylesheet"
       />
     </noscript>
@@ -206,7 +271,7 @@
               class="bg-gradient-to-r from-red-50 to-pink-50 rounded-full px-6 py-2 border border-red-100"
             >
               <p
-                class="text-gray-700 text-base font-medium italic text-loading"
+                class="text-gray-700 text-base font-medium italic"
                 data-translate="header-text"
               >
                 "إذا ظَهرت لَبِيبةُ فسْألُوها، فَلُبُّ القَولِ مَا قَالت
@@ -258,6 +323,8 @@
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
                 >
                   <path
                     stroke-linecap="round"
@@ -320,7 +387,7 @@
       <!--Hero design -->
 
       <div
-        class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
+        class="hero-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
       >
         <!-- Geometric Background Pattern -->
         <div class="absolute inset-0">
@@ -367,10 +434,10 @@
           ></div>
         </div>
 
-        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center">
+        <div class="relative z-10 max-w-6xl mx-auto px-8 text-center hero-content">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Left Side - Content -->
-            <div class="space-y-8">
+            <div class="space-y-8" style="min-height: 500px;">
               <!-- Badge -->
               <div
                 class="inline-flex items-center space-x-2 space-x-reverse bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold animate-fade-in-up"
@@ -527,7 +594,7 @@
       </div>
 
       <!-- Interactive Mode Selection -->
-      <div class="bg-white py-16">
+      <div class="below-fold-section bg-white py-16">
         <div class="max-w-5xl mx-auto px-8">
           <div class="text-center mb-12">
             <h2
@@ -1162,23 +1229,13 @@
         });
       }
       
-      // Font loading detection to prevent layout shift
+      // Font loading detection (optimized to prevent layout shift)
+      // Removed: font-loaded class application to prevent CLS
       if ('fonts' in document) {
         document.fonts.ready.then(function() {
-          document.documentElement.classList.add('fonts-loaded');
           console.log('✅ Fonts loaded successfully');
+          // Don't add classes or modify layout after fonts load
         });
-        
-        // Fallback timeout
-        setTimeout(function() {
-          if (!document.documentElement.classList.contains('fonts-loaded')) {
-            document.documentElement.classList.add('fonts-loaded');
-            console.log('⚠️ Font loading timeout - using fallback');
-          }
-        }, 3000);
-      } else {
-        // Fallback for browsers without Font Loading API
-        document.documentElement.classList.add('fonts-loaded');
       }
       
       // Preload critical resources after page load
@@ -1200,11 +1257,9 @@
           img.src = src;
         });
         
-        // Optimize animations to prevent layout shift
-        const animatedElements = document.querySelectorAll('[class*="animate-"]');
-        animatedElements.forEach(function(el) {
-          el.style.willChange = 'transform, opacity';
-        });
+        // Optimize animations - use CSS will-change sparingly
+        // Removed: setting will-change on all animated elements to prevent performance issues
+        // The CSS already contains optimized will-change: auto for animations
       });
     </script>
   </body>

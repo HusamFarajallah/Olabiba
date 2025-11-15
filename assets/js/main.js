@@ -42,13 +42,16 @@ function initializeAnimations() {
     });
   }, observerOptions);
 
-  // Observe all cards and sections
+  // Observe all cards and sections - Use CSS classes to prevent forced reflow
   const animatedElements = document.querySelectorAll(".card, .hero-section");
   animatedElements.forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    observer.observe(el);
+    // Use requestAnimationFrame to batch DOM operations
+    requestAnimationFrame(() => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(30px)";
+      el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      observer.observe(el);
+    });
   });
 }
 
