@@ -1816,11 +1816,24 @@ document.addEventListener("click", function (event) {
 
 // Mobile Menu Functions
 function toggleMobileMenu() {
-  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileMenu = document.getElementById("mobileSidebar");
   const overlay = document.getElementById("mobileOverlay");
 
   if (mobileMenu && overlay) {
-    mobileMenu.classList.toggle("translate-x-full");
+    // Check if page is RTL or LTR
+    const isRTL =
+      document.documentElement.dir === "rtl" ||
+      document.body.dir === "rtl" ||
+      document.documentElement.lang === "ar";
+
+    if (isRTL) {
+      // RTL: sidebar comes from right, toggle translate-x-full
+      mobileMenu.classList.toggle("translate-x-full");
+    } else {
+      // LTR: sidebar comes from left, toggle -translate-x-full
+      mobileMenu.classList.toggle("-translate-x-full");
+    }
+
     overlay.classList.toggle("hidden");
     document.body.classList.toggle("overflow-hidden");
   }
@@ -1828,11 +1841,24 @@ function toggleMobileMenu() {
 
 // Close mobile menu when clicking overlay
 function closeMobileMenu() {
-  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileMenu = document.getElementById("mobileSidebar");
   const overlay = document.getElementById("mobileOverlay");
 
   if (mobileMenu && overlay) {
-    mobileMenu.classList.add("translate-x-full");
+    // Check if page is RTL or LTR
+    const isRTL =
+      document.documentElement.dir === "rtl" ||
+      document.body.dir === "rtl" ||
+      document.documentElement.lang === "ar";
+
+    if (isRTL) {
+      // RTL: sidebar goes to right, add translate-x-full
+      mobileMenu.classList.add("translate-x-full");
+    } else {
+      // LTR: sidebar goes to left, add -translate-x-full
+      mobileMenu.classList.add("-translate-x-full");
+    }
+
     overlay.classList.add("hidden");
     document.body.classList.remove("overflow-hidden");
   }
